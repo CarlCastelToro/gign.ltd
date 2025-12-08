@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用符号链接使Microsoft Onedrive备份计算机的指定文件夹</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">如何使用符号链接使Microsoft Onedrive备份计算机的指定文件夹</h1>
+        <p>教程</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2>目录</h2>
+
+                <div>
+                    <div class="section-title">正文</div>
+                    <ul>
+                        <li><a href="#p1" onClick="window.location.hash = '#p1';">关于mklink命令</a></li>
+                        <li><a href="#p2" onClick="window.location.hash = '#p2';">具体实现</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section class="section">
+                <h2>本页介绍</h2>
+                <p>本页介绍如何使用mklink命令解决Onedrive只能统一同步一个文件目录的问题, 通过创建符号链接实现多个本地文件夹与Onedrive的同步, 保持云端文件一致性。</p>
+            </section>
+
+            <section class="section">
+                <h2>正文</h2>
+                <div id="p1" class="chapter">
+                    <h3>关于mklink命令</h3>
+                    <div class="chapter-content">
+                        <p>NTFS 符号链接又称“符号链接”, 是 NTFS 文件系统中指向文件系统中的另一个对象的一类对象, 被指向的对象叫做“目标”。mklink 是 Windows 下用于创建符号链接的工具, 存在于 Windows Vista 及以后版本的 Windows 操作系统中。</p>
+                        <p>使用方式: <code>MKLINK [[/D] | [/H] | [/J]] Link Target </code></p>
+                        <h4>说明: </h4>
+                        <p>/D 创建目录符号链接而不是文件符号链接（默认为文件符号链接）
+                            /H 创建硬链接而不是符号链接
+                            /J 创建目录连接点
+                            Link 指定新的符号链接名称
+                            Target 指定新链接引用的路径（绝对路径或者相对路径均可） </p>
+                        <p>参数 Link 和 Target 要求<strong>不能</strong>使用 Windows 中不允许用作文件名的字符（\ / : * ? " <> |）。并且如果 Link 和 Target 这两个参数中需要包含<strong>空格</strong>, 则必须使用<strong>英文双引号</strong>将内容引起来, 以避免参数识别错误。</p>
+                        <h4>符号链接在系统启动的时候是不工作的, 所以下面这些文件（夹）是不可以作为符号链接替换的: </h4>
+                        <code>\Windows
+\Windows\system32
+\Windows\system32\config</code>
+                    </div>
+                </div>
+
+                <div class="chapter" id="p2">
+                    <h2>具体实现</h2>
+                    <div class="chapter-content">
+                        <p>打开你的Onedrive文件夹, 我们假定它在C:\_Onedrive中。</p>
+                        <p>然后, 打开你需要备份的文件夹, 假定起名为Folder, 然后确保Onedrive文件夹中不存在名为Folder的文件夹。</p>
+                        <p>然后, 启动一个具有管理员权限的cmd或者Powershell, 输入<code>mklink /d C:\_OneDrive\Folder C:\Folder</code>。 (如果Onedrive里面已经存在了一个名为Folder的文件夹那么会报错)</p>
+                        <p>命令提示符返回“……创建的文件链接”字样的文字, 即说明建立符号链接成功。</p>
+                        <p>如果一切正常, 那么你在Onedrive文件夹中就会看到一个名为Folder的文件夹, 它就是一个符号链接, 指向了C:\Folder。</p>
+                        <h4>注意: 选择之后本地的文档将成为指向Onedrive文件夹的目录, 因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象, 请注意在操作后进行调整。</h4>
+                        <blockquote>引自https://blog.csdn.net/qq_41933331/article/details/86761373</blockquote>
+                        <hr>
+                        <p>占位符</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <div id="backToTop" class="back-to-top">
+        <a href="#_jumptitle" onclick="window.location.hash = '#_jumptitle';">↑</a>
+    </div>
+</body>
+
+</html>

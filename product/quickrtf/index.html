@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickRTF工具 | 产品详情</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">产品介绍</h1>
+        <p>QuickRTF Editor - 专注于Rtf格式的超轻量编辑器</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+    <nav class="toc">
+        <h2>目录</h2>
+
+        <div>
+            <div class="section-title">软件介绍</div>
+            <ul>
+                <li><a href="#feature-1">富文本编辑</a></li>
+                <li><a href="#feature-2">SRTF 加密存储</a></li>
+                <li><a href="#feature-3">快速存档与加载</a></li>
+                <li><a href="#feature-4">格式转换与导出</a></li>
+                <li><a href="#feature-5">便捷操作体验</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="section-title">使用指南</div>
+            <ul>
+                <li><a href="#system-requirements">系统要求</a></li>
+                <li><a href="#installation">安装说明</a></li>
+                <li><a href="#basic-operation">基础操作教程</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#manual-download">用户手册下载</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="section-title">SRTF 格式</div>
+            <ul>
+                <li><a href="#srtf-concept">格式介绍</a></li>
+                <li><a href="#srtf-encryption">加密原理</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="section-title">下载与联系</div>
+            <ul>
+                <li><a href="downloads/QuickRTF_Editor_v1.0.zip">下载软件</a></li>
+                <li><a href="mailto:IAmSystem32@outlook.com">联系开发者</a></li>
+                <li><a href="#legal-docs">法律文档</a></li>
+            </ul>
+        </div>
+
+        <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+    </nav>
+</aside>
+<main class="content">
+    <!-- 软件封面与核心介绍区 -->
+    <section class="section">
+        <div class="app-header" style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
+            <!-- 软件图标（可替换为实际图标路径） -->
+            <img src="icon.ico" alt="QuickRTF 图标" style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
+            <div class="app-intro">
+                <h2>QuickRTF Editor</h2>
+                <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">超轻量、安全的 RTF 文档编辑工具</p>
+                <p style="margin: 1rem 0;">支持富文本编辑、加密存储（SRTF 格式）、Markdown 导出、快速存档，满足个人文档编辑与安全存储需求</p>
+                <!-- 下载按钮（突出显示） -->
+                <a href=".\QuickRTF.exe" class="download-btn" style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                    立即下载
+                </a>
+                <a href="#user-manual" style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看完整指南</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能区 -->
+    <section class="section">
+        <h2>核心功能</h2>
+
+        <div id="feature-1" class="chapter">
+            <h3>富文本编辑</h3>
+            <div class="chapter-content">
+                <p>提供完整的 RTF 编辑功能，支持文本格式自定义，满足日常文档编辑需求：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>✅ 字体样式调整（粗体、斜体、下划线、删除线）</li>
+                    <li>✅ 字体大小自定义（直接输入或增减调整）</li>
+                    <li>✅ 字体选择（支持系统已安装的所有字体）</li>
+                    <li>✅ Tab 键支持（自动插入空格，优化排版）</li>
+                    <li>✅ 支持 RTF 格式原生保存与打开</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="feature-2" class="chapter">
+            <h3>SRTF 加密存储</h3>
+            <div class="chapter-content">
+                <p>独创 SRTF（Secure RTF）格式，通过 AES 加密保护敏感文档，防止未授权访问：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>🔒 采用 AES-256 加密算法，基于用户密钥生成哈希密钥，加密强度高</li>
+                    <li>🔑 支持自定义密钥（留空则使用默认密钥），密钥丢失将无法解密</li>
+                    <li>📁 加密后的 .srtf 文件可安全存储或传输，避免文档内容泄露</li>
+                    <li>🔓 支持直接打开 .srtf 文件，输入正确密钥即可解密编辑</li>
+                </ul>
+                <p style="color: #d9534f; font-weight: bold; margin-top: 1rem;">注意：请妥善保管您的加密密钥，密钥丢失后无法恢复文档内容！</p>
+            </div>
+        </div>
+
+        <div id="feature-3" class="chapter">
+            <h3>快速存档与加载</h3>
+            <div class="chapter-content">
+                <p>支持一键快速存档（QuickSave）和加载（QuickLoad），临时文档无需手动保存：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>⚡ 快捷键操作：Alt+S 快速存档，Alt+L 快速加载</li>
+                    <li>💾 存档内容以 Base64 编码存储在系统注册表，关闭软件后不丢失</li>
+                    <li>📝 空白文档自动清空存档，避免无效数据占用空间</li>
+                    <li>🔄 支持覆盖存档，随时更新临时文档内容</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="feature-4" class="chapter">
+            <h3>格式转换与导出</h3>
+            <div class="chapter-content">
+                <p>支持多种格式转换，满足不同场景下的文档使用需求：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>📤 导出为 Markdown 格式（.md），兼容主流笔记工具（如 Typora、Obsidian）</li>
+                    <li>📋 复制纯 RTF 源码，便于二次开发或格式调试</li>
+                    <li>🖨️ 支持打印功能（注：部分复杂 RTF 格式可能无法完全兼容）</li>
+                    <li>🔗 支持通过命令行打开文件（直接拖放文件到程序图标即可快速打开）</li>
+                </ul>
+                <p style="color: var(--secondary-color); margin-top: 1rem;">提示：Markdown 导出和打印功能对复杂格式（如表格、图片）支持有限，建议用于纯文本+基础格式文档。</p>
+            </div>
+        </div>
+
+        <div id="feature-5" class="chapter">
+            <h3>便捷操作体验</h3>
+            <div class="chapter-content">
+                <p>优化多项操作细节，提升编辑效率：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>⌨️ 全面快捷键支持（Ctrl+S 保存、Ctrl+O 打开、Ctrl+P 打印等）</li>
+                    <li>📌 置顶功能（Toggle TopMost），编辑时不被其他窗口遮挡</li>
+                    <li>🖥️ 响应式设计，支持高 DPI 屏幕，界面显示清晰</li>
+                    <li>❓ 内置帮助文档（EULA、隐私政策、SRTF 格式说明），随时查阅</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统要求与安装说明 -->
+    <section class="section">
+        <h2>系统要求与安装</h2>
+
+        <div id="system-requirements" class="chapter">
+            <h3>最低系统要求</h3>
+            <div class="chapter-content">
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
+                    <li>🔧 .NET Framework 4.8 或更高版本（未安装会自动提示下载）</li>
+                    <li>💾 硬盘空间：5MB（工具本身）+ 文档存储所需空间</li>
+                    <li>🖥️ 屏幕分辨率：1024x768 及以上</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="installation" class="chapter">
+            <h3>安装说明</h3>
+            <div class="chapter-content">
+                <p>本工具为绿色软件，无需安装，解压即可使用：</p>
+                <ol style="margin: 1rem 2rem; line-height: 2;">
+                    <li>下载压缩包并解压到任意目录（如 D:\Tools\QuickRTF）</li>
+                    <li>双击运行 <code style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">QuickRTF.exe</code></li>
+                    <li>首次运行会自动加载默认空白文档，可直接开始编辑</li>
+                </ol>
+                <p style="margin-top: 1rem;">快速打开文件：将 .rtf 或 .srtf 文件直接拖放至程序图标，即可自动打开并加载内容。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户手册与常见问题 -->
+    <section class="section">
+        <h2 id="user-manual">使用指南与常见问题</h2>
+
+        <div id="basic-operation" class="chapter">
+            <h3>基础操作教程</h3>
+            <div class="chapter-content">
+                <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">1. 文档编辑</h4>
+                <p>在编辑区直接输入文本，使用工具栏按钮调整格式：</p>
+                <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                    <li>粗体/斜体/下划线/删除线：点击对应按钮（或使用系统默认快捷键 Ctrl+B/I/U）</li>
+                    <li>字体调整：点击「字体」按钮选择字体，通过数字框或「+/-」按钮调整大小</li>
+                    <li>Tab 缩进：直接按 Tab 键，自动插入 3 个空格（可在代码中修改）</li>
+                </ul>
+
+                <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">2. 文档保存与打开</h4>
+                <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                    <li>保存为 RTF：点击「文件」→「保存」（Ctrl+S），选择保存路径即可</li>
+                    <li>保存为 SRTF（加密）：点击「文件」→「Save as SRTF」，输入密钥后保存</li>
+                    <li>打开 RTF/SRTF：点击「文件」→「打开」/「Open SRTF」，选择文件后确认（SRTF 需输入密钥）</li>
+                </ul>
+
+                <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">3. 快速存档与加载</h4>
+                <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                    <li>快速存档：编辑完成后按 Alt+S，内容自动存储（无需选择路径）</li>
+                    <li>快速加载：需要恢复存档时按 Alt+L，存档内容会覆盖当前编辑区</li>
+                </ul>
+
+                <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">4. 格式转换与导出</h4>
+                <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                    <li>导出为 Markdown：点击「文件」→「Export to Markdown」，选择保存路径即可</li>
+                    <li>复制 RTF 源码：点击「文件」→「Copy Plain RTF」，源码自动复制到剪贴板</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="faq" class="chapter">
+            <h3>常见问题（FAQ）</h3>
+            <div class="chapter-content">
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: bold; color: var(--primary-color);">Q1：SRTF 文件的密钥忘记了，如何恢复文档？</p>
+                    <p>A1：抱歉，SRTF 采用 AES-256 加密，密钥是解密的唯一凭证，丢失后无法恢复文档内容。建议您为重要文档设置常用密钥并妥善记录。</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: bold; color: var(--primary-color);">Q2：导出的 Markdown 格式错乱怎么办？</p>
+                    <p>A2：由于 RTF 格式的复杂性，部分高级格式（如复杂表格、图片、特殊符号）无法完全转换为 Markdown。建议导出前简化文档格式（仅保留文本、基础样式和列表）。</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: bold; color: var(--primary-color);">Q3：快速存档的内容保存在哪里？是否安全？</p>
+                    <p>A3：快速存档内容存储在 Windows 注册表的「HKEY_CURRENT_USER\Software\I Am System32\QuickRTF」路径下，仅当前用户可访问，且以 Base64 编码存储，相对安全。但敏感文档仍建议使用 SRTF 加密存储。</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: bold; color: var(--primary-color);">Q4：支持打开其他编辑器创建的 RTF 文件吗？</p>
+                    <p>A4：支持！本工具兼容标准 RTF 格式，可打开 Word、WPS、记事本等工具创建的 RTF 文件（复杂格式可能存在轻微兼容问题）。</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-weight: bold; color: var(--primary-color);">Q5：如何联系技术支持或反馈问题？</p>
+                    <p>A5：若遇到功能异常、bug 或有功能建议，请发送邮件至 <a href="mailto:IAmSystem32@outlook.com" class="link">IAmSystem32@outlook.com</a>，注明「QuickRTF+问题描述+系统版本」，我们会在 3 个工作日内回复。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="manual-download" class="chapter">
+            <h3>完整用户手册下载</h3>
+            <div class="chapter-content">
+                <p>如需包含截图的详细操作指南，可下载 PDF 版用户手册：</p>
+                <a href="downloads/QuickRTF_用户手册_v1.0.pdf" class="link" style="font-size: 1.1rem;">📄 下载 PDF 版完整用户手册</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SRTF 格式说明 -->
+    <section class="section">
+        <h2 id="srtf-intro">SRTF 格式详解</h2>
+
+        <div id="srtf-concept" class="chapter">
+            <h3>什么是 SRTF 格式？</h3>
+            <div class="chapter-content">
+                <p>SRTF（Secure RTF）是 QuickRTF 专属的加密文档格式，基于标准 RTF 格式扩展，通过 AES 加密算法保护文档内容，适用于存储敏感信息（如密码、隐私笔记、商业文档等）。</p>
+                <p style="margin-top: 1rem;">SRTF 格式的核心优势：</p>
+                <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                    <li>🔐 加密强度高：采用 AES-256 加密，符合国际安全标准，难以破解</li>
+                    <li>📎 兼容性强：基于标准 RTF 格式，解密后可还原为完整 RTF 内容</li>
+                    <li>🔑 密钥自定义：支持用户设置专属密钥，安全性由用户自主控制</li>
+                    <li>💻 跨平台兼容：加密后的 .srtf 文件可在任何 Windows 设备上通过 QuickRTF 解密打开</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="srtf-encryption" class="chapter">
+            <h3>加密原理</h3>
+            <div class="chapter-content">
+                <p>SRTF 格式的加密流程如下：</p>
+                <ol style="margin: 1rem 2rem; line-height: 2;">
+                    <li>将 RTF 文档内容转换为 UTF-8 编码的字符串，再通过 Base64 编码</li>
+                    <li>用户输入密钥（或使用默认密钥），通过 SHA-256 哈希算法生成 256 位加密密钥</li>
+                    <li>使用 AES 算法（CBC 模式 + PKCS7 填充）对 Base64 编码后的内容进行加密</li>
+                    <li>将加密后的字节流写入文件，后缀名为 .srtf</li>
+                </ol>
+                <p style="margin-top: 1rem; color: var(--secondary-color);">解密流程与加密相反，需输入相同的密钥才能还原文档内容。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 版权与法律信息 -->
+    <section class="section">
+        <h2>法律信息</h2>
+
+        <div id="copyright" class="chapter">
+            <h3>版权声明</h3>
+            <div class="chapter-content">
+                <p>© 2024 I Am System32. 保留所有权利。</p>
+                <p style="margin: 1rem 0;">QuickRTF Editor 是个人开发的免费软件，仅限非商业用途使用。未经开发者书面许可，不得用于商业盈利、复制分发、反向工程或修改。</p>
+            </div>
+        </div>
+
+        <div id="legal-docs" class="chapter">
+            <h3>相关法律文档</h3>
+            <div class="chapter-content">
+                <p>使用本软件前，请仔细阅读以下法律文档：</p>
+                <ul style="margin: 1rem 2rem; line-height: 2;">
+                    <li><a href="" class="link">📄 最终用户许可协议（EULA）</a></li>
+                    <li><a href="" class="link">📄 隐私政策</a></li>
+                    <li><a href="" class="link">📄 服务条款</a></li>
+                </ul>
+                <p style="margin-top: 1rem; color: var(--secondary-color);">下载或使用本软件，即表示您接受上述所有文档中的条款和条件。（上述文档包含在应用程序内）</p>
+            </div>
+        </div>
+    </section>
+</main>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <div class="content">
+        <header>
+            <h1>QuickRTF工具 - 安全的RTF编辑解决方案</h1>
+        </header>
+
+        <div class="section">
+            <div class="chapter">
+                <h3>简介</h3>
+                <div class="chapter-content">
+                    <p>QuickRTF 是一款超轻量级安全的RTF编辑工具，专为需要保护敏感文档的用户设计。</p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <h3>核心功能</h3>
+                <div class="chapter-content">
+                    <p>• SRTF加密存储</p>
+                    <p>• 富文本编辑</p>
+                    <p>• Markdown导出</p>
+                    <p>• 快速存档功能</p>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <h3>系统要求</h3>
+                <div class="chapter-content">
+                    <p>操作系统：Windows 7/8/10/11</p>
+                    <p>CPU：1GHz以上</p>
+                    <p>内存：1GB以上</p>
+                    <p>存储空间：10MB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top">
+        <a href="#top" title="返回顶部">↑</a>
+    </div>
+
+    <script>
+        // 返回顶部按钮功能
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

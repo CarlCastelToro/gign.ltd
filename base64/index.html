@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 编码/解码工具</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="base64-container">
+        <!-- 页面标题 -->
+        <header>
+            <h1>Base64ToTString</h1>
+            <p class="subtitle">简单高效的编码转换工具</p>
+        </header>
+        
+        <!-- 转换选项卡 -->
+        <button class="tab active" data-tab="encode-tab">字符串 → Base64</button>
+        <button class="tab" data-tab="decode-tab">Base64 → 字符串</button>
+        
+        <!-- 输入区域 -->
+        <div class="form-group">
+            <label for="inputText">输入:</label>
+            <textarea 
+                id="inputText"
+                placeholder="请输入要转换的内容..."
+            ></textarea>
+        </div>
+        
+        <!-- 按钮区域 -->
+        <div class="button-container">
+            <button id="convertBtn" class="button">转换</button>
+            <button id="clearBtn" class="button">清除</button>
+        </div>
+        
+        <!-- 结果区域 -->
+        <div class="result">
+            <div class="result-header">
+                <h3>结果</h3>
+                <button id="copyBtn" class="copy-btn">复制</button>
+            </div>
+            <div id="resultText" class="result-box"></div>
+        </div>
+        
+        <!-- 通知提示 -->
+        <div id="notification" class="notification"></div>
+        
+        <!-- 页脚 -->
+        <footer>
+            <p>Base64ToTString</p>
+        </footer>
+    </div>
+
+    <script>
+        // 转换功能
+        function setupConversion() {
+            const inputText = document.getElementById('inputText');
+            const resultText = document.getElementById('resultText');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const notification = document.querySelector('.notification');
+            
+            // 转换按钮点击事件
+            convertBtn.addEventListener('click', () => {
+                const text = inputText.value.trim();
+                if (!text) {
+                    showNotification('请输入内容', true);
+                    return;
+                }
+                
+                // 检查当前活动的选项卡
+                const activeTab = document.querySelector('.tab.active');
+                if (activeTab.getAttribute('data-tab') === 'encode-tab') {
+                    // 字符串转Base64
+                    resultText.textContent = btoa(unescape(encodeURIComponent(text)));
+                } else {
+                    // Base64转字符串
+                    try {
+                        resultText.textContent = decodeURIComponent(escape(atob(text)));
+                    } catch (e) {
+                        showNotification('无效的Base64字符串', true);
+                        resultText.textContent = '';
+                        return;
+                    }
+                }
+                
+                showNotification('转换成功');
+            });
+            
+            // 清除按钮点击事件
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                resultText.textContent = '';
+            });
+            
+            // 复制按钮点击事件
+            copyBtn.addEventListener('click', () => {
+                const text = resultText.textContent;
+                if (!text) {
+                    showNotification('没有可复制的内容', true);
+                    return;
+                }
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('复制成功');
+                }).catch(() => {
+                    showNotification('复制失败', true);
+                });
+            });
+        }
+        
+        // 选项卡功能
+        function setupTabs() {
+            const tabButtons = document.querySelectorAll('.tab');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 移除所有活动状态
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 添加活动状态
+                    button.classList.add('active');
+                });
+            });
+        }
+        
+        // 通知功能
+        function setupNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            document.body.appendChild(notification);
+            
+            window.showNotification = function(message, isError = false) {
+                notification.textContent = message;
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            };
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            setupTabs();
+            setupConversion();
+            setupNotification();
+        });
+        </script>
+    
+    <!-- 通知元素 -->
+    <div class="notification"></div>
+</body>
+</html>
