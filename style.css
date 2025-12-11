@@ -1,18 +1,20 @@
 :root {
+    /* 保持蓝色主题色不变 */
     --primary-color: #3a5065;
     --secondary-color: #5d7fa3;
-    --text-color: #333;
-    --light-bg: #f5f7fa;
-    --border-color: #e0e0e0;
-    /* 新增base64页面变量 */
+    /* 深色模式颜色变量 */
+    --text-color: #e0e0e0;
+    --light-bg: #1e1e1e;
+    --border-color: #404040;
+    /* 新增base64页面变量 - 深色模式版本 */
     --tab-active-color: #0078d4;
     --tab-hover-color: #005a9e;
-    --input-bg-color: #fff;
-    --input-border-color: #d0d7de;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #505050;
     --button-bg-color: #2196f3;
     --button-hover-bg-color: #1976d2;
-    --result-bg-color: #f6f8fa;
-    --result-border-color: #e1e4e8;
+    --result-bg-color: #2d2d2d;
+    --result-border-color: #505050;
     --notification-bg-color: #0078d4;
     --notification-text-color: #fff;
 }
@@ -21,7 +23,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Georgia', serif;
+    font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
 }
 
 body {
@@ -63,10 +65,10 @@ h1 {
 }
 
 .toc {
-    background: white;
+    background: #2d2d2d;
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .toc h2 {
@@ -103,11 +105,11 @@ h1 {
 }
 
 .section {
-    background: white;
+    background: #2d2d2d;
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .section h2 {
@@ -138,9 +140,9 @@ h1 {
 }
 
 .placeholder {
-    color: #777;
+    color: #aaa;
     font-style: italic;
-    background-color: #f9f9f9;
+    background-color: #3a3a3a;
     padding: 1rem;
     border-radius: 4px;
 }
@@ -174,7 +176,7 @@ a:hover {
     border-radius: 50%; /* 圆形按钮 */
     text-decoration: none;
     font-size: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 轻微阴影 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* 深色模式阴影 */
     transition: background-color 0.3s;
 }
 
@@ -252,18 +254,18 @@ a:hover {
     border-bottom: none;
     border-radius: 5px 5px 0 0;
     margin-right: 5px;
-    background-color: var(--light-bg);
+    background-color: #3a3a3a;
     transition: background-color 0.3s;
 }
 
 .tab.active {
-    background-color: white;
+    background-color: #2d2d2d;
     color: var(--tab-active-color);
     font-weight: bold;
 }
 
 .tab:hover:not(.active) {
-    background-color: #e3e6e9;
+    background-color: #404040;
 }
 
 .tab-content {
@@ -271,7 +273,7 @@ a:hover {
     padding: 20px;
     border: 1px solid var(--border-color);
     border-radius: 0 5px 5px 5px;
-    background-color: white;
+    background-color: #2d2d2d;
     margin-bottom: 20px;
 }
 
@@ -294,6 +296,8 @@ a:hover {
     padding: 8px;
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
 
 .input-group select {
@@ -302,6 +306,7 @@ a:hover {
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
     background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
 
 textarea {
@@ -312,6 +317,8 @@ textarea {
     min-height: 150px;
     font-family: inherit;
     resize: vertical;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
 
 button {
@@ -332,7 +339,7 @@ button:hover {
 }
 
 button:disabled {
-    background-color: #cccccc;
+    background-color: #666666;
     cursor: not-allowed;
 }
 
@@ -343,6 +350,7 @@ button:disabled {
     padding: 15px;
     margin-top: 15px;
     position: relative;
+    color: var(--text-color);
 }
 
 .result-header {
@@ -400,7 +408,7 @@ footer {
     padding: 10px;
     text-align: center;
     font-size: 12px;
-    color: #777;
+    color: #aaa;
     border-top: 1px solid var(--border-color);
 }
 
