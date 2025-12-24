@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产品列表</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="\style.css">
 </head>
 
 <body>
@@ -20,8 +20,9 @@
                 <div>
                     <div class="section-title">目录</div>
                     <ul>
-                        <li><a href="#user-manual" onClick="window.location.hash = '#user-manual';">用户手册</a>
-                        </li>
+                        <li><a href="#quickrtf" onClick="window.location.hash = '#quickrtf';">QuickRTF Editor</a></li>
+                        <li><a href="#fbm" onClick="window.location.hash = '#fbm';">Folder Backup Management</a></li>
+                        <li><a href="#bs" onClick="window.location.hash = '#bs';">BasicHttpServer</a></li>
                     </ul>
                 </div>
                 <div class="section-title"><a href="#_jumptitle"
@@ -32,7 +33,24 @@
 
         <main class="content">
             <main class="content">
-                <section class="section">
+                <section id="quickrtf" class="section">
+                <div class="app-header">
+                    <!-- 软件图标（可替换为实际图标路径） -->
+                    <img src=".\quickrtf\icon.ico" alt="QuickRTF 图标" />
+                    <div class="app-intro">
+                        <h2>QuickRTF Editor</h2>
+                        <p>超轻量、安全的 RTF 文档编辑工具</p>
+                        <p>支持富文本编辑、加密存储（SRTF 格式）、Markdown 导出、快速存档, 满足个人文档编辑与安全存储需求</p>
+                        <!-- 下载按钮（突出显示） -->
+                        <a href=".\quickrtf\" class="download-btn">
+                            了解更多
+                        </a>
+                        <a href=".\Wquickrtf\#user-manual">查看完整指南</a>
+                    </div>
+                </div>
+            </section>
+
+                <section class="section" id="fbm">
                     <div class="app-header"
                         style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
                         <img src="fbm\icon.ico" alt="文件夹备份工具图标" style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
@@ -51,20 +69,20 @@
                     </div>
                 </section>
                 
-                <section class="section">
+                <section class="section" id="bs">
                     <div class="app-header"
                         style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                        <img src="bs\icon.ico" alt="BasicHttpServer图标" style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
+                        <img src="ths_collection\bs\icon.ico" alt="BasicHttpServer图标" style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
                         <div class="app-intro">
                             <h2>BasicHttpServer</h2>
                             <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
                                 轻量、高效的HTTP服务器工具</p>
                             <p style="margin: 1rem 0;">支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p>
-                            <a href="bs" class="download-btn"
+                            <a href="ths_collection\bs" class="download-btn"
                                 style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
                                 了解更多
                             </a>
-                            <a href="bs\#user-manual"
+                            <a href="ths_collection\bs\#user-manual"
                                 style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看用户手册</a>
                         </div>
                     </div>
@@ -147,7 +165,7 @@
                 <div class="chapter-content">
                     BasicHttpServer是一款轻量级的HTTP服务器工具，支持静态文件服务和目录浏览，为开发和测试提供便捷的本地服务器环境。
                     <br><br>
-                    <a href="bs/" class="link">了解更多</a>
+                    <a href="ths_collection\bs/" class="link">了解更多</a>
                 </div>
             </div>
         </div>

@@ -1,0 +1,200 @@
+"
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>文件上传</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .upload-box {
+            border: 2px dashed #ccc;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        input[type='file'] {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+        .submit-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            display: none;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 13px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #007bff;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-stats {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .error-msg {
+            margin-top: 1rem;
+            color: #dc3545;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='upload-box'>
+        <h1>文件上传</h1>
+        <!-- 1. 表单指定method=""POST""，enctype=""multipart/form-data""（必须） -->
+        <form id='uploadForm' method='POST' enctype='multipart/form-data'>
+            <!-- 2. 文件输入name必须为""fileToUpload""，与服务器端HandleFileUpload方法匹配 -->
+            <input type='file' name='fileToUpload' id='fileToUpload' required accept='*'>
+            <div class='error-msg' id='fileError'></div>
+            <!-- 文件选择错误提示 -->
+            <br><br>
+            <button type='submit' class='submit-btn' id='submitBtn'>开始上传</button>
+            <div class='progress-container' id='progressContainer'>
+                <div class='progress-bar'>
+                    <div class='progress-fill' id='progressFill'></div>
+                </div>
+                <div class='progress-stats' id='progressStats'>0% - 0 B/s - 剩余时间: 计算中...</div>
+            </div>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileToUpload');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressStats = document.getElementById('progressStats');
+        const fileError = document.getElementById('fileError');
+        // 3. 阻止表单默认提交行为，改用Fetch异步上传
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // 关键：禁用浏览器默认跳转提交
+            fileError.textContent = ''; // 清空之前的错误提示
+            // 检查是否选择文件
+            if (!fileInput.files || fileInput.files.length === 0) {
+                fileError.textContent = '请先选择要上传的文件';
+                return;
+            }
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            // 4. FormData中添加文件，key必须为'fileToUpload'，与服务器端匹配
+            formData.append('fileToUpload', file);
+            // 5. 禁用按钮+显示进度条，防止重复提交
+            submitBtn.disabled = true;
+            submitBtn.textContent = '上传中...';
+            progressContainer.style.display = 'block';
+            // 初始化上传统计变量
+            const startTime = performance.now();
+            const totalSize = file.size;
+            try {
+                // 6. 请求路径必须为'/upload'，与服务器端HandleUploadRequest映射路径一致
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData, // 携带文件的FormData
+                    credentials: 'same-origin', // 确保跨域（若有）时携带Cookie
+                    // 7. 实时监听上传进度
+                    onuploadprogress: (e) => {
+                        if (e.lengthComputable) {
+                            const percent = Math.round((e.loaded / totalSize) * 100);
+                            const elapsedTime = (performance.now() - startTime) / 1000;
+                            const speedBps = elapsedTime > 0 ? e.loaded / elapsedTime : 0;
+                            // 格式化传输速率
+                            let speed, unit;
+                            if (speedBps >= 1024 * 1024 * 1024) {
+                                speed = (speedBps / (1024 * 1024 * 1024)).toFixed(2);
+                                unit = 'GB/s';
+                            } else if (speedBps >= 1024 * 1024) {
+                                speed = (speedBps / (1024 * 1024)).toFixed(2);
+                                unit = 'MB/s';
+                            } else if (speedBps >= 1024) {
+                                speed = (speedBps / 1024).toFixed(2);
+                                unit = 'KB/s';
+                            } else {
+                                speed = speedBps.toFixed(0);
+                                unit = 'B/s';
+                            }
+                            // 格式化剩余时间（ETA）
+                            const remainingBytes = totalSize - e.loaded;
+                            const etaSeconds = speedBps > 0 ? remainingBytes / speedBps : 0;
+                            const etaFormatted = formatEta(etaSeconds);
+                            // 更新进度UI
+                            progressFill.style.width = percent + '%';
+                            progressStats.textContent = `${percent}% - ${speed} ${unit} - 剩余时间: ${etaFormatted}`;
+                        }
+                    }
+                });
+                // 8. 处理服务器响应（成功则替换页面，失败显示错误）
+                if (response.ok) {
+                    const html = await response.text();
+                    document.body.innerHTML = html; // 显示服务器返回的上传成功页
+                } else {
+                    const errorHtml = await response.text();
+                    // 提取服务器返回的错误信息（从HTML中解析）
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = errorHtml;
+                    const errorText = tempDiv.querySelector('.error')?.textContent || `上传失败，服务器返回错误: ${response.status}`;
+                    throw new Error(errorText);
+                }
+            } catch (error) {
+                // 9. 上传失败：恢复按钮状态+显示错误
+                submitBtn.disabled = false;
+                submitBtn.textContent = '重新上传';
+                progressFill.style.backgroundColor = '#dc3545';
+                progressStats.textContent = '上传失败：' + error.message;
+            }
+        });
+        // 辅助函数：格式化剩余时间
+        function formatEta(seconds) {
+            if (isNaN(seconds) || seconds < 0) return '未知';
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = Math.floor(seconds % 60);
+            if (h > 0) return `${h}时${m}分${s}秒`;
+            if (m > 0) return `${m}分${s}秒`;
+            return `${s}秒`;
+        }
+    </script>
+</body>
+
+</html>

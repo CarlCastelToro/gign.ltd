@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>简单聊天</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #statusBar { 
+            padding: 8px; 
+            margin-bottom: 10px; 
+            border-radius: 4px; 
+            background-color: #f0f0f0;
+        }
+        #connectionStatus { font-weight: bold; }
+        #chatContainer { 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            height: 400px; 
+            overflow-y: auto; 
+            margin-bottom: 10px; 
+            border-radius: 4px;
+        }
+        #messageInput { width: 70%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        #sendButton { 
+            width: 28%; 
+            padding: 8px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer;
+        }
+        #sendButton:disabled { background-color: #cccccc; cursor: not-allowed; }
+        #usernameContainer { margin-bottom: 10px; }
+        #usernameInput { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 300px; }
+        #setUsernameButton { 
+            padding: 8px 16px; 
+            margin-left: 10px; 
+            background-color: #2196F3; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer;
+        }
+        .message { margin: 5px 0; padding: 5px; border-radius: 3px; }
+        .system { color: #666; font-style: italic; background-color: #f9f9f9; }
+        .user-joined { color: #008000; background-color: #e8f5e9; }
+        .user-left { color: #d32f2f; background-color: #ffebee; }
+        .error { color: #ff5722; background-color: #fff3e0; }
+        .debug { color: #9c27b0; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>简单聊天系统</h1>
+    
+    <!-- 修复：将反引号`改为单引号' -->
+    <div id='statusBar'>
+        <span>连接状态：</span>
+        <span id='connectionStatus' style='color: orange;'>初始化中...</span>
+        <span id='debugInfo' class='debug'></span>
+    </div>
+
+    <!-- 用户名设置区 -->
+    <div id='usernameContainer'>
+        <input type='text' id='usernameInput' placeholder='请输入用户名（2-10个字符）'>
+        <button id='setUsernameButton'>设置用户名</button>
+    </div>
+
+    <!-- 聊天内容区 -->
+    <div id='chatContainer'></div>
+
+    <!-- 消息输入区 -->
+    <input type='text' id='messageInput' placeholder='输入消息...' disabled>
+    <button id='sendButton' disabled>发送</button>
+
+    <script>
+        let webSocket;
+        let username = '';
+        const chatContainer = document.getElementById('chatContainer');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const usernameInput = document.getElementById('usernameInput');
+        const setUsernameButton = document.getElementById('setUsernameButton');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const debugInfo = document.getElementById('debugInfo');
+
+        // 初始化页面时执行
+        window.onload = function() {
+            updateStatus('初始化中', 'orange');
+            // 检查浏览器是否支持WebSocket
+            if (!window.WebSocket) {
+                updateStatus('您的浏览器不支持WebSocket！', 'red');
+                addMessage('系统错误', '请使用现代浏览器（如Chrome、Edge、Firefox）', 'error');
+                return;
+            }
+            // 开始连接
+            connect();
+        };
+
+        // 连接WebSocket服务器
+        function connect() {
+            try {
+                // 自动适配协议（ws/wss）和地址
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const url = `${protocol}//${window.location.host}/`;
+                updateStatus(`正在连接到 ${url}`, 'orange');
+                debugInfo.textContent = `连接地址: ${url}`;
+
+                // 关键修复：子协议设为空字符串（与服务器协商兼容）
+                webSocket = new WebSocket(url, 'chat');
+
+                // 连接成功回调
+                webSocket.onopen = function() {
+                    updateStatus('已连接到服务器', 'green');
+                    addMessage('系统消息', '连接成功，请设置用户名', 'system');                    
+                };
+
+                // 接收消息回调
+                webSocket.onmessage = function(event) {
+                    try {
+                        const message = JSON.parse(event.data);
+                        handleMessage(message);
+                    } catch (e) {
+                        addMessage('解析错误', `收到无效消息格式: ${event.data}`, 'error');
+                        console.error('消息解析失败:', e);
+                    }
+                };
+
+                // 连接关闭回调
+                webSocket.onclose = function(event) {
+                    const reason = event.reason || '未知原因';
+                    const code = event.code;
+                    updateStatus(`连接已关闭（代码: ${code}，原因: ${reason}）`, 'red');
+                    addMessage('系统消息', `连接已关闭，5秒后尝试重连（原因: ${reason}）`, 'system');
+                    // 5秒后自动重连
+                    setTimeout(connect, 5000);
+                };
+
+                // 连接错误回调
+                webSocket.onerror = function(event) {
+                    updateStatus('连接错误', 'red');
+                    addMessage('系统错误', 'WebSocket连接发生错误，请检查服务器是否正常运行', 'error');
+                    console.error('WebSocket错误:', event);
+                };
+
+            } catch (e) {
+                updateStatus('连接初始化失败', 'red');
+                addMessage('系统错误', `连接创建失败: ${e.message}`, 'error');
+                console.error('连接异常:', e);
+                // 2秒后重试
+                setTimeout(connect, 2000);
+            }
+        }
+
+        // 处理接收到的消息
+        function handleMessage(message) {
+            switch(message.Type) {
+                case 0: // 普通消息
+                    addMessage(message.Data.UserName, message.Data.Content, 'message');
+                    break;
+                case 1: // 用户加入
+                    addMessage('系统消息', `${message.Data.UserName} 加入了聊天`, 'user-joined');
+                    break;
+                case 2: // 用户离开
+                    addMessage('系统消息', `${message.Data.UserName} 离开了聊天`, 'user-left');
+                    break;
+                case 3: // 用户列表
+                    addMessage('系统消息', `当前在线: ${message.Data.map(u => u.UserName).join(', ')}`, 'system');
+                    break;
+                case 4: // 错误消息
+                    addMessage('系统错误', message.Data.Message, 'error');
+                    break;
+                default:
+                    addMessage('未知消息', `类型: ${message.Type}，内容: ${JSON.stringify(message.Data)}`, 'debug');
+            }
+        }
+
+        // 添加消息到聊天界面
+        function addMessage(sender, text, type) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${type}`;
+            // 格式化时间
+            const time = new Date().toLocaleTimeString();
+            messageElement.innerHTML = `<small>[${time}]</small> <strong>${escapeHtml(sender)}:</strong> ${escapeHtml(text)}`;
+            chatContainer.appendChild(messageElement);
+            // 滚动到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // 发送消息
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (!text) return; // 空消息不发送
+
+            if (!webSocket || webSocket.readyState !== WebSocket.OPEN) {
+                addMessage('发送失败', '连接未就绪，请等待重连', 'error');
+                return;
+            }
+
+            try {
+                const message = {
+                    type: 'message',
+                    content: text
+                };
+                webSocket.send(JSON.stringify(message));
+                messageInput.value = ''; // 清空输入框
+            } catch (e) {
+                addMessage('发送失败', `消息发送错误: ${e.message}`, 'error');
+                console.error('发送消息异常:', e);
+            }
+        }
+
+        // 设置用户名
+        function setUsername() {
+            const newUsername = usernameInput.value.trim();
+            // 简单验证用户名
+            if (!newUsername || newUsername.length < 2 || newUsername.length > 10) {
+                addMessage('输入错误', '用户名长度必须为2-10个字符', 'error');
+                return;
+            }
+
+            if (!webSocket || webSocket.readyState !== WebSocket.OPEN) {
+                addMessage('设置失败', '连接未就绪，请等待重连', 'error');
+                return;
+            }
+
+            try {
+                username = newUsername;
+                const message = {
+                    type: 'setusername',
+                    username: newUsername
+                };
+                webSocket.send(JSON.stringify(message));
+                // 隐藏用户名设置区，启用消息输入
+                document.getElementById('usernameContainer').style.display = 'none';
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                messageInput.focus();
+                addMessage('系统消息', `用户名已设置为: ${newUsername}`, 'system');
+            } catch (e) {
+                addMessage('设置失败', `用户名设置错误: ${e.message}`, 'error');
+                console.error('设置用户名异常:', e);
+            }
+        }
+
+        // 辅助函数：更新连接状态（增加空值校验）
+        function updateStatus(text, color) {
+            // 增加空值校验，防止元素未找到导致报错
+            if (connectionStatus) {
+                connectionStatus.textContent = text;
+                connectionStatus.style.color = color;
+            } else {
+                console.warn('connectionStatus 元素未找到，无法更新状态');
+            }
+        }
+
+        // 辅助函数：防止XSS攻击（转义HTML特殊字符）
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/'/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // 绑定事件监听
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+        setUsernameButton.addEventListener('click', setUsername);
+        usernameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') setUsername();
+        });
+    </script>
+</body>
+</html>

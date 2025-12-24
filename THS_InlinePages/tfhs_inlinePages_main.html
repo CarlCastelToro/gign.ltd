@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>文件托管服务器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        #sortSelect {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-name {
+            flex: 1;
+        }
+
+        .file-meta {
+            color: #666;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-time {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .file-size {
+            font-size: 12px;
+        }
+
+        .download-btn {
+            color: #2196F3;
+            text-decoration: none;
+            padding: 4px 8px;
+            border: 1px solid #2196F3;
+            border-radius: 4px;
+        }
+
+        .download-btn:hover {
+            background: #2196F3;
+            color: white;
+        }
+
+        .empty-state {
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+        }
+
+        .error {
+            background: #f2dede;
+            color: #a94442;
+        }
+
+        /* 右上角上传进度悬浮框样式 */
+        .upload-progress-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            display: none;
+            z-index: 9999;
+        }
+
+        .upload-progress-panel .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .upload-progress-panel .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .upload-progress-panel .progress-stats {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .upload-progress-panel .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <h1>文件托管服务器</h1>
+
+        <div class='search-bar'>
+            <!-- 新增排序下拉列表 -->
+            <select id='sortSelect'>
+                <option value='time-desc'>时间（最新）</option>
+                <option value='time-asc'>时间（最旧）</option>
+                <option value='size-desc'>文件大小（最大）</option>
+                <option value='size-asc'>文件大小（最小）</option>
+            </select>
+            <input type='text' id='searchInput' placeholder='搜索文件名...'>
+            <button onclick='refreshFileList()'>刷新列表</button>
+            <button id='uploadBtn'>上传文件</button>
+        </div>
+
+        <div class='message success' id='successMessage'></div>
+        <div class='message error' id='errorMessage'></div>
+
+        <ul class='file-list' id='fileList'></ul>
+    </div>
+
+    <!-- 隐藏的文件选择框 -->
+    <input type='file' id='fileInput' name='fileToUpload' style='display: none;' accept='*'>
+
+    <!-- 右上角上传进度面板 -->
+    <div class='upload-progress-panel' id='progressPanel'>
+        <button class='close-btn' id='progressCloseBtn'>&times;</button>
+        <div class='progress-title'>文件上传中</div>
+        <div class='progress-bar'>
+            <div class='progress-fill' id='progressFill'></div>
+        </div>
+        <div class='progress-stats' id='progressStats'>0% - 0 B/s - 剩余时间: 计算中...</div>
+    </div>
+
+    <script>
+        // 全局变量
+        let startTime = 0;
+        let totalFileSize = 0;
+        let allFiles = []; // 存储所有文件，用于排序和过滤
+
+        // 页面初始化入口
+        window.onload = () => {
+            initEventListeners(); // 初始化所有事件监听
+            refreshFileList();    // 初始化文件列表
+        };
+
+        // 统一初始化所有事件监听（解耦）
+        function initEventListeners() {
+            initUploadHandler();    // 上传逻辑
+            initSearchHandler();    // 搜索逻辑
+            initSortHandler();      // 排序逻辑
+            initDeleteHandler();    // 删除逻辑（新增核心）
+            initProgressPanelHandler(); // 上传进度面板逻辑
+        }
+
+        // 1. 上传功能处理
+        function initUploadHandler() {
+            const uploadBtn = document.getElementById('uploadBtn');
+            const fileInput = document.getElementById('fileInput');
+
+            // 点击上传按钮触发文件选择
+            uploadBtn.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // 文件选择后处理上传
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                // 重置状态
+                hideAllMessages();
+                resetProgressPanel();
+                showProgressPanel();
+
+                // 初始化上传参数
+                startTime = performance.now();
+                totalFileSize = file.size;
+                const formData = new FormData();
+                formData.append('fileToUpload', file);
+
+                try {
+                    // 发起上传请求
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData,
+                        credentials: 'same-origin',
+                        onuploadprogress: (e) => {
+                            if (e.lengthComputable) {
+                                updateUploadProgress(e.loaded);
+                            }
+                        }
+                    });
+
+                    // 处理响应
+                    if (response.ok) {
+                        updateProgressPanel(100, '100% - 上传完成！', '#4CAF50');
+                        showMessage(`文件 '${file.name}' 上传成功`, 'success');
+                        setTimeout(() => {
+                            hideProgressPanel();
+                            refreshFileList(); // 刷新文件列表
+                        }, 1500);
+                    } else {
+                        const errorHtml = await response.text();
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = errorHtml;
+                        const errorText = tempDiv.querySelector('.error')?.textContent ||
+                            `上传失败，服务器返回错误: ${response.status}`;
+                        throw new Error(errorText);
+                    }
+                } catch (error) {
+                    // 上传失败处理
+                    updateProgressPanel(0, `上传失败：${error.message}`, '#dc3545');
+                    showMessage(`文件 '${file.name}' 上传失败: ${error.message}`, 'error');
+                } finally {
+                    // 重置文件输入框，允许重新选择同一文件
+                    fileInput.value = '';
+                }
+            });
+        }
+
+        // 2. 上传进度面板处理
+        function initProgressPanelHandler() {
+            const progressCloseBtn = document.getElementById('progressCloseBtn');
+            progressCloseBtn.addEventListener('click', hideProgressPanel);
+        }
+
+        // 重置上传进度面板
+        function resetProgressPanel() {
+            const progressFill = document.getElementById('progressFill');
+            const progressStats = document.getElementById('progressStats');
+            progressFill.style.width = '0%';
+            progressFill.style.backgroundColor = '#4CAF50';
+            progressStats.textContent = '0% - 0 B/s - 剩余时间: 计算中...';
+        }
+
+        // 显示上传进度面板
+        function showProgressPanel() {
+            document.getElementById('progressPanel').style.display = 'block';
+        }
+
+        // 隐藏上传进度面板
+        function hideProgressPanel() {
+            document.getElementById('progressPanel').style.display = 'none';
+        }
+
+        // 更新上传进度面板
+        function updateProgressPanel(percent, text, color) {
+            const progressFill = document.getElementById('progressFill');
+            const progressStats = document.getElementById('progressStats');
+            progressFill.style.width = `${percent}%`;
+            if (color) progressFill.style.backgroundColor = color;
+            if (text) progressStats.textContent = text;
+        }
+
+        // 计算并更新上传进度
+        function updateUploadProgress(loadedBytes) {
+            // 计算进度百分比
+            const percent = Math.round((loadedBytes / totalFileSize) * 100);
+
+            // 计算上传速度
+            const elapsedTime = (performance.now() - startTime) / 1000;
+            const speedBps = elapsedTime > 0 ? loadedBytes / elapsedTime : 0;
+
+            // 格式化速度单位
+            let speed, unit;
+            if (speedBps >= 1024 * 1024 * 1024) {
+                speed = (speedBps / (1024 * 1024 * 1024)).toFixed(2);
+                unit = 'GB/s';
+            } else if (speedBps >= 1024 * 1024) {
+                speed = (speedBps / (1024 * 1024)).toFixed(2);
+                unit = 'MB/s';
+            } else if (speedBps >= 1024) {
+                speed = (speedBps / 1024).toFixed(2);
+                unit = 'KB/s';
+            } else {
+                speed = speedBps.toFixed(0);
+                unit = 'B/s';
+            }
+
+            // 计算剩余时间
+            const remainingBytes = totalFileSize - loadedBytes;
+            const etaSeconds = speedBps > 0 ? remainingBytes / speedBps : 0;
+            const etaFormatted = formatEta(etaSeconds);
+
+            // 更新UI
+            updateProgressPanel(percent, `${percent}% - ${speed} ${unit} - 剩余时间: ${etaFormatted}`);
+        }
+
+        // 3. 删除功能处理（核心修复）
+        function initDeleteHandler() {
+            const fileList = document.getElementById('fileList');
+            // 事件委托：监听所有删除按钮点击（兼容动态生成元素）
+            fileList.addEventListener('click', async (e) => {
+                // 只处理删除按钮
+                if (!e.target.classList.contains('delete-btn')) return;
+
+                // 阻止默认行为（兜底）
+                e.preventDefault();
+                e.stopPropagation();
+
+                // 获取文件信息（从父元素dataset读取，避免编码问题）
+                const li = e.target.closest('.file-item');
+                const encodedFileName = li.dataset.filename;
+                const originalFileName = li.dataset.originalname;
+
+                // 确认删除（可选，提升用户体验）
+                if (!confirm(`确定删除文件：${originalFileName}？`)) return;
+
+                // 执行删除逻辑
+                await handleFileDelete(encodedFileName, originalFileName);
+            });
+        }
+
+        // 执行文件删除请求
+        async function handleFileDelete(encodedFileName, originalFileName) {
+            try {
+                // 显示删除中提示
+                showMessage(`正删除: ${originalFileName}`, 'success');
+                console.log('[删除] 开始处理:', { encodedFileName, originalFileName });
+
+                // 发送删除请求
+                const response = await fetch(`/delete?file=${encodedFileName}`, {
+                    method: 'GET',
+                    credentials: 'include', // 携带Cookie
+                    headers: {
+                        'Accept': 'text/plain',
+                        'Cache-Control': 'no-cache' // 禁用缓存
+                    }
+                });
+
+                // 解析响应
+                const responseText = await response.text();
+                console.log('[删除] 服务器响应:', { status: response.status, text: responseText });
+
+                // 处理响应状态
+                if (response.ok) {
+                    showMessage(`删除成功: ${originalFileName}`, 'success');
+                    refreshFileList(); // 刷新文件列表
+                } else {
+                    throw new Error(`[${response.status}] ${responseText}`);
+                }
+            } catch (error) {
+                console.error('[删除] 失败:', error);
+                showMessage(`删除失败: ${originalFileName}（${error.message}）`, 'error');
+            }
+        }
+
+        // 4. 搜索功能处理
+        function initSearchHandler() {
+            const searchInput = document.getElementById('searchInput');
+            // 输入变化时实时过滤
+            searchInput.addEventListener('input', renderFileList);
+        }
+
+        // 5. 排序功能处理
+        function initSortHandler() {
+            const sortSelect = document.getElementById('sortSelect');
+            // 排序变化时重新渲染
+            sortSelect.addEventListener('change', renderFileList);
+        }
+
+        // 刷新文件列表
+        async function refreshFileList() {
+            try {
+                showMessage('加载文件列表中...', 'success');
+                const response = await fetch('/files', {
+                    cache: 'no-cache' // 禁用缓存
+                });
+
+                if (!response.ok) throw new Error(`HTTP错误: ${response.status}`);
+
+                // 解析文件列表
+                allFiles = await response.json();
+                renderFileList(); // 渲染列表（自动应用排序/过滤）
+                hideMessage('success');
+            } catch (err) {
+                showMessage(`获取文件列表失败: ${err.message}`, 'error');
+                console.error('[刷新列表] 失败:', err);
+            }
+        }
+
+        // 渲染文件列表（核心：包含排序、过滤、删除按钮渲染）
+        function renderFileList() {
+            const fileList = document.getElementById('fileList');
+            const sortType = document.getElementById('sortSelect').value;
+            const searchKeyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            // 1. 排序
+            let processedFiles = sortFiles([...allFiles], sortType);
+            // 2. 过滤
+            if (searchKeyword) {
+                processedFiles = processedFiles.filter(file =>
+                    file.name.toLowerCase().includes(searchKeyword)
+                );
+            }
+
+            // 3. 清空列表
+            fileList.innerHTML = '';
+
+            // 4. 无数据提示
+            if (processedFiles.length === 0) {
+                fileList.innerHTML = `<li class='empty-state'>没有匹配的文件</li>`;
+                return;
+            }
+
+            // 5. 渲染文件项
+            processedFiles.forEach(file => {
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                // 存储文件信息到dataset（供删除按钮使用）
+                li.dataset.filename = encodeURIComponent(file.name);
+                li.dataset.originalname = file.name;
+
+                // 构建删除按钮（仅当URL包含#delete时显示）
+                const deleteBtn = location.hash.includes('#delete')
+                    ? `<a href='javascript:void(0);' class='download-btn delete-btn'>删除</a>`
+                    : '';
+
+                // 渲染文件项HTML
+                li.innerHTML = `
+                <span class='file-name'>${escapeHtml(file.name)}</span>
+                <span class='file-meta'>
+                    <span class='file-time'>${file.ctime || '未知时间'}</span>
+                    <span class='file-size'>${formatSize(file.size)}</span>
+                </span>
+                ${deleteBtn}
+                <a href='/download?file=${encodeURIComponent(file.name)}' class='download-btn' download>下载</a>
+            `;
+
+                fileList.appendChild(li);
+            });
+        }
+
+        // 工具函数：文件排序
+        function sortFiles(files, sortType) {
+            return files.sort((a, b) => {
+                const dateA = a.ctime ? new Date(a.ctime) : new Date(0);
+                const dateB = b.ctime ? new Date(b.ctime) : new Date(0);
+
+                switch (sortType) {
+                    case 'time-desc': return dateB - dateA; // 最新
+                    case 'time-asc': return dateA - dateB;  // 最旧
+                    case 'size-desc': return b.size - a.size; // 最大
+                    case 'size-asc': return a.size - b.size;  // 最小
+                    default: return dateB - dateA;
+                }
+            });
+        }
+
+        // 工具函数：格式化文件大小
+        function formatSize(bytes) {
+            if (bytes < 1024) return `${bytes} B`;
+            if (bytes < 1048576) return `${(bytes / 1024).toFixed(2)} KB`;
+            if (bytes < 1073741824) return `${(bytes / 1048576).toFixed(2)} MB`;
+            return `${(bytes / 1073741824).toFixed(2)} GB`;
+        }
+
+        // 工具函数：格式化剩余时间
+        function formatEta(seconds) {
+            if (isNaN(seconds) || seconds < 0) return '未知';
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = Math.floor(seconds % 60);
+            if (h > 0) return `${h}时${m}分${s}秒`;
+            if (m > 0) return `${m}分${s}秒`;
+            return `${s}秒`;
+        }
+
+        // 工具函数：显示消息提示
+        function showMessage(text, type) {
+            const successEl = document.getElementById('successMessage');
+            const errorEl = document.getElementById('errorMessage');
+
+            hideAllMessages(); // 先隐藏所有提示
+
+            if (type === 'success') {
+                successEl.textContent = text;
+                successEl.style.display = 'block';
+                // 3秒后自动隐藏成功提示
+                setTimeout(() => hideMessage('success'), 3000);
+            } else if (type === 'error') {
+                errorEl.textContent = text;
+                errorEl.style.display = 'block';
+            }
+        }
+
+        // 工具函数：隐藏指定类型消息
+        function hideMessage(type) {
+            if (type === 'success') {
+                document.getElementById('successMessage').style.display = 'none';
+            } else if (type === 'error') {
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+        }
+
+        // 工具函数：隐藏所有消息
+        function hideAllMessages() {
+            hideMessage('success');
+            hideMessage('error');
+        }
+
+        // 工具函数：HTML转义（防止XSS）
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/'/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+    </script>
+
+    <footer style='text-align: center; padding: 2rem; color: var(--secondary-color);'>
+        <p>TestFileHttpServer © 2025 <a href='IAmSystem32@outlook.com'>I Am System32</a>, All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

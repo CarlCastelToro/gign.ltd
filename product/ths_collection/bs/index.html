@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BasicHttpServer | 产品详情</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="\style.css">
 </head>
 
 <body>
@@ -20,7 +20,9 @@
                 <div>
                     <div class="section-title">目录</div>
                     <ul>
-                        <li><a href="#user-manual" onClick="window.location.hash = '#user-manual';">用户手册</a>
+                        <li><a href="#user-manual" onClick="window.location.hash = '#user-manual';">常见问题（FAQ）</a>
+                        </li>
+                        <li><a href="#full_description" onClick="window.location.hash = '#full_description';">开发人员文档</a>
                         </li>
                     </ul>
                 </div>
@@ -142,7 +144,7 @@
 
                 <!-- 用户手册与常见问题 -->
                 <section class="section">
-                    <h2 id="user-manual">用户手册与常见问题</h2>
+                    <h2 id="user-manual">常见问题</h2>
 
                     <div id="faq" class="chapter">
                         <h3>常见问题（FAQ）</h3>
@@ -166,11 +168,153 @@
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <div id="manual-download" class="chapter">
-                        <h3>完整用户手册下载</h3>
+                <section class="section">
+                    <h2 id="full_description">完整技术文档</h2>
+
+                    <div class="chapter">
+                        <h3>开发人员文档 - BasicHttpServer 技术实现解析</h3>
                         <div class="chapter-content">
-                            <p>📄 详细的操作指南包含在应用程序内。</p>
+                            <h4>1. 服务器架构与核心组件</h4>
+                            <p>BasicHttpServer 是一个基于 .NET HttpListener 构建的轻量级 HTTP 服务器，采用事件驱动架构设计，以下是其核心架构组成：</p>
+                            <ul>
+                                <li><strong>事件循环模型</strong>：使用 BeginGetContext/EndGetContext 异步模式处理连接请求，实现非阻塞 I/O 操作</li>
+                                <li><strong>请求处理线程池</strong>：每个客户端请求由独立线程处理，避免请求间相互阻塞，提高并发能力</li>
+                                <li><strong>模块化设计</strong>：功能按职责划分为不同模块，便于维护和扩展</li>
+                                <li><strong>资源管理系统</strong>：完善的资源创建、使用和释放机制，确保不发生资源泄漏</li>
+                            </ul>
+
+                            <h4>2. HTTP 协议实现细节</h4>
+                            <p>服务器实现了完整的 HTTP/1.1 协议子集，支持以下特性：</p>
+                            <ul>
+                                <li><strong>请求解析</strong>：支持解析 HTTP 方法、URL、请求头和查询参数</li>
+                                <li><strong>Range 请求支持</strong>：实现 RFC 7233 规范，支持断点续传和多线程下载</li>
+                                <li><strong>缓存控制>：通过 Cache-Control 头实现客户端缓存控制，减少重复请求</li>
+                                <li><strong>内容协商</strong>：根据 Accept 头和文件类型返回适当的 Content-Type 响应头</li>
+                                <li><strong>错误状态处理</strong>：实现标准 HTTP 错误状态码和自定义错误页面（404、500、503、405）</li>
+                            </ul>
+
+                            <h4>3. API 端点与功能说明</h4>
+                            <p>服务器提供以下主要 API 端点和功能：</p>
+
+                            <h5>3.1 文件服务 API</h5>
+                            <ul>
+                                <li><strong>静态文件获取</strong>：`GET /{path}/{filename}` - 返回指定路径下的文件内容，自动设置正确的 MIME 类型</li>
+                                <li><strong>目录浏览</strong>：`GET /{directory}/` - 当目录存在 index.html 时返回，否则返回 404 错误页面</li>
+                                <li><strong>图标请求</strong>：`GET /favicon.ico` - 自动响应浏览器图标请求，支持多位置图标查找</li>
+                            </ul>
+
+                            <h5>3.2 系统控制 API</h5>
+                            <ul>
+                                <li><strong>隐藏窗口</strong>：`GET /cmd?command=hide` - 隐藏服务器主窗口</li>
+                                <li><strong>显示窗口</strong>：`GET /cmd?command=show` - 显示服务器主窗口</li>
+                                <li><strong>退出程序</strong>：`GET /cmd?command=exit` - 安全关闭服务器并退出程序</li>
+                                <li><strong>清理日志</strong>：`GET /cmd?command=clearlog` - 清空日志内容</li>
+                                <li><strong>切换日志锁定</strong>：`GET /cmd?command=togglelocklog` - 切换日志锁定状态，控制是否继续写入日志</li>
+                            </ul>
+
+                            <h5>3.3 临时数据存储 API</h5>
+                            <ul>
+                                <li><strong>存储临时文本</strong>：`POST /tempstring?key={key}` - 存储临时文本内容到指定键名</li>
+                                <li><strong>获取临时文本</strong>：`GET /tempstring?key={key}` - 获取之前存储的临时文本内容</li>
+                            </ul>
+
+                            <h4>4. 核心类与方法详解</h4>
+
+                            <h5>4.1 Form1 类（主窗体与控制中心）</h5>
+                            <ul>
+                                <li><strong>Server_Start()</strong>：初始化并启动 HTTP 服务器，配置监听端口和基本设置</li>
+                                <li><strong>Server_Stop()</strong>：安全停止 HTTP 服务器，释放所有资源和连接</li>
+                                <li><strong>ProcessClientRequest()</strong>：处理客户端请求的主入口，根据请求路径路由到不同处理逻辑</li>
+                                <li><strong>HandleFileRequest()</strong>：处理文件请求，包括路径解析、文件读取和响应生成</li>
+                                <li><strong>ProcessRangeRequestAsync()</strong>：异步处理 Range 请求，实现断点续传功能</li>
+                            </ul>
+
+                            <h5>4.2 辅助类与工具函数</h5>
+                            <ul>
+                                <li><strong>Log 类</strong>：实现日志记录功能，支持实时控制台输出和文件持久化存储，使用 RTF 格式增强可读性
+                                    <ul>
+                                        <li>Write()：写入普通日志信息
+                                        <li>WriteError()：写入错误日志，使用红色显示
+                                        <li>WriteRequest()：写入请求日志，使用蓝色显示
+                                    </ul>
+                                </li>
+                                <li><strong>UrlHelper 模块</strong>：提供 URL 解析和参数提取功能
+                                    <ul>
+                                        <li>GetUrlParameters()：从 URL 提取查询参数
+                                        <li>GetUrlPart()：提取 URL 中的特定部分
+                                    </ul>
+                                </li>
+                                <li><strong>UrlParameters 类</strong>：参数管理类，提供参数的添加、获取和检查功能
+                                    <ul>
+                                        <li>Add()：添加键值对参数
+                                        <li>Get()：获取指定键的参数值
+                                        <li>Contains()：检查是否包含指定键
+                                    </ul>
+                                </li>
+                                <li><strong>HttpAssistant 模块</strong>：HTTP 相关辅助功能
+                                    <ul>
+                                        <li>GetMimeType()：根据文件扩展名获取 MIME 类型
+                                        <li>SendHttpResponse()：统一的 HTTP 响应发送方法
+                                        <li>FindByteSequence()：在字节数组中查找特定序列
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>5. 配置选项与环境变量</h4>
+                            <ul>
+                                <li><strong>端口配置</strong>：默认端口 721，可通过界面自定义或通过 foldername.txt 配置
+                                <li><strong>服务文件夹设置</strong>：默认为当前目录下的 "files" 文件夹，可通过 foldername.txt 自定义
+                                <li><strong>图标路径配置</strong>：支持多位置图标查找，包括当前目录、服务目录和默认内置图标
+                            </ul>
+
+                            <h4>6. 错误处理与调试机制</h4>
+                            <p>服务器实现了全面的错误处理和调试功能：</p>
+                            <ul>
+                                <li><strong>异常捕获机制</strong>：所有关键操作均包含 try-catch-finally 块，确保异常不会导致服务器崩溃
+                                <li><strong>详细日志记录</strong>：错误发生时记录完整异常信息，包括堆栈跟踪，便于问题诊断
+                                <li><strong>用户友好错误页面</strong>：为常见错误提供清晰的错误页面和状态码，帮助客户端理解问题
+                                <li><strong>资源安全释放</strong>：使用 using 语句和 finally 块确保所有文件和网络资源正确释放
+                            </ul>
+
+                            <h4>7. 安全考虑与最佳实践</h4>
+                            <ul>
+                                <li><strong>路径遍历防护</strong>：通过路径规范化和验证防止目录遍历攻击，确保只能访问服务目录内的文件
+                                <li><strong>请求验证</strong>：对 URL 参数和请求数据进行严格验证，防止注入攻击
+                                <li><strong>资源限制</strong>：实现请求处理超时和资源限制，防止恶意请求消耗过多系统资源
+                                <li><strong>最佳实践建议</strong>：建议在生产环境中部署时配合防火墙使用，限制访问来源，并定期检查日志
+                            </ul>
+
+                            <h4>8. 扩展开发指南</h4>
+                            <p>要扩展服务器功能，开发者可以：</p>
+                            <ul>
+                                <li>在 ProcessClientRequest 方法中添加新的路由处理逻辑
+                                <li>扩展 HttpAssistant 模块以支持更多 MIME 类型
+                                <li>修改 InlinePages 模块自定义错误页面内容
+                                <li>为 Log 类添加更多日志级别和功能
+                            </ul>
+
+                            <h4>9. 技术规格与依赖项</h4>
+                            <ul>
+                                <li><strong>开发语言</strong>：Visual Basic .NET
+                                <li><strong>运行环境</strong>：.NET Framework
+                                <li><strong>核心依赖</strong>：System.Net.HttpListener, System.IO, System.Text
+                                <li><strong>网络协议支持</strong>：HTTP/1.1
+                                <li><strong>默认端口</strong>：14919
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>开发人员按钮...</h2>
+
+                    <div class="chapter">
+                        <div class="chapter-content">
+                            <p>GUI右上角区域有一个显示为"B"的按钮</p>
+                            <p style="margin: 1rem 0;">按下会自动开放当前选定端口的防火墙，并自动启动服务器</p>
+                            <p>不推荐在生产环境使用</p>
                         </div>
                     </div>
                 </section>
@@ -183,7 +327,7 @@
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
                             <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
-                            <p>使用本软件即表示您接受 <a href="eula.html" class="link">《最终用户许可协议（EULA）》</a> 中的所有条款。</p>
+                            <p>使用本软件即表示您接受 《最终用户许可协议（EULA）》 中的所有条款。</p>
                         </div>
                     </div>
                 </section>
