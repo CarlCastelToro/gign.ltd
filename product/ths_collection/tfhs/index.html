@@ -45,7 +45,7 @@
                             <h2>TestFileHttpServer</h2>
                             <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
                                 轻量、高效的文件HTTP服务器工具</p>
-                            <p style="margin: 1rem 0;">支持静态文件服务、文件上传下载、目录浏览、API端点，为开发和测试提供便捷的文件共享服务器环境</p>
+                            <p style="margin: 1rem 0;">支持静态文件服务、文件上传下载、目录浏览、API端点, 为开发和测试提供便捷的文件共享服务器环境</p>
                             <!-- 下载按钮（突出显示） -->
                             <a href=".\TestFileHttpServer.7z" class="download-btn"
                                 style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
@@ -64,8 +64,8 @@
                     <div id="feature-1" class="chapter">
                         <h3>静态文件服务</h3>
                         <div class="chapter-content">
-                            <p>提供高效的静态文件服务功能，支持HTML、CSS、JavaScript、图片等各种静态资源的快速访问。自动处理MIME类型，确保浏览器正确解析各类文件。</p>
-                            <p>支持大文件传输，优化的文件读取机制，提供稳定可靠的文件服务能力。</p>
+                            <p>提供高效的静态文件服务功能, 支持HTML、CSS、JavaScript、图片等各种静态资源的快速访问。自动处理MIME类型, 确保浏览器正确解析各类文件。</p>
+                            <p>支持大文件传输, 优化的文件读取机制, 提供稳定可靠的文件服务能力。</p>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                         <div class="chapter-content">
                             <p>提供完整的文件管理功能：</p>
                             <ul style="margin: 1rem 2rem; line-height: 2;">
-                                <li>✅ 文件上传：支持多文件上传，进度显示</li>
+                                <li>✅ 文件上传：支持多文件上传, 进度显示</li>
                                 <li>✅ 文件下载：支持直接下载和断点续传</li>
                                 <li>✅ 文件删除：可通过Web界面管理文件</li>
                                 <li>✅ 文件列表：JSON格式API返回文件信息</li>
@@ -85,7 +85,7 @@
                     <div id="feature-3" class="chapter">
                         <h3>HTTP API支持</h3>
                         <div class="chapter-content">
-                            <p>提供多个API端点，方便集成使用：</p>
+                            <p>提供多个API端点, 方便集成使用：</p>
                             <ul style="margin: 1rem 2rem; line-height: 2;">
                                 <li>🔧 /download?file=[文件名]：文件下载接口</li>
                                 <li>📂 /upload：文件上传接口</li>
@@ -98,12 +98,13 @@
                     <div id="feature-4" class="chapter">
                         <h3>轻量级设计</h3>
                         <div class="chapter-content">
-                            <p>极简设计理念，专注于核心功能：</p>
+                            <p>极简设计理念, 专注于核心功能：</p>
                             <ol style="margin: 1rem 2rem; line-height: 2;">
-                                <li>占用资源少，启动快速</li>
-                                <li>无需安装，绿色便携</li>
-                                <li>界面简洁直观，易于操作</li>
+                                <li>占用资源少, 启动快速</li>
+                                <li>无需安装, 绿色便携</li>
+                                <li>界面简洁直观, 易于操作</li>
                                 <li>支持Windows各版本系统</li>
+                                <li>! 更新: 支持边上传边写入, 避免内存溢出</li>
                             </ol>
                         </div>
                     </div>
@@ -128,17 +129,17 @@
                     <div id="installation" class="chapter">
                         <h3>使用说明</h3>
                         <div class="chapter-content">
-                            <p>本工具为绿色软件，无需安装，直接运行：</p>
+                            <p>本工具为绿色软件, 无需安装, 直接运行：</p>
                             <ol style="margin: 1rem 2rem; line-height: 2;">
                                 <li>下载并解压到任意目录（如 D:\Tools\TestFileHttpServer）</li>
                                 <li>双击运行 <code
                                         style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">TestFileHttpServer.exe</code>
                                 </li>
-                                <li>程序运行时, 会检查其运行目录下是否存在一个foldername.txt，该文件用于指定服务器所使用的文件夹名称，不存在时会自动创建，并指定文件夹为files并创建</li>
-                                <li>在界面中设置端口号（默认14922），点击「Start」即可开始提供HTTP服务</li>
+                                <li>程序运行时, 会检查其运行目录下是否存在一个foldername.txt, 该文件用于指定服务器所使用的文件夹名称, 不存在时会自动创建, 并指定文件夹为files并创建</li>
+                                <li>在界面中设置端口号（默认14922）, 点击「Start」即可开始提供HTTP服务</li>
                             </ol>
                             <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
-                                注意：确保端口不被其他应用占用，且有足够的文件系统访问权限。</p>
+                                注意：确保端口不被其他应用占用, 且有足够的文件系统访问权限。</p>
                         </div>
                     </div>
                 </section>
@@ -152,23 +153,23 @@
                         <div class="chapter-content">
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q1：如何更改服务器端口？</p>
-                                <p>A1：在应用程序界面中，直接修改端口号输入框的值（默认为14922），然后重新启动服务即可。</p>
+                                <p>A1：在应用程序界面中, 直接修改端口号输入框的值（默认为14922）, 然后重新启动服务即可。</p>
                             </div>
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q2：如何访问服务器上的文件？</p>
-                                <p>A2：启动服务后，在浏览器中输入 http://localhost:端口号 即可访问文件管理界面，或通过API端点进行文件操作。</p>
+                                <p>A2：启动服务后, 在浏览器中输入 http://localhost:端口号 即可访问文件管理界面, 或通过API端点进行文件操作。</p>
                             </div>
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q3：如何启用文件删除功能？</p>
-                                <p>A3：在URL末尾添加 #delete 哈希值即可启用删除功能，例如：http://localhost:14922/#delete</p>
+                                <p>A3：在URL末尾添加 #delete 哈希值即可启用删除功能, 例如：http://localhost:14922/#delete</p>
                             </div>
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q4：文件存储在哪个目录？</p>
-                                <p>A4：文件默认存储在程序目录下的files文件夹中，可通过修改foldername.txt文件自定义存储目录名称。</p>
+                                <p>A4：文件默认存储在程序目录下的files文件夹中, 可通过修改foldername.txt文件自定义存储目录名称。</p>
                             </div>
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q5：如何联系技术支持？</p>
-                                <p>A5：若遇到问题或有功能建议，请发送邮件至 <a href="mailto:IAmSystem32@outlook.com" class="link">IAmSystem32@outlook.com</a>，注明「TestFileHttpServer+问题描述+系统版本」，我们会在3个工作日内回复。</p>
+                                <p>A5：若遇到问题或有功能建议, 请发送邮件至 <a href="mailto:IAmSystem32@outlook.com" class="link">IAmSystem32@outlook.com</a>, 注明「TestFileHttpServer+问题描述+系统版本」, 我们会在3个工作日内回复。</p>
                             </div>
                         </div>
                     </div>
@@ -181,13 +182,13 @@
                         <h3>开发人员文档 - TestFileHttpServer 技术实现解析</h3>
                         <div class="chapter-content">
                             <h4 style="margin-top: 2rem; color: var(--primary-color);">1. 服务器架构与核心组件</h4>
-                            <p>TestFileHttpServer 是一个基于 VB.NET 实现的轻量级 HTTP 文件服务器，采用模块化设计，主要包含以下核心组件：</p>
+                            <p>TestFileHttpServer 是一个基于 VB.NET 实现的轻量级 HTTP 文件服务器, 采用模块化设计, 主要包含以下核心组件：</p>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">1.1 HTTP 服务器核心</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
                                 <li><strong>服务器启动与监听</strong>：使用 TcpListener 监听指定端口（默认14922）</li>
-                                <li><strong>多线程请求处理</strong>：采用线程池处理客户端连接，提高并发性能</li>
-                                <li><strong>请求解析与分发</strong>：解析 HTTP 请求头，根据 URL 和方法分发到不同处理器</li>
+                                <li><strong>多线程请求处理</strong>：采用线程池处理客户端连接, 提高并发性能</li>
+                                <li><strong>请求解析与分发</strong>：解析 HTTP 请求头, 根据 URL 和方法分发到不同处理器</li>
                             </ul>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">1.2 文件系统集成</h5>
@@ -205,7 +206,7 @@
                             </ul>
                             
                             <h4 style="margin-top: 2rem; color: var(--primary-color);">2. HTTP 协议实现细节</h4>
-                            <p>服务器完整实现了 HTTP/1.1 协议的核心功能，支持以下特性：</p>
+                            <p>服务器完整实现了 HTTP/1.1 协议的核心功能, 支持以下特性：</p>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">2.1 请求解析</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
@@ -224,7 +225,7 @@
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">2.3 范围请求支持</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
                                 <li><strong>部分内容传输</strong>：通过 ProcessRangeRequest 方法支持大文件分片下载</li>
-                                <li><strong>断点续传</strong>：支持 Range 头，允许客户端继续中断的下载</li>
+                                <li><strong>断点续传</strong>：支持 Range 头, 允许客户端继续中断的下载</li>
                             </ul>
                             
                             <h4 style="margin-top: 2rem; color: var(--primary-color);">3. API 端点与功能说明</h4>
@@ -232,15 +233,15 @@
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">3.1 核心文件操作</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>/download?file=[文件名]</strong>：文件下载接口，支持 URL 编码文件名</li>
-                                <li><strong>/upload</strong>：文件上传接口，支持通过 multipart/form-data 方式上传</li>
-                                <li><strong>/delete?file=[文件名]</strong>：文件删除接口，需 URL 包含 #delete 哈希值启用</li>
-                                <li><strong>/files</strong>：获取文件列表，返回 JSON 格式的文件信息</li>
+                                <li><strong>/download?file=[文件名]</strong>：文件下载接口, 支持 URL 编码文件名</li>
+                                <li><strong>/upload</strong>：文件上传接口, 支持通过 multipart/form-data 方式上传</li>
+                                <li><strong>/delete?file=[文件名]</strong>：文件删除接口, 需 URL 包含 #delete 哈希值启用</li>
+                                <li><strong>/files</strong>：获取文件列表, 返回 JSON 格式的文件信息</li>
                             </ul>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">3.2 静态资源服务</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>/[路径]</strong>：静态文件访问，自动处理目录索引</li>
+                                <li><strong>/[路径]</strong>：静态文件访问, 自动处理目录索引</li>
                                 <li><strong>/favicon.ico</strong>：网站图标请求处理</li>
                                 <li><strong>/robots.txt</strong>：搜索引擎爬虫规则支持</li>
                             </ul>
@@ -249,18 +250,18 @@
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">4.1 Form1 类</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>Server_Start</strong>：启动 HTTP 服务器，初始化监听器</li>
-                                <li><strong>Server_Stop</strong>：停止 HTTP 服务器，释放资源</li>
-                                <li><strong>DebugButton_Click</strong>：调试信息展示，辅助开发</li>
+                                <li><strong>Server_Start</strong>：启动 HTTP 服务器, 初始化监听器</li>
+                                <li><strong>Server_Stop</strong>：停止 HTTP 服务器, 释放资源</li>
+                                <li><strong>DebugButton_Click</strong>：调试信息展示, 辅助开发</li>
                             </ul>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">4.2 核心请求处理方法</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>ProcessClientRequest</strong>：处理客户端连接，解析请求并分发</li>
-                                <li><strong>HandleFileRequest</strong>：处理静态文件请求，支持目录索引</li>
+                                <li><strong>ProcessClientRequest</strong>：处理客户端连接, 解析请求并分发</li>
+                                <li><strong>HandleFileRequest</strong>：处理静态文件请求, 支持目录索引</li>
                                 <li><strong>HandleFileListRequest</strong>：生成文件列表 JSON 响应</li>
-                                <li><strong>HandleUploadRequest</strong>：处理文件上传，支持进度监控</li>
-                                <li><strong>HandleFileDelete</strong>：处理文件删除请求，包含权限检查</li>
+                                <li><strong>HandleUploadRequest</strong>：处理文件上传, 支持进度监控</li>
+                                <li><strong>HandleFileDelete</strong>：处理文件删除请求, 包含权限检查</li>
                             </ul>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">4.3 辅助工具类</h5>
@@ -281,16 +282,16 @@
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">5.2 安全特性</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>文件路径安全</strong>：防止路径遍历攻击，确保访问限制在指定目录</li>
+                                <li><strong>文件路径安全</strong>：防止路径遍历攻击, 确保访问限制在指定目录</li>
                                 <li><strong>删除权限控制</strong>：通过 URL 哈希限制删除功能的启用</li>
-                                <li><strong>HTML 内容转义</strong>：防止 XSS 攻击，安全处理用户输入</li>
+                                <li><strong>HTML 内容转义</strong>：防止 XSS 攻击, 安全处理用户输入</li>
                             </ul>
                             
                             <h5 style="margin-top: 1rem; margin-bottom: 0.5rem;">5.3 性能优化</h5>
                             <ul style="margin-left: 2rem; line-height: 1.8;">
-                                <li><strong>异步请求处理</strong>：使用异步方法处理文件传输，提高并发能力</li>
-                                <li><strong>流式传输</strong>：大文件使用分块读写，避免内存占用过高</li>
-                                <li><strong>连接池管理</strong>：合理管理线程资源，优化服务性能</li>
+                                <li><strong>异步请求处理</strong>：使用异步方法处理文件传输, 提高并发能力</li>
+                                <li><strong>流式传输</strong>：大文件使用分块读写, 避免内存占用过高</li>
+                                <li><strong>连接池管理</strong>：合理管理线程资源, 优化服务性能</li>
                             </ul>
                             
                             <h4 style="margin-top: 2rem; color: var(--primary-color);">6. 错误处理与调试</h4>
@@ -322,7 +323,7 @@
                             <ul style="margin-left: 2rem; line-height: 1.8;">
                                 <li><strong>防火墙设置</strong>：确保服务器端口允许外部访问</li>
                                 <li><strong>权限管理</strong>：确保应用有足够的文件系统访问权限</li>
-                                <li><strong>安全警告</strong>：本工具设计用于开发测试环境，生产环境需增强安全性</li>
+                                <li><strong>安全警告</strong>：本工具设计用于开发测试环境, 生产环境需增强安全性</li>
                             </ul>
                         </div>
                     </div>
@@ -334,7 +335,7 @@
                     <div class="chapter">
                         <div class="chapter-content">
                             <p>GUI右上角区域有一个显示为"B"的按钮</p>
-                            <p style="margin: 1rem 0;">按下会自动开放当前选定端口的防火墙，并自动启动服务器</p>
+                            <p style="margin: 1rem 0;">按下会自动开放当前选定端口的防火墙, 并自动启动服务器</p>
                             <p>不推荐在生产环境使用</p>
                         </div>
                     </div>
@@ -347,7 +348,7 @@
                     <div id="copyright" class="chapter">
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
-                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
+                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件, 您可自由下载、使用, 但不得用于商业盈利、复制分发或反向工程。</p>
                             <p>使用本软件即表示您接受 《最终用户许可协议（EULA）》 中的所有条款。</p>
                         </div>
                     </div>
