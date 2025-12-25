@@ -1,23 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // 原有锚点跳转逻辑不变
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - 20,
                     behavior: 'smooth'
                 });
-
                 history.pushState(null, null, targetId);
             }
         });
     });
-    const backToTopButton = document.querySelector('.back-to-top');
 
+    // 原有回到顶部逻辑不变
+    const backToTopButton = document.querySelector('.back-to-top');
     window.addEventListener('scroll', function () {
         if (window.scrollY > 300) {
             backToTopButton.style.display = 'block';
@@ -25,4 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
             backToTopButton.style.display = 'none';
         }
     });
+
+    // ===== 新增主题切换逻辑 =====
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('change', function() {
+            const newTheme = this.checked ? 'light' : 'dark';
+            // 1. 更新本地存储
+            localStorage.setItem('siteTheme', newTheme);
+            // 2. 更新html根元素属性
+            document.documentElement.setAttribute('theme', newTheme);
+            // 3. 替换样式表
+            const styleLink = document.querySelector('link[rel="stylesheet"]');
+            styleLink.href = newTheme === 'dark' ? '/style.css' : '/style_light.css';
+        });
+    }
 });
