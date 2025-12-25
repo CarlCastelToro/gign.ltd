@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人网站 | 作品集与软件工具 GIGN.LTD</title>
     <link rel="stylesheet" href="\style.css">
+    <script src="\script.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,14 @@
                 <h2>目录导航</h2>
 
                 <div>
+                    <div class="section-title">快速命令</div>
+                    <ul>
+                        <li><a href="#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
+                        <li><a href="Template.html" onClick="window.location.href = 'Template.html';">模板HTML</a></li>
+                    </ul>
+                </div>
+
+                <div>
                     <div class="section-title">个人简介</div>
                     <ul>
                         <li><a href="#about" onClick="window.location.hash = '#about';">关于我</a></li>
@@ -31,6 +40,7 @@
                     <div class="section-title">文学作品</div>
                     <ul>
                         <li><a href="#literary-works" onClick="window.location.hash = '#literary-works';">精选文学作品</a></li>
+                        <li><a href="#news" onClick="window.location.hash = '#news';">新闻</a></li>
                         <li><a href="Tolland" onClick="window.location.href = 'Tolland';">完整作品集</a></li>
                     </ul>
                 </div>
@@ -59,10 +69,15 @@
 
         <main class="content">
 
-            <section class="section">
-                <h2>新闻</h2>                
-                <a href="news.html"><h3>关于本次有关广州市信息技术职业学校的新规定的见解与思考, 点击查看更多</h3></a>
-                <p>Carl Castel Toro, 2025.12.18, Original released on gign.ltd</p>
+            <section id="proxyjump" class="section">
+                <h2>代理跳转</h2>
+                <p>用于通过Cloudflare反向代理下载平常在国内下载速度很慢的大文件, 但需要注意的是不目标文件链接不能使用例如请求头等验证方式</p>
+                <div class="chapter">
+                    <div class="chapter-content" style="white-space: nowrap">
+                        <input type="text" id="quickcommand_inputText" placeholder="请输入要跳转的链接" style="height: 39px;">
+                        <button id="quickcommand_jumpBtn" onclick="quickcommand_jumpToLink()" disabled="">跳转</button>
+                    </div>
+                </div>
             </section>
 
             <section id="about" class="section">
@@ -101,6 +116,12 @@
                         <a href="Tolland"><h3>《Tolland》完整作品集, 点击查看更多</h3></a>
                     </div>
                 </div>
+            </section>
+
+            <section id="news" class="section">
+                <h2>新闻</h2>                
+                <a href="news.html"><h3>关于本次有关广州市信息技术职业学校的新规定的见解与思考, 点击查看更多</h3></a>
+                <p>Carl Castel Toro, 2025.12.18, Original released on gign.ltd</p>
             </section>
 
             <section id="tutorial" class="section">
@@ -197,31 +218,27 @@
         </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-
-                        history.pushState(null, null, targetId);
-                    }
-                });
-            });
-        });
-    </script>
-
     <div id="backToTop" class="back-to-top">
         <a href="#_jumptitle" onclick="window.location.hash = '#_jumptitle';">↑</a>
     </div>
+
+    <script>
+        const inputEle = document.getElementById('quickcommand_inputText');
+        const btnEle = document.getElementById('quickcommand_jumpBtn'); 
+        inputEle.addEventListener('input', function() {
+            btnEle.disabled = this.value.trim() === '';
+        });
+        function quickcommand_jumpToLink() {
+            const inputValue = inputEle.value.trim();
+            if (!inputValue) {
+                alert('跳转的链接不能为空');
+                return;
+            }
+            const targetUrl = `https://universalreverseproxy.websitedefrench.icu/${encodeURIComponent(inputValue)}`;
+            window.open(targetUrl, '_blank');
+        }
+        btnEle.disabled = true;
+    </script>
 </body>
 
 </html>

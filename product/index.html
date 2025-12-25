@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产品列表</title>
     <link rel="stylesheet" href="\style.css">
+    <script src="\script.js"></script>
 </head>
 
 <body>
@@ -101,28 +102,6 @@
         </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-
-                        history.pushState(null, null, targetId);
-                    }
-                });
-            });
-        });
-    </script>
-
     <div id="backToTop" class="back-to-top">
         <a href="#_jumptitle" onclick="window.location.hash = '#_jumptitle';">↑</a>
     </div>
@@ -171,16 +150,5 @@
         </div>
     </div>
     
-    <script>
-        // 返回顶部按钮功能
-        window.addEventListener('scroll', function() {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.style.display = 'block';
-            } else {
-                backToTop.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>

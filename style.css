@@ -24,6 +24,32 @@
     padding: 0;
     box-sizing: border-box;
     font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
+    /* 通用长文本自动换行修复 */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 加强处理可能包含长URL或代码的元素 */
+p, div, span, a, h1, h2, h3, h4, h5, h6, li, td, th {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 确保链接也能正确换行 */
+a {
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* 修复pre标签内的长文本 */
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 body {
@@ -423,4 +449,32 @@ footer {
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+/* 修复超长文本显示问题并美化code元素 */
+code {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 1.5;
+}
+
+/* 确保pre标签内的code也能正确换行 */
+pre code {
+    display: block;
+    padding: 1em;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }

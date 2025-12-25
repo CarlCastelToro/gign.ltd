@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BasicHttpServer | 产品详情</title>
     <link rel="stylesheet" href="\style.css">
+    <script src="\script.js"></script>
 </head>
 
 <body>
@@ -335,45 +336,9 @@
         </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 20,
-                            behavior: 'smooth'
-                        });
-
-                        history.pushState(null, null, targetId);
-                    }
-                });
-            });
-        });
-    </script>
-
     <!-- 简洁的底部信息 -->
     <footer style="text-align: center; padding: 2rem; color: var(--secondary-color);">
         <p>BasicHttpServer - 轻量级HTTP服务器工具</p>
     </footer>
-
-
-    <script>
-        // 返回顶部按钮功能
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
