@@ -1,16 +1,20 @@
 (function() {
+    // 1. 获取本地存储的主题偏好
     const siteTheme = localStorage.getItem('siteTheme');
-    const darkThemeLink = document.getElementById('dark-theme');
-    const lightThemeLink = document.getElementById('light-theme');
-    if (darkThemeLink && lightThemeLink) {
-        if (siteTheme === 'dark') {
-            darkThemeLink.disabled = false;
-            lightThemeLink.disabled = true;
-        } else if (siteTheme === 'light') {
-            darkThemeLink.disabled = true;
-            lightThemeLink.disabled = false;
-        }
+    
+    // 2. 核心修改：不再操作样式表的禁用/启用，改为控制根元素类名
+    // 只针对新方案的 "light-theme" 类名进行添加/移除
+    if (siteTheme === 'dark') {
+        // 深色主题：移除浅色主题类名
+        document.documentElement.classList.remove('light-theme');
+    } else if (siteTheme === 'light') {
+        // 浅色主题：添加浅色主题类名
+        document.documentElement.classList.add('light-theme');
     }
+    
+    // 可选：清理旧的主题样式表（避免残留的双样式表导致冲突）
+    const oldThemeLinks = document.querySelectorAll('#dark-theme, #light-theme');
+    oldThemeLinks.forEach(link => link.remove());
 })();
 
 // ==================== 全局居中弹窗函数（多弹窗兼容版） ====================

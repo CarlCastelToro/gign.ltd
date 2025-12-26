@@ -1,12 +1,15 @@
+/* ========== 全局基础样式（通用） ========== */
 :root {
-    /* 保持蓝色主题色不变 */
+    /* 基础主题色（深浅色通用） */
     --primary-color: #3a5065;
     --secondary-color: #5d7fa3;
-    /* 深色模式颜色变量 */
+
+    /* 深色模式默认变量（核心） */
     --text-color: #e0e0e0;
     --light-bg: #1e1e1e;
     --border-color: #404040;
-    /* 新增base64页面变量 - 深色模式版本 */
+
+    /* Base64页面变量 - 深色模式默认 */
     --tab-active-color: #0078d4;
     --tab-hover-color: #005a9e;
     --input-bg-color: #2d2d2d;
@@ -17,50 +20,106 @@
     --result-border-color: #505050;
     --notification-bg-color: #0078d4;
     --notification-text-color: #fff;
+
+    /* 全局过渡：确保所有样式切换平滑无闪烁 */
+    --theme-transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 浅色模式变量覆盖（通过light-theme类名激活） */
+:root.light-theme {
+    --text-color: #333;
+    --light-bg: #f5f7fa;
+    --border-color: #e0e0e0;
+
+    /* Base64页面变量 - 浅色模式 */
+    --input-bg-color: #fff;
+    --input-border-color: #d0d7de;
+    --result-bg-color: #f6f8fa;
+    --result-border-color: #e1e4e8;
+}
+
+/* ========== 全局样式重置 & 过渡 ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
+    font-family: 'Georgia', serif;
     /* 通用长文本自动换行修复 */
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* 应用全局过渡（核心：消除闪烁） */
+    transition: var(--theme-transition);
+
+    scrollbar-width: none;
+    /* 隐藏Firefox滚动条 */
+    -ms-overflow-style: none;
 }
 
-/* 图片等不适合过渡的元素 */
-img, video, canvas, svg, iframe, embed {
+:root.light-theme * {
+    font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
+}
+
+/* 图片等不适合过渡的元素：禁用过渡 */
+img,
+video,
+canvas,
+svg,
+iframe,
+embed {
     transition: none !important;
 }
 
 /* 滚动条过渡效果 */
 ::-webkit-scrollbar {
+    width: 0px;
+    /* 隐藏垂直滚动条 */
+    height: 0px;
+    /* 隐藏水平滚动条 */
     transition: width 0.3s ease;
 }
+
 ::-webkit-scrollbar-track {
+    background: transparent;
+    /* 滚动条轨道透明 */
     transition: background-color 0.3s ease;
 }
+
 ::-webkit-scrollbar-thumb {
+    background: transparent;
+    /* 滚动条滑块透明 */
+    border-radius: 0;
     transition: background-color 0.3s ease, border-radius 0.3s ease;
 }
 
-/* 加强处理可能包含长URL或代码的元素 */
-p, div, span, a, h1, h2, h3, h4, h5, h6, li, td, th {
+/* 加强处理长文本元素 */
+p,
+div,
+span,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th {
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
 }
 
-/* 确保链接也能正确换行 */
+/* 链接换行修复 */
 a {
     word-break: break-all;
     overflow-wrap: break-word;
 }
 
-/* 修复pre标签内的长文本 */
+/* pre标签长文本修复 */
 pre {
     white-space: pre-wrap;
     word-break: break-word;
@@ -69,10 +128,12 @@ pre {
     overflow-x: auto;
 }
 
+/* ========== 页面基础样式 ========== */
 body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--light-bg);
+    -ms-overflow-style: none;
 }
 
 header {
@@ -107,11 +168,19 @@ h1 {
     flex: 1;
 }
 
+/* ========== 目录样式（适配深浅色） ========== */
 .toc {
-    background: #2d2d2d;
+    /* 深色：#2d2d2d | 浅色：white → 统一用变量+背景逻辑 */
+    background: var(--light-bg);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* 深浅色阴影区分 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+}
+
+/* 浅色模式下调整目录阴影 */
+:root.light-theme .toc {
+    --shadow-opacity: 0.1;
 }
 
 .toc h2 {
@@ -147,12 +216,18 @@ h1 {
     text-decoration: underline;
 }
 
+/* ========== 内容区块样式 ========== */
 .section {
-    background: #2d2d2d;
+    background: var(--light-bg);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+}
+
+/* 浅色模式下调整内容区块阴影 */
+:root.light-theme .section {
+    --shadow-opacity: 0.1;
 }
 
 .section h2 {
@@ -183,11 +258,18 @@ h1 {
 }
 
 .placeholder {
-    color: #aaa;
+    /* 深浅色占位符颜色区分 */
+    color: var(--placeholder-text, #aaa);
     font-style: italic;
-    background-color: #3a3a3a;
+    background-color: var(--placeholder-bg, #3a3a3a);
     padding: 1rem;
     border-radius: 4px;
+}
+
+/* 浅色模式下占位符样式 */
+:root.light-theme .placeholder {
+    --placeholder-text: #777;
+    --placeholder-bg: #f9f9f9;
 }
 
 .link {
@@ -200,34 +282,42 @@ a:hover {
     text-decoration: underline;
 }
 
+/* ========== 回到顶部按钮 ========== */
 .back-to-top {
-    display: none; /* 默认隐藏 */
-    position: fixed; /* 固定定位，不随滚动移动 */
-    right: 1rem; /* 距离右侧1rem */
-    top: 1rem; /* 距离顶部1rem */
-    z-index: 100; /* 确保在其他内容上方 */
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 100;
 }
 
 .back-to-top a {
     display: inline-block;
     width: 3rem;
     height: 3rem;
-    background-color: var(--primary-color); /* 使用主题主色 */
+    background-color: var(--primary-color);
     color: white;
     text-align: center;
-    line-height: 3rem; /* 垂直居中箭头 */
-    border-radius: 50%; /* 圆形按钮 */
+    line-height: 3rem;
+    border-radius: 50%;
     text-decoration: none;
     font-size: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* 深色模式阴影 */
+    /* 深浅色阴影区分 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, var(--btn-shadow-opacity, 0.4));
     transition: background-color 0.3s;
 }
 
-.back-to-top a:hover {
-    background-color: var(--secondary-color); /* hover时变色 */
+/* 浅色模式下按钮阴影 */
+:root.light-theme .back-to-top a {
+    --btn-shadow-opacity: 0.2;
 }
 
-/* 应用头部样式 */
+.back-to-top a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* ========== 应用头部样式 ========== */
 .app-header {
     display: flex;
     gap: 2rem;
@@ -272,23 +362,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        position: static;
-        margin-bottom: 2rem;
-    }
-
-    .back-to-top {
-        display: block;
-    }
-}
-
-/* Base64页面专用样式 */
+/* ========== Base64页面专用样式 ========== */
 .tab {
     display: inline-block;
     padding: 10px 20px;
@@ -297,18 +371,36 @@ a:hover {
     border-bottom: none;
     border-radius: 5px 5px 0 0;
     margin-right: 5px;
-    background-color: #3a3a3a;
+    /* 深浅色tab背景区分 */
+    background-color: var(--tab-bg, #3a3a3a);
     transition: background-color 0.3s;
 }
 
+/* 浅色模式下tab背景 */
+:root.light-theme .tab {
+    --tab-bg: var(--light-bg);
+}
+
 .tab.active {
-    background-color: #2d2d2d;
+    /* 深浅色active tab背景区分 */
+    background-color: var(--tab-active-bg, #2d2d2d);
     color: var(--tab-active-color);
     font-weight: bold;
 }
 
+/* 浅色模式下active tab背景 */
+:root.light-theme .tab.active {
+    --tab-active-bg: white;
+}
+
 .tab:hover:not(.active) {
-    background-color: #404040;
+    /* 深浅色hover tab背景区分 */
+    background-color: var(--tab-hover-bg, #404040);
+}
+
+/* 浅色模式下hover tab背景 */
+:root.light-theme .tab:hover:not(.active) {
+    --tab-hover-bg: #e3e6e9;
 }
 
 .tab-content {
@@ -316,8 +408,14 @@ a:hover {
     padding: 20px;
     border: 1px solid var(--border-color);
     border-radius: 0 5px 5px 5px;
-    background-color: #2d2d2d;
+    /* 深浅色tab内容背景区分 */
+    background-color: var(--tab-content-bg, #2d2d2d);
     margin-bottom: 20px;
+}
+
+/* 浅色模式下tab内容背景 */
+:root.light-theme .tab-content {
+    --tab-content-bg: white;
 }
 
 .tab-content.active {
@@ -382,8 +480,14 @@ button:hover {
 }
 
 button:disabled {
-    background-color: #666666;
+    /* 深浅色禁用按钮背景区分 */
+    background-color: var(--btn-disabled-bg, #666666);
     cursor: not-allowed;
+}
+
+/* 浅色模式下禁用按钮背景 */
+:root.light-theme button:disabled {
+    --btn-disabled-bg: #cccccc;
 }
 
 .result {
@@ -440,6 +544,7 @@ button:disabled {
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -451,11 +556,17 @@ footer {
     padding: 10px;
     text-align: center;
     font-size: 12px;
-    color: #aaa;
+    /* 深浅色页脚文字颜色区分 */
+    color: var(--footer-text, #aaa);
     border-top: 1px solid var(--border-color);
 }
 
-/* 确保base64页面和其他页面样式兼容 */
+/* 浅色模式下页脚文字颜色 */
+:root.light-theme footer {
+    --footer-text: #777;
+}
+
+/* ========== Base64页面容器样式 ========== */
 .base64-container {
     max-width: 900px;
     margin: 0 auto;
@@ -468,10 +579,11 @@ footer {
     margin-bottom: 20px;
 }
 
-/* 修复超长文本显示问题并美化code元素 */
+/* ========== Code元素美化 ========== */
 code {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* 深浅色code背景区分 */
+    background-color: var(--code-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--code-border, rgba(255, 255, 255, 0.1));
     border-radius: 3px;
     padding: 0.2em 0.4em;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -485,7 +597,13 @@ code {
     line-height: 1.5;
 }
 
-/* 确保pre标签内的code也能正确换行 */
+/* 浅色模式下code样式 */
+:root.light-theme code {
+    --code-bg: rgba(0, 0, 0, 0.05);
+    --code-border: rgba(0, 0, 0, 0.1);
+}
+
+/* pre标签内的code样式 */
 pre code {
     display: block;
     padding: 1em;
@@ -496,7 +614,7 @@ pre code {
     overflow-wrap: break-word;
 }
 
-/* 主题切换开关样式 - 深浅色通用 */
+/* ========== 主题切换开关样式 ========== */
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -517,12 +635,18 @@ pre code {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #404040; /* 深色默认 */
+    /* 深浅色开关背景区分 */
+    background-color: var(--slider-bg, #404040);
     transition: .4s;
     border-radius: 24px;
 }
 
 /* 浅色模式下开关背景 */
+:root.light-theme .slider {
+    --slider-bg: #ccc;
+}
+
+/* 兼容旧的theme属性（可选，确保向下兼容） */
 :root[theme="light"] .slider {
     background-color: #ccc;
 }
@@ -539,18 +663,39 @@ pre code {
     border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:checked + .slider:before {
-    transform: translateX(26px);
+input:checked+.slider:before {
+    transform: translateX(22px);
 }
 
 .slider.round {
-    border-radius: 24px;
+    border-radius: 23px;
 }
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+
+    .back-to-top {
+        display: block;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(26px);
+    }
 }
