@@ -28,6 +28,7 @@
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 加强处理可能包含长URL或代码的元素 */

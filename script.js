@@ -52,18 +52,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ===== 新增主题切换逻辑 =====
+    // ===== 优化后的主题切换逻辑 =====
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         themeToggle.addEventListener('change', function() {
             const newTheme = this.checked ? 'light' : 'dark';
+            
             // 1. 更新本地存储
             localStorage.setItem('siteTheme', newTheme);
+            
             // 2. 更新html根元素属性
             document.documentElement.setAttribute('theme', newTheme);
-            // 3. 替换样式表
-            const styleLink = document.querySelector('link[rel="stylesheet"]');
-            styleLink.href = newTheme === 'dark' ? '/style.css' : '/style_light.css';
+            
+            // 3. 通过禁用/启用样式表切换主题（优化关键：不再修改href）
+            const darkStyle = document.getElementById('dark-theme');
+            const lightStyle = document.getElementById('light-theme');
+            
+            if (darkStyle && lightStyle) {
+                darkStyle.disabled = newTheme !== 'dark';
+                lightStyle.disabled = newTheme !== 'light';
+            }
         });
     }
 });

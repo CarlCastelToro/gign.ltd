@@ -1,13 +1,14 @@
-// ==================== 网站主题初始化（最先执行） ====================
-// 立即执行函数，确保主题初始化逻辑最先执行
 (function() {
     const siteTheme = localStorage.getItem('siteTheme');
-    const styleLink = document.getElementById('themeStyle');
-    if (styleLink) {
+    const darkThemeLink = document.getElementById('dark-theme');
+    const lightThemeLink = document.getElementById('light-theme');
+    if (darkThemeLink && lightThemeLink) {
         if (siteTheme === 'dark') {
-            styleLink.href = '/style.css';
+            darkThemeLink.disabled = false;
+            lightThemeLink.disabled = true;
         } else if (siteTheme === 'light') {
-            styleLink.href = '/style_light.css';
+            darkThemeLink.disabled = true;
+            lightThemeLink.disabled = false;
         }
     }
 })();
