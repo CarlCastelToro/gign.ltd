@@ -62,7 +62,9 @@
 }
 
 :root.font-georgia * {
-    font-family: 'Georgia', serif;
+    font-family: 'Georgia', 'Noto Serif CJK SC', 'Noto Serif CJK TC', 'Noto Serif CJK JP', 'Noto Serif CJK KR', serif;
+    font-size-adjust: 0.54; 
+    font-display: swap; 
 }
 
 :root.font-yahei * {
