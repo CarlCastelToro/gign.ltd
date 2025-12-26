@@ -1,3 +1,17 @@
+// ==================== 网站主题初始化（最先执行） ====================
+// 立即执行函数，确保主题初始化逻辑最先执行
+(function() {
+    const siteTheme = localStorage.getItem('siteTheme');
+    const styleLink = document.getElementById('themeStyle');
+    if (styleLink) {
+        if (siteTheme === 'dark') {
+            styleLink.href = '/style.css';
+        } else if (siteTheme === 'light') {
+            styleLink.href = '/style_light.css';
+        }
+    }
+})();
+
 // ==================== 全局居中弹窗函数（多弹窗兼容版） ====================
 // 全局变量：管理弹窗层级和ID，确保最早弹出的在最顶层
 let alertZIndex = 9999; // 初始层级
@@ -183,5 +197,3 @@ function closeAlertById(alertId) {
         overlay.click(); // 触发遮罩层关闭逻辑
     }
 }
-
-// ==================== 其他原有代码 ====================
