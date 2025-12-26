@@ -43,8 +43,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Georgia', serif;
+    box-sizing: border-box;    
     /* 通用长文本自动换行修复 */
     word-break: break-word;
     overflow-wrap: break-word;
@@ -58,7 +57,11 @@
     -ms-overflow-style: none;
 }
 
-:root.light-theme * {
+:root.font-georgia * {
+    font-family: 'Georgia', serif;
+}
+
+:root.font-yahei * {
     font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
 }
 
@@ -157,11 +160,87 @@ h1 {
     gap: 2rem;
 }
 
+/* ========== 侧边栏样式修改 - 添加滚动条支持 ========== */
 .sidebar {
     flex: 0 0 300px;
     position: sticky;
     top: 2rem;
     align-self: flex-start;
+    /* 添加最大高度限制 */
+    max-height: calc(100vh - 5rem);
+    /* 启用垂直滚动 */
+    overflow-y: auto;
+    /* 隐藏水平滚动条 */
+    overflow-x: hidden;
+    /* 固定侧边栏宽度，不受滚动条影响 */
+    width: 300px;
+}
+
+/* 侧边栏滚动条样式 */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+    /* 滚动条宽度适中 */
+    transition: width 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+    /* 滚动条轨道透明 */
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.3);
+    /* 半透明滚动条滑块 */
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(150, 150, 150, 0.5);
+    /* 悬停时加深颜色 */
+}
+
+/* 浅色模式下调整侧边栏滚动条颜色 */
+:root.light-theme .sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
+:root.light-theme .sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+}
+
+/* ========== 目录样式 - 解决主题切换按钮位移问题 ========== */
+.toc h2 {
+    /* 确保主题切换按钮容器的宽度稳定 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 给按钮预留足够空间，不受滚动条影响 */
+    padding-right: 10px;
+}
+
+/* 主题切换开关样式调整 - 确保定位稳定 */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    /* 确保按钮位置固定，不随滚动条变化 */
+    flex-shrink: 0;
+}
+
+/* 防止主题切换按钮在滚动条出现时被挤压 */
+.toc {
+    /* 深色：#2d2d2d | 浅色：white → 统一用变量+背景逻辑 */
+    background: var(--light-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    /* 深浅色阴影区分 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+    /* 确保目录内容宽度稳定 */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .content {
@@ -615,6 +694,23 @@ pre code {
 }
 
 /* ========== 主题切换开关样式 ========== */
+/* 字体切换开关样式 - 与主题切换按钮保持一致 */
+.font-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    /* 确保按钮位置固定，不随滚动条变化 */
+    flex-shrink: 0;
+}
+
+.font-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* 移除重复的.toc h2样式定义 */
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -668,7 +764,7 @@ input:checked+.slider {
 }
 
 input:checked+.slider:before {
-    transform: translateX(22px);
+    transform: translateX(26px);
 }
 
 .slider.round {
@@ -686,16 +782,16 @@ input:checked+.slider:before {
         flex-direction: column;
     }
 
-    .sidebar {
-        position: static;
-        margin-bottom: 2rem;
-    }
-
     .back-to-top {
         display: block;
     }
 
-    input:checked+.slider:before {
-        transform: translateX(26px);
+    .sidebar {
+        position: static;
+        margin-bottom: 2rem;
+        /* 在移动设备上也保持滚动功能 */
+        max-height: 400px;
+        overflow-y: auto;
+        width: 100%;
     }
 }

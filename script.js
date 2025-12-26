@@ -78,4 +78,46 @@ document.addEventListener('DOMContentLoaded', function () {
         // 绑定切换事件（无延迟、无样式表操作，零闪烁）
         themeToggle.addEventListener('change', switchTheme, { passive: true });
     }
+
+    // ===== 新增：字体切换逻辑（与主题切换逻辑风格一致）=====
+    const fontToggle = document.getElementById('fontToggle');
+    if (fontToggle) {
+        // 1. 初始化字体
+        const initFont = () => {
+            const savedFont = localStorage.getItem('siteFont') || 'yahei';
+            if (savedFont === 'georgia') {
+                document.documentElement.classList.add('font-georgia');
+                document.documentElement.classList.remove('font-yahei');
+                fontToggle.checked = false;
+            } else {
+                document.documentElement.classList.add('font-yahei');
+                document.documentElement.classList.remove('font-georgia');
+                fontToggle.checked = true;
+            }
+        };
+
+        // 2. 切换字体（仅修改类名，无样式表操作）
+        const switchFont = () => {
+            const isGeorgia = !fontToggle.checked;
+            const newFont = isGeorgia ? 'georgia' : 'yahei';
+            
+            // 切换根元素字体类名
+            if (isGeorgia) {
+                document.documentElement.classList.add('font-georgia');
+                document.documentElement.classList.remove('font-yahei');
+            } else {
+                document.documentElement.classList.add('font-yahei');
+                document.documentElement.classList.remove('font-georgia');
+            }
+            
+            // 保存到本地存储
+            localStorage.setItem('siteFont', newFont);
+        };
+
+        // 初始化字体
+        initFont();
+
+        // 绑定字体切换事件
+        fontToggle.addEventListener('change', switchFont, { passive: true });
+    }
 });

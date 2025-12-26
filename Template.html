@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="/theme_init.js"></script>
     <script src="/script.js" defer></script>
 </head>
+
 <body>
     <header>
         <h1 id="_jumptitle">标准HTML模板</h1>
@@ -18,13 +20,9 @@
     <div class="container">
         <aside class="sidebar">
             <nav class="toc">
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-        目录
-        <label class="theme-switch">
-            <input type="checkbox" id="themeToggle">
-            <span class="slider round"></span>
-        </label>
-    </h2>
+                <h2>
+                    目录
+                </h2>
 
                 <div>
                     <div class="section-title">文本元素</div>
@@ -40,7 +38,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <div class="section-title">表格和表单</div>
                     <ul>
@@ -50,7 +48,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <div class="section-title">媒体元素</div>
                     <ul>
@@ -58,10 +56,26 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+
+                <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                    深浅色切换
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
+
+                <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                    字体切换 (Georgia/雅黑)
+                    <label class="font-switch">
+                        <input type="checkbox" id="fontToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
             </nav>
         </aside>
 
@@ -84,7 +98,7 @@
                         <h6>六级标题 (h6)</h6>
                     </div>
                 </div>
-                
+
                 <div class="chapter">
                     <h3>段落和文本格式</h3>
                     <div class="chapter-content">
@@ -114,7 +128,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="chapter">
                     <h3>有序列表</h3>
                     <div class="chapter-content">
@@ -130,7 +144,7 @@
                         </ol>
                     </div>
                 </div>
-                
+
                 <div class="chapter">
                     <h3>定义列表</h3>
                     <div class="chapter-content">
@@ -191,17 +205,17 @@
                                 <label for="username">用户名：</label>
                                 <input type="text" id="username" name="username" placeholder="请输入用户名">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="email">电子邮箱：</label>
                                 <input type="email" id="email" name="email" placeholder="请输入电子邮箱">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="password">密码：</label>
                                 <input type="password" id="password" name="password" placeholder="请输入密码">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>性别：</label>
                                 <div class="radio-group">
@@ -209,7 +223,7 @@
                                     <label><input type="radio" name="gender" value="female"> 女</label>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>兴趣爱好：</label>
                                 <div class="checkbox-group">
@@ -218,7 +232,7 @@
                                     <label><input type="checkbox" name="hobbies[]" value="music"> 音乐</label>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="department">部门：</label>
                                 <select id="department" name="department">
@@ -228,12 +242,12 @@
                                     <option value="marketing">市场部</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="message">留言：</label>
                                 <textarea id="message" name="message" rows="4" placeholder="请输入留言内容"></textarea>
                             </div>
-                            
+
                             <div class="form-group">
                                 <button type="submit" class="button">提交表单</button>
                                 <button type="reset" class="button secondary">重置</button>
@@ -254,17 +268,17 @@
                         </figure>
                     </div>
                 </div>
-                
+
                 <div class="chapter">
                     <h3>音频元素</h3>
                     <div class="chapter-content">
                         <audio controls>
                             <source src="#" type="audio/mpeg">
                             您的浏览器不支持音频元素。
-                         </audio>
+                        </audio>
                     </div>
                 </div>
-                
+
                 <div class="chapter">
                     <h3>视频元素</h3>
                     <div class="chapter-content">
@@ -283,10 +297,10 @@
                     <div class="chapter-content">
                         <h4>CSS引用方式</h4>
                         <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
-                        
+
                         <h4>JavaScript引用方式</h4>
                         <pre><code>&lt;script src="main.js" defer&gt;&lt;/script&gt;</code></pre>
-                        
+
                         <h4>字体引用方式</h4>
                         <pre><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
@@ -301,4 +315,5 @@
         <a href="#_jumptitle" onclick="window.location.hash = '#_jumptitle';">↑</a>
     </div>
 </body>
+
 </html>
