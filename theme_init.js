@@ -2,12 +2,12 @@
 (function() {
     // 1. 获取本地存储的主题偏好，默认深色
     var firstvisit = false;
-    if(localStorage.getItem('siteTheme')===null){
+    if(localStorage.getItem('siteTheme')===null && localStorage.getItem('siteFont')===null){
         firstvisit = true;
     }
     const savedTheme = localStorage.getItem('siteTheme') || 'dark';
     // ===== 新增：初始化字体偏好 =====
-    const savedFont = localStorage.getItem('siteFont') || 'yahei'; // 默认雅黑
+    const savedFont = localStorage.getItem('siteFont') || 'georgia'; // 默认Georgia
     
     // 2. 核心修改：不再设置theme属性，改为直接添加/移除类名（匹配新方案）
     if (savedTheme === 'light') {
@@ -60,7 +60,7 @@
 
     function initFirstVisit(){
         if(firstvisit){
-            showCenterAlert('欢迎来到gign.ltd\n我们推荐你关闭例如Dark Reader等浏览器插件, 使用我们内置的主题样式切换开关\n它位于目录标题旁');
+            showCenterAlert('欢迎来到gign.ltd, 这是你在我们质量更新后首次来访呢\n我们推荐你关闭例如Dark Reader等浏览器插件, 使用我们内置的主题样式切换开关\n它位于目录标题旁');
             showCenterAlert('默认为深色样式, 你可以通过目录底部的开关随时切换它\n当目录过长时, 你可以通过滚动目录来查看所有内容', {icon: '?'});
             localStorage.setItem('siteTheme', 'dark');
             localStorage.setItem('siteFont', 'yahei'); // 新增：默认保存雅黑字体
