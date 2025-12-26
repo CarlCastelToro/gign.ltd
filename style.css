@@ -52,7 +52,7 @@
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
-    
+
 
     /* 应用全局过渡（核心：消除闪烁） */
     transition: var(--theme-transition);
@@ -63,7 +63,7 @@
 }
 
 :root.font-georgia * {
-    font-family: 'Georgia', 'STSong', 'Noto Serif CJK SC', 'Noto Serif CJK TC', 'Noto Serif CJK JP', 'Noto Serif CJK KR', serif;
+    font-family: 'Georgia', 'Noto Serif CJK SC', 'Noto Serif CJK TC', 'Noto Serif CJK JP', 'Noto Serif CJK KR', 'STXiHei', 'PingFang SC', serif;
     font-size-adjust: 0.54; 
     font-display: swap; 
 }
