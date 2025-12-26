@@ -1,5 +1,10 @@
 // 立即执行函数，在脚本加载时立刻执行（无需等待DOMContentLoaded）
 (function() {
+    // 全局状态标记，用于指示样式表加载状态
+    window.themeStylesLoaded = false;
+    var loadedStylesheets = 0;
+    var totalStylesheets = 2;
+    
     // 1. 获取本地存储的主题偏好，默认深色
     var firstvisit = false;
     if(localStorage.getItem('siteTheme')===null){
@@ -14,6 +19,16 @@
     const oldStyleLinks = document.querySelectorAll('link[rel="stylesheet"]');
     oldStyleLinks.forEach(link => link.remove());
     
+    // 样式表加载完成回调函数
+    function onStylesheetLoaded() {
+        loadedStylesheets++;
+        if (loadedStylesheets >= totalStylesheets) {
+            window.themeStylesLoaded = true;
+            // 触发自定义事件，通知其他脚本样式已加载完成
+            document.dispatchEvent(new CustomEvent('themeStylesReady'));
+        }
+    }
+    
     // 4. 创建并预加载深色样式表
     const darkStyle = document.createElement('link');
     darkStyle.rel = 'stylesheet';
@@ -21,12 +36,20 @@
     darkStyle.id = 'dark-theme';
     darkStyle.disabled = savedTheme !== 'dark'; // 根据保存的主题设置启用状态
     
+    // 添加加载状态监听
+    darkStyle.onload = onStylesheetLoaded;
+    darkStyle.onerror = onStylesheetLoaded; // 即使加载失败也继续，避免卡住
+    
     // 5. 创建并预加载浅色样式表
     const lightStyle = document.createElement('link');
     lightStyle.rel = 'stylesheet';
     lightStyle.href = '/style_light.css';
     lightStyle.id = 'light-theme';
     lightStyle.disabled = savedTheme !== 'light'; // 根据保存的主题设置启用状态
+    
+    // 添加加载状态监听
+    lightStyle.onload = onStylesheetLoaded;
+    lightStyle.onerror = onStylesheetLoaded; // 即使加载失败也继续，避免卡住
     
     // 6. 将两个样式表添加到文档头部
     document.head.appendChild(darkStyle);
