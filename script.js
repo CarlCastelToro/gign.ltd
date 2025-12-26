@@ -15,6 +15,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    const backToTopElement = document.getElementById('backToTop');
+    
+    // 2. 如果不存在该元素，则创建并插入到body中
+    if (!backToTopElement) {
+        // 创建div元素
+        const backToTopDiv = document.createElement('div');
+        // 设置id和class
+        backToTopDiv.id = 'backToTop';
+        backToTopDiv.className = 'back-to-top';
+        
+        // 创建a标签元素
+        const link = document.createElement('a');
+        link.href = '#_jumptitle';
+        // 设置点击事件
+        link.onclick = function() {
+            window.location.hash = '#_jumptitle';
+        };
+        // 设置字体样式和内容
+        link.style.fontFamily = 'Wingdings';
+        link.textContent = 'G';
+        
+        // 将a标签添加到div中
+        backToTopDiv.appendChild(link);
+        // 将div添加到body末尾
+        document.body.appendChild(backToTopDiv);
+    }
+
     // 原有回到顶部逻辑不变
     const backToTopButton = document.querySelector('.back-to-top');
     window.addEventListener('scroll', function () {
