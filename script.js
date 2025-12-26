@@ -64,25 +64,28 @@ document.addEventListener('DOMContentLoaded', function () {
             // 2. 更新html根元素属性
             document.documentElement.setAttribute('theme', newTheme);
             
-            // 3. 通过禁用/启用样式表切换主题（优化关键：先启用目标主题，再禁用当前主题）
+            // 3. 通过禁用/启用样式表切换主题（优化关键：使用requestAnimationFrame确保渲染顺序）
             const darkStyle = document.getElementById('dark-theme');
             const lightStyle = document.getElementById('light-theme');
             
             if (darkStyle && lightStyle) {
-                // 先启用目标主题的样式表
-                if (newTheme === 'light') {
-                    lightStyle.disabled = false;
-                    // 短暂延迟后禁用原主题，避免闪烁
-                    setTimeout(() => {
-                        darkStyle.disabled = true;
-                    }, 0);
-                } else {
-                    darkStyle.disabled = false;
-                    // 短暂延迟后禁用原主题，避免闪烁
-                    setTimeout(() => {
-                        lightStyle.disabled = true;
-                    }, 0);
-                }
+                // 使用requestAnimationFrame确保在浏览器下一次渲染前执行
+                requestAnimationFrame(() => {
+                    // 先启用目标主题的样式表（不立即禁用当前主题）
+                    if (newTheme === 'light') {
+                        lightStyle.disabled = false;
+                        // 再在下一个渲染帧禁用原主题，确保新主题完全加载
+                        requestAnimationFrame(() => {
+                            darkStyle.disabled = true;
+                        });
+                    } else {
+                        darkStyle.disabled = false;
+                        // 再在下一个渲染帧禁用原主题，确保新主题完全加载
+                        requestAnimationFrame(() => {
+                            lightStyle.disabled = true;
+                        });
+                    }
+                });
             }
         });
     }
