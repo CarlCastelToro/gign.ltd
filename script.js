@@ -64,13 +64,25 @@ document.addEventListener('DOMContentLoaded', function () {
             // 2. 更新html根元素属性
             document.documentElement.setAttribute('theme', newTheme);
             
-            // 3. 通过禁用/启用样式表切换主题（优化关键：不再修改href）
+            // 3. 通过禁用/启用样式表切换主题（优化关键：先启用目标主题，再禁用当前主题）
             const darkStyle = document.getElementById('dark-theme');
             const lightStyle = document.getElementById('light-theme');
             
             if (darkStyle && lightStyle) {
-                darkStyle.disabled = newTheme !== 'dark';
-                lightStyle.disabled = newTheme !== 'light';
+                // 先启用目标主题的样式表
+                if (newTheme === 'light') {
+                    lightStyle.disabled = false;
+                    // 短暂延迟后禁用原主题，避免闪烁
+                    setTimeout(() => {
+                        darkStyle.disabled = true;
+                    }, 0);
+                } else {
+                    darkStyle.disabled = false;
+                    // 短暂延迟后禁用原主题，避免闪烁
+                    setTimeout(() => {
+                        lightStyle.disabled = true;
+                    }, 0);
+                }
             }
         });
     }
