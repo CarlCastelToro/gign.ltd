@@ -64,7 +64,8 @@
                 <div id="p1" class="chapter">
                     <h3>关于mklink命令</h3>
                     <div class="chapter-content">
-                        <p>NTFS 符号链接又称“符号链接”, 是 NTFS 文件系统中指向文件系统中的另一个对象的一类对象, 被指向的对象叫做“目标”。mklink 是 Windows 下用于创建符号链接的工具, 存在于 Windows Vista 及以后版本的 Windows 操作系统中。</p>
+                        <p>NTFS 符号链接又称“符号链接”, 是 NTFS 文件系统中指向文件系统中的另一个对象的一类对象, 被指向的对象叫做“目标”。mklink 是 Windows
+                            下用于创建符号链接的工具, 存在于 Windows Vista 及以后版本的 Windows 操作系统中。</p>
                         <p>使用方式: <code>MKLINK [[/D] | [/H] | [/J]] Link Target </code></p>
                         <h4>说明: </h4>
                         <p>/D 创建目录符号链接而不是文件符号链接（默认为文件符号链接）
@@ -72,7 +73,8 @@
                             /J 创建目录连接点
                             Link 指定新的符号链接名称
                             Target 指定新链接引用的路径（绝对路径或者相对路径均可） </p>
-                        <p>参数 Link 和 Target 要求<strong>不能</strong>使用 Windows 中不允许用作文件名的字符（\ / : * ? " <> |）。并且如果 Link 和 Target 这两个参数中需要包含<strong>空格</strong>, 则必须使用<strong>英文双引号</strong>将内容引起来, 以避免参数识别错误。</p>
+                        <p>参数 Link 和 Target 要求<strong>不能</strong>使用 Windows 中不允许用作文件名的字符（\ / : * ? " <> |）。并且如果 Link 和
+                                Target 这两个参数中需要包含<strong>空格</strong>, 则必须使用<strong>英文双引号</strong>将内容引起来, 以避免参数识别错误。</p>
                         <h4>符号链接在系统启动的时候是不工作的, 所以下面这些文件（夹）是不可以作为符号链接替换的: </h4>
                         <code>\Windows
 \Windows\system32
@@ -85,7 +87,8 @@
                     <div class="chapter-content">
                         <p>打开你的Onedrive文件夹, 我们假定它在C:\_Onedrive中。</p>
                         <p>然后, 打开你需要备份的文件夹, 假定起名为Folder, 然后确保Onedrive文件夹中不存在名为Folder的文件夹。</p>
-                        <p>然后, 启动一个具有管理员权限的cmd或者Powershell, 输入<code>mklink /d C:\_OneDrive\Folder C:\Folder</code>。 (如果Onedrive里面已经存在了一个名为Folder的文件夹那么会报错)</p>
+                        <p>然后, 启动一个具有管理员权限的cmd或者Powershell, 输入<code>mklink /d C:\_OneDrive\Folder C:\Folder</code>。
+                            (如果Onedrive里面已经存在了一个名为Folder的文件夹那么会报错)</p>
                         <p>命令提示符返回“……创建的文件链接”字样的文字, 即说明建立符号链接成功。</p>
                         <p>如果一切正常, 那么你在Onedrive文件夹中就会看到一个名为Folder的文件夹, 它就是一个符号链接, 指向了C:\Folder。</p>
                         <h4>注意: 选择之后本地的文档将成为指向Onedrive文件夹的目录, 因此保存在其中的虚拟机或VS工程文件等有可能出现无法读取的现象, 请注意在操作后进行调整。</h4>
@@ -97,6 +100,10 @@
             </section>
         </main>
     </div>
+    <footer>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
 </body>
 
 </html>

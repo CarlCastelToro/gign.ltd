@@ -47,7 +47,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
     /* 通用长文本自动换行修复 */
     word-break: break-word;
     overflow-wrap: break-word;
@@ -64,8 +64,8 @@
 
 :root.font-georgia * {
     font-family: 'Georgia', 'Noto Serif CJK SC', 'Noto Serif CJK TC', 'Noto Serif CJK JP', 'Noto Serif CJK KR', 'STXiHei', 'PingFang SC', serif;
-    font-size-adjust: 0.54; 
-    font-display: swap; 
+    font-size-adjust: 0.54;
+    font-display: swap;
 }
 
 :root.font-yahei * {
@@ -628,18 +628,13 @@ button:disabled {
 
 footer {
     margin-top: 20px;
-    padding: 10px;
     text-align: center;
     font-size: 12px;
-    /* 深浅色页脚文字颜色区分 */
-    color: var(--footer-text, #aaa);
     border-top: 1px solid var(--border-color);
+    padding: 2rem;
+    color: var(--secondary-color);
 }
 
-/* 浅色模式下页脚文字颜色 */
-:root.light-theme footer {
-    --footer-text: #777;
-}
 
 /* ========== Base64页面容器样式 ========== */
 .base64-container {
