@@ -1,0 +1,63 @@
+﻿2025-12-31 08:22:17, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:22:17, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6551):   Failed to send request using default proxy[gle=0x80072ee7]
+2025-12-31 08:22:57, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:22:57, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6564):   Failed to send request using auto proxy[gle=0x80072ee7]
+2025-12-31 08:23:37, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:23:37, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6577):   Failed to send request using default proxy with impersonation[gle=0x80072ee7]
+2025-12-31 08:24:17, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:24:17, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6591):   Failed to send request using auto proxy with impersonation[gle=0x80072ee7]
+2025-12-31 08:24:17, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::GetAlternateData (4601):   Error downloading new cab file, swallowing: [0x80072ee7].[gle=0x80072ee7]
+2025-12-31 08:24:17, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::GetAlternateData (4706):   Error downloading or extracting alternate cab, ADL link http://adl.windows.com/appraiseradl/2025_12_17_01_56_AMD64.cab; cab location C:\$WINDOWS.~BT\Sources\Panther\AltData.cab; Result: [0x80072ee7][gle=0x80072ee7]
+2025-12-31 08:24:17, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::InitializeRunOptions (2134):   Error checking for latest SDB, swallowing: [0x80072ee7].[gle=0x80072ee7]
+2025-12-31 08:24:36, Error                        Failed enumerating capabilities: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        Failed getting features: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        Failed getting device info from CBS: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        Failed to populate device feature information: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        Failed to create action list.: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        Failed to create action list.: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:36, Error                        CDeploymentSession::CallCreateActionList(6452): Result = 0x800706BA
+2025-12-31 08:24:36, Error                        CreateActionList failed. Error: HRESULT_FROM_WIN32(1722)
+2025-12-31 08:24:41, Error                 MOUPG  CFCAcquirerDCAT::GenerateDownloadRequestForPayload(1533): Result = 0x800706BA
+2025-12-31 08:24:41, Error                 MOUPG  CFCAcquirerDCAT::Download(1369): Result = 0x800706BA[gle=0x0000001f]
+2025-12-31 08:24:41, Error                 MOUPG  CFCPayloadLatentAcquisition::Download(135): Result = 0x800706BA[gle=0x0000001f]
+2025-12-31 08:24:41, Error                 MOUPG  DUImage: Error on Latent Acquisition Payload: [0x800706BA][gle=0x0000001f]
+2025-12-31 08:25:22, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:25:22, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6551):   Failed to send request using default proxy[gle=0x80072ee7]
+2025-12-31 08:26:02, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:26:02, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6564):   Failed to send request using auto proxy[gle=0x80072ee7]
+2025-12-31 08:26:42, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:26:42, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6577):   Failed to send request using default proxy with impersonation[gle=0x80072ee7]
+2025-12-31 08:27:22, Error                 CONX   Windows::Compat::Appraiser::Utilities::SendRequest (2511):   Failed to connect to the internet, or send request, or request encountered HTTP error: [12007].[gle=0x80072ee7]
+2025-12-31 08:27:22, Error                 CONX   Windows::Compat::Appraiser::Utilities::DownloadCabFile (6591):   Failed to send request using auto proxy with impersonation[gle=0x80072ee7]
+2025-12-31 08:27:22, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::GetAlternateData (4601):   Error downloading new cab file, swallowing: [0x80072ee7].[gle=0x80072ee7]
+2025-12-31 08:27:22, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::GetAlternateData (4706):   Error downloading or extracting alternate cab, ADL link http://adl.windows.com/appraiseradl/2025_12_17_01_56_AMD64.cab; cab location C:\$WINDOWS.~BT\Sources\Panther\AltData.cab; Result: [0x80072ee7][gle=0x80072ee7]
+2025-12-31 08:27:22, Error                 CONX   Windows::Compat::Appraiser::SetupAppraiser::InitializeRunOptions (2134):   Error checking for latest SDB, swallowing: [0x80072ee7].[gle=0x80072ee7]
+2025-12-31 08:29:12, Error                 CONX   Appraiser: ERROR,SdbpGetMatchingInfoBlocksInternal,2312,TAGREF array insufficient
+
+2025-12-31 08:29:14, Error                 CONX   Appraiser: ERROR,SdbpGetMatchingInfoBlocksInternal,2312,TAGREF array insufficient
+
+2025-12-31 08:30:15, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\工作文件夹Web测试. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:15, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Resource Center. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:15, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\TestWebSocketServer. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:15, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\AV. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:16, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Web. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:16, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\DefaultAppPool. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:16, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Non-NSFW Video. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:30:16, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\JMComicArchive. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:25, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\工作文件夹Web测试. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\Resource Center. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\TestWebSocketServer. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\AV. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\Web. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\DefaultAppPool. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\Non-NSFW Video. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:38:26, Error      [0x0803b6] MIG            Can't retrieve group information for user IIS APPPOOL\JMComicArchive. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\工作文件夹Web测试. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Resource Center. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\TestWebSocketServer. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\AV. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Web. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\DefaultAppPool. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\Non-NSFW Video. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:00, Error      [0x0803b6] MIG        Can't retrieve group information for user IIS APPPOOL\JMComicArchive. NetUserGetLocalGroups failed 0x000008AD
+2025-12-31 08:39:03, Error      [0x080a82] MIG        OC::COCCbsAdapter::Release: ICbsSession::Finalize failed.  hr = 0x800706ba
