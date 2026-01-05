@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function loadinit() {
-    fetch('/headerandfooter.html')
+    fetch('./headerandfooter.html')
         .then(response => { return response.text(); })
         .then(html => { document.querySelector('.fullscreen-container').insertAdjacentHTML('beforeend', html); })
 }
