@@ -3,4 +3,4 @@ compatibility_date = "2026-02-24" # 命令行会覆盖，这里仅做兜底
 #main = "./index.js" # 无Worker脚本可注释
 
 [assets]
-directory = "./" # 和「路径」选项保持一致，优先用dist目录避开.git
+directory = "./main" # 和「路径」选项保持一致，优先用dist目录避开.git

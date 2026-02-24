@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人网站 | 作品集与软件工具 GIGN.LTD</title>
+    <link rel="stylesheet" href="/style.css" id="main-theme">
+    <script src="/dependency.js"></script>
+    <script src="/theme_init.js"></script>
+    <script src="/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">个人网站 | Personal Website GIGN.LTD</h1>
+        <p>作品集、软件工具与思想表达的平台</p>
+        <p>当然, 不是法国国家宪兵队的网站</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2>航导录目</h2>
+
+                <div>
+                    <div class="section-title">快速跳转 - 实验性</div>
+                    <ul>
+                        <li><a href="#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
+                        <li><a href="https://www.bing.com/translator" target="_blank">Bing翻译</a></li>
+                        <li><a href="ValueRateCalculator.html"
+                                onClick="window.location.href = 'ValueRateCalculator.html';">价值率计算器</a></li>
+                        <li><a href="Template.html" onClick="window.location.href = 'Template.html';">模板HTML</a></li>
+                        <li><a href="empty_Template.html"
+                                onClick="window.location.href = 'empty_Template.html';">最简HTML模板</a></li>
+                        <li><a href="archived" onClick="window.location.href = 'archived';">已归档项目</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="section-title">个人简介</div>
+                    <ul>
+                        <li><a href="#about" onClick="window.location.hash = '#about';">关于我</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="section-title">艺术作品</div>
+                    <ul>
+                        <li><a href="#literary-works" onClick="window.location.hash = '#literary-works';">文学作品</a> - <a
+                                href="Tolland" onClick="window.location.href = 'Tolland';">完整作品集</a>
+                        </li>
+                        <li><a href="#news" onClick="window.location.hash = '#news';">新闻</a></li>
+                        <li><a href="#gallery" onClick="window.location.hash = '#gallery';">画廊</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="section-title">教程文档</div>
+                    <ul>
+                        <li><a href="#tutorial-onedrive-how2"
+                                onClick="window.location.hash = '#tutorial-onedrive-how2';">如何使用符号链接使Microsoft
+                                Onedrive备份计算机的指定文件夹</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="section-title">软件产品</div>
+                    <ul>
+                        <li><a href="#quickrtf" onClick="window.location.hash = '#quickrtf';">QuickRTF Editor</a></li>
+                        <li><a href="#fbm" onClick="window.location.hash = '#fbm';">Folder Backup Management</a></li>
+                        <li><a href="#bs" onClick="window.location.hash = '#bs';">BasicHttpServer</a></li>
+                        <li><a href="#tfhs" onClick="window.location.hash = '#tfhs';">TestFileHttpServer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="section-title">联系方式</div>
+                    <ul>
+                        <li><a href="#contact" onClick="window.location.hash = '#contact';">联系我</a></li>
+                    </ul>
+                </div>
+
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                    深浅色切换
+                    <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
+
+                <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                    字体切换 (Georgia/雅黑)
+                    <label class="font-switch">
+                        <input type="checkbox" id="fontToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
+            </nav>
+        </aside>
+
+        <main class="content">
+
+            <section id="proxyjump" class="section">
+                <h2>代理跳转</h2>
+                <p>用于通过Cloudflare反向代理下载平常在国内下载速度很慢的大文件, 但需要注意的是不目标文件链接不能使用例如请求头等验证方式</p>
+                <div class="chapter">
+                    <div class="chapter-content" style="white-space: nowrap">
+                        <input type="text" id="quickcommand_inputText" placeholder="请输入要跳转的链接" style="height: 39px;">
+                        <button id="quickcommand_jumpBtn" onclick="quickcommand_jumpToLink()" disabled="">跳转</button>
+                    </div>
+                </div>
+                <p>直接输入包含http(s)开头的链接, 例如, https://www.baidu.com/img.png</p>
+            </section>
+
+            <section id="about" class="section">
+                <h2>个人简介</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>你好, 欢迎来到我的个人网站！</p>
+                        <p>我是一位热衷于技术创新与文学创作的创作者。在编程领域, 我专注于开发实用、高效的工具软件, 致力于解决日常工作中的实际问题。我的项目如QuickRTF Editor和Folder
+                            Backup Management体现了我对简洁设计与功能性的追求。</p>
+                        <p>除了技术探索外, 我也活跃于文学创作领域。我的作品《Tolland》集合了多种风格的文学尝试, 涵盖了思考性散文、奇幻故事与哲学探讨。我相信文字是表达思想、探索人性的一种有力工具,
+                            这与我在技术领域追求创新的精神相辅相成。</p>
+                        <p>通过这个网站, 我希望能够分享我的作品、工具以及思考, 也期待与志同道合的朋友交流与互动。感谢您的访问！</p>
+                        <p><em>——I Am System32 (Carl Castel Toro), page designed with AI</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="literary-works" class="section">
+                <h2>艺术作品</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <h3>《Tolland》 - 《废墟图书馆》 (Bibliothèque des ruines)</h3>
+                        <p>《废墟图书馆》是一部富有哲学思考的作品, 探讨了生命的意义、存在的价值以及人类在现代社会中的处境。以下是其中一个片段：</p>
+                        <blockquote>
+                            <p>从我们生命诞生的那一刻起, 我们就要为自己的生命负责<br>
+                                在我们的自由意志诞生后, 我们就已经尽到了我们的责任<br>
+                                ——所以, 我们的生命毫无意义<br>
+                                即便未来毫无意义, 你仍然决定要坚持下去？<br>
+                                即便我们的名字终将消散, 你仍然决定要站着化为灰烬？<br>
+                                即便我们的世界只会越来越不稳定, 你仍然决定要承担这一切？</p>
+                        </blockquote>
+
+                        <h3>《Tolland》 - 《无尽怪谈图书馆》 (Bibliothèque d'histoires étranges sans fin)</h3>
+                        <p>《无尽怪谈图书馆》是一部由多个独立短篇故事组成的选集。它披着怪诞与奇幻的外衣，实则深入剖析了现代社会中的异化、孤独与人性的挣扎。作品融合了寓言、反乌托邦与心理现实主义风格，在现实与幻想的交界处探索心灵的边界。
+                        </p>
+
+                        <p>代表篇目包括：讲述社会底层在孤独中自我消解的〈科洛斯伍德是一位建筑工人〉；带有强烈反乌托邦色彩、揭示体制压抑的〈蛋糕是个谎言〉；以及深刻剖析阿斯伯格综合征患者内心世界与社交困境的〈掠食性镜像神经元系统〉等。每一章都是一次对灵魂深处的探访。
+                        </p>
+
+
+                        <a href="Tolland">
+                            <h3>《Tolland》完整作品集, 点击查看更多</h3>
+                        </a>
+                    </div>
+
+                    <div class="chapter-content">
+                        <h2 id="news" class="section-title">新闻</h2>
+                        <a href="news.html">
+                            <h3>关于本次有关广州市信息技术职业学校的新规定的见解与思考, 点击查看更多</h3>
+                        </a>
+                        <p>Carl Castel Toro, 2025.12.18, Original released on gign.ltd</p>
+                    </div>
+                    <div class="chapter-content">
+                        <h2 id="gallery" class="section-title">画廊</h2>
+                        <p>由Carl Castel Toro创作的艺术图像 (署名为IAmSystem32)</p>
+                        <a href="gallery">
+                            <h3>点击查看更多</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tutorial" class="section">
+                <h2>教程文档</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <a href="onedrive-how2" id="tutorial-onedrive-how2">
+                            <h3>如何使用符号链接使Microsoft Onedrive备份计算机的指定文件夹</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quickrtf" class="section">
+                <div class="app-header">
+                    <!-- 软件图标（可替换为实际图标路径） -->
+                    <img src=".\product\quickrtf\icon.ico" alt="QuickRTF 图标" />
+                    <div class="app-intro">
+                        <h2>QuickRTF Editor</h2>
+                        <p>超轻量、安全的 RTF 文档编辑工具</p>
+                        <p>支持富文本编辑、加密存储（SRTF 格式）、Markdown 导出、快速存档, 满足个人文档编辑与安全存储需求</p>
+                        <!-- 下载按钮（突出显示） -->
+                        <a href=".\product\quickrtf\" class="download-btn">
+                            了解更多
+                        </a>
+                        <a href=".\product\quickrtf\#user-manual">查看完整指南</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fbm" class="section">
+                <div class="app-header">
+                    <!-- 工具图标（可替换为实际图标路径） -->
+                    <img src=".\product\fbm\icon.ico" alt="文件夹备份工具图标" />
+                    <div class="app-intro">
+                        <h2>Folder Backup Management</h2>
+                        <p>轻量、高效的Windows文件夹备份解决方案</p>
+                        <p>支持断点续传、自动备份、智能冲突处理, 保护你的重要文件免受丢失风险</p>
+                        <!-- 下载按钮（突出显示） -->
+                        <a href=".\product\fbm" class="download-btn">
+                            了解更多
+                        </a>
+                        <a href=".\product\fbm\#user-manual">查看用户手册</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bs" class="section">
+                <div class="app-header">
+                    <!-- 工具图标（可替换为实际图标路径） -->
+                    <img src=".\product\ths_collection\bs\icon.ico" alt="BasicHttpServer图标" />
+                    <div class="app-intro">
+                        <h2>BasicHttpServer</h2>
+                        <p>轻量、高效的HTTP服务器工具</p>
+                        <p>支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p>
+                        <!-- 下载按钮（突出显示） -->
+                        <a href=".\product\ths_collection\bs" class="download-btn">
+                            了解更多
+                        </a>
+                        <a href=".\product\ths_collection\bs\#user-manual">查看常见问题</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tfhs" class="section">
+                <div class="app-header"
+                    style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <!-- 工具图标（可替换为实际图标路径） -->
+                    <img src=".\product\ths_collection\tfhs\icon.ico" alt="TestFileHttpServer图标"
+                        style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
+                    <div class="app-intro">
+                        <h2>TestFileHttpServer</h2>
+                        <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
+                            轻量、高效的文件HTTP服务器工具</p>
+                        <p style="margin: 1rem 0;">支持静态文件服务、文件上传下载、目录浏览、API端点，为开发和测试提供便捷的文件共享服务器环境</p>
+                        <!-- 下载按钮（突出显示） -->
+                        <a href=".\product\ths_collection\tfhs" class="download-btn"
+                            style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                            了解更多
+                        </a>
+                        <a href=".\product\ths_collection\tfhs#user-manual"
+                            style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看用户手册</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="contact">
+                <h2>联系方式</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>gign.ltd注册于2025/11/10, 远程存储库的首次提交于2025/12/08</p>
+                        <p>这是第...次提交</p>
+                        <p>好吧, 我放弃了在这公开提交次数的想法</p>
+                        <p>总是手动更改它们很累人, 也许有一天我会同步Github之类的?</p>
+                        <p>此外, 提交的命名也过于混乱</p>
+                        <p>例如提交wrangler.toml时, 提交的描述只有"wrangler.toml"</p>
+                        <p>这可不是什么优雅的实践</p>
+                        <p>有一天会写一些标准来解决这个问题</p>
+                        <p>Pudate soon</p>
+                        <p>提交可以从下方的链接找到……</p>
+                        <p><a class="link"
+                                href="https://github.com/CarlCastelToro/gign.ltd/commits/main/">https://github.com/CarlCastelToro/gign.ltd/commits/main/</a>
+                        </p>
+                        <p>基于纯文本的html/css/javaScript</p>
+                        <h6><a class="link" href="mailto:IAmSystem32@outlook.com">联系 via IAmSystem32@outlook.com
+                                电子邮箱</a>
+                        </h6>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
+
+    <script>
+        const inputEle = document.getElementById('quickcommand_inputText');
+        const btnEle = document.getElementById('quickcommand_jumpBtn');
+        inputEle.addEventListener('input', function () {
+            btnEle.disabled = this.value.trim() === '';
+        });
+        function quickcommand_jumpToLink() {
+            const inputValue = inputEle.value.trim();
+            if (!inputValue) {
+                alert('跳转的链接不能为空');
+                return;
+            }
+            const targetUrl = `https://universalreverseproxy.websitedefrench.icu/${inputValue}`;
+            window.open(targetUrl, '_blank');
+        }
+        btnEle.disabled = true;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,811 @@
+/* ========== 全局基础样式（通用） ========== */
+:root {
+    /* 基础主题色（深浅色通用） */
+    --primary-color: #3a5065;
+    --secondary-color: #5d7fa3;
+
+    /* 深色模式默认变量（核心） */
+    --text-color: #e0e0e0;
+    --light-bg: #1e1e1e;
+    --border-color: #404040;
+    /* 添加阴影透明度变量 */
+    --shadow-opacity: 0.3;
+
+    /* Base64页面变量 - 深色模式默认 */
+    --tab-active-color: #0078d4;
+    --tab-hover-color: #005a9e;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #505050;
+    --button-bg-color: #2196f3;
+    --button-hover-bg-color: #1976d2;
+    --result-bg-color: #2d2d2d;
+    --result-border-color: #505050;
+    --notification-bg-color: #0078d4;
+    --notification-text-color: #fff;
+
+    /* 全局过渡：确保所有样式切换平滑无闪烁 */
+    --theme-transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 浅色模式变量覆盖（通过light-theme类名激活） */
+:root.light-theme {
+    --text-color: #333;
+    --light-bg: #f5f7fa;
+    --border-color: #e0e0e0;
+    /* 浅色模式下阴影透明度较低 */
+    --shadow-opacity: 0.1;
+
+    /* Base64页面变量 - 浅色模式 */
+    --input-bg-color: #fff;
+    --input-border-color: #d0d7de;
+    --result-bg-color: #f6f8fa;
+    --result-border-color: #e1e4e8;
+}
+
+/* ========== 全局样式重置 & 过渡 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 通用长文本自动换行修复 */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+
+
+    /* 应用全局过渡（核心：消除闪烁） */
+    transition: var(--theme-transition);
+
+    scrollbar-width: none;
+    /* 隐藏Firefox滚动条 */
+    -ms-overflow-style: none;
+}
+
+:root.font-georgia * {
+    font-family: 'Georgia', 'Noto Serif CJK SC', 'Noto Serif CJK TC', 'Noto Serif CJK JP', 'Noto Serif CJK KR', 'STXiHei', 'PingFang SC', serif;
+    font-size-adjust: 0.54;
+    font-display: swap;
+}
+
+:root.font-yahei * {
+    font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
+}
+
+/* 图片等不适合过渡的元素：禁用过渡 */
+img,
+video,
+canvas,
+svg,
+iframe,
+embed {
+    transition: none !important;
+}
+
+/* 通用图片样式：适配布局、自动缩放、保持1:1比例 */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
+/* 为section内的图片添加更具体的样式，确保完全适配容器宽度 */
+.section img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 允许特定情况下覆盖图片比例 */
+img.no-aspect-ratio {
+    aspect-ratio: auto;
+}
+
+/* 滚动条过渡效果 */
+::-webkit-scrollbar {
+    width: 0px;
+    /* 隐藏垂直滚动条 */
+    height: 0px;
+    /* 隐藏水平滚动条 */
+    transition: width 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* 滚动条轨道透明 */
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    /* 滚动条滑块透明 */
+    border-radius: 0;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+/* 加强处理长文本元素 */
+p,
+div,
+span,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+td,
+th {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* 链接换行修复 */
+a {
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* pre标签长文本修复 */
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* ========== 页面基础样式 ========== */
+body {
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--light-bg);
+    -ms-overflow-style: none;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    gap: 2rem;
+}
+
+/* ========== 侧边栏样式修改 - 添加滚动条支持 ========== */
+.sidebar {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    /* 添加最大高度限制 */
+    max-height: calc(100vh - 5rem);
+    /* 启用垂直滚动 */
+    overflow-y: auto;
+    /* 隐藏水平滚动条 */
+    overflow-x: hidden;
+    /* 固定侧边栏宽度，不受滚动条影响 */
+    width: 300px;
+    /* 添加阴影效果，与目录阴影保持一致 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+}
+
+/* 侧边栏滚动条样式 */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+    /* 滚动条宽度适中 */
+    transition: width 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+    /* 滚动条轨道透明 */
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.3);
+    /* 半透明滚动条滑块 */
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(150, 150, 150, 0.5);
+    /* 悬停时加深颜色 */
+}
+
+/* 浅色模式下调整侧边栏滚动条颜色 */
+:root.light-theme .sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
+:root.light-theme .sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+}
+
+/* ========== 目录样式 - 解决主题切换按钮位移问题 ========== */
+.toc {
+    /* 深色：#2d2d2d | 浅色：white → 统一用变量+背景逻辑 */
+    background: var(--light-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    /* 深浅色阴影区分 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+    /* 确保目录内容宽度稳定 */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 主题切换开关样式调整 - 确保定位稳定 */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    /* 确保按钮位置固定，不随滚动条变化 */
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+}
+
+/* ========== 目录样式（适配深浅色） ========== */
+/* 浅色模式下调整目录阴影 */
+:root.light-theme .toc {
+    --shadow-opacity: 0.1;
+}
+
+.toc h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    /* 确保主题切换按钮容器的宽度稳定 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 给按钮预留足够空间，不受滚动条影响 */
+    padding-right: 10px;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.toc li {
+    margin: 0.5rem 0;
+}
+
+.toc a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.toc a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.section-title {
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--secondary-color);
+}
+
+/* ========== 内容区块样式 ========== */
+.section {
+    background: var(--light-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+}
+
+/* 浅色模式下调整内容区块阴影 */
+:root.light-theme .section {
+    --shadow-opacity: 0.1;
+}
+
+.section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.chapter {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chapter:last-child {
+    border-bottom: none;
+}
+
+.chapter h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.chapter-content {
+    text-align: justify;
+    white-space: pre-line;
+}
+
+.placeholder {
+    /* 深浅色占位符颜色区分 */
+    color: var(--placeholder-text, #aaa);
+    font-style: italic;
+    background-color: var(--placeholder-bg, #3a3a3a);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* 浅色模式下占位符样式 */
+:root.light-theme .placeholder {
+    --placeholder-text: #777;
+    --placeholder-bg: #f9f9f9;
+}
+
+.link {
+    color: #33c9f7;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ========== 回到顶部按钮 ========== */
+.back-to-top {
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 100;
+}
+
+.back-to-top a {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    line-height: 3rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    /* 深浅色阴影区分 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, var(--btn-shadow-opacity, 0.4));
+    transition: background-color 0.3s;
+}
+
+/* 浅色模式下按钮阴影 */
+:root.light-theme .back-to-top a {
+    --btn-shadow-opacity: 0.2;
+}
+
+.back-to-top a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* ========== 应用头部样式 ========== */
+.app-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.app-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    padding: 1rem;
+}
+
+.app-intro h2 {
+    margin-bottom: 0.5rem;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.app-intro p {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background: var(--secondary-color);
+    text-decoration: none;
+}
+
+/* ========== Base64页面专用样式 ========== */
+.tab {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    /* 深浅色tab背景区分 */
+    background-color: var(--tab-bg, #3a3a3a);
+    transition: background-color 0.3s;
+}
+
+/* 浅色模式下tab背景 */
+:root.light-theme .tab {
+    --tab-bg: var(--light-bg);
+}
+
+.tab.active {
+    /* 深浅色active tab背景区分 */
+    background-color: var(--tab-active-bg, #2d2d2d);
+    color: var(--tab-active-color);
+    font-weight: bold;
+}
+
+/* 浅色模式下active tab背景 */
+:root.light-theme .tab.active {
+    --tab-active-bg: white;
+}
+
+.tab:hover:not(.active) {
+    /* 深浅色hover tab背景区分 */
+    background-color: var(--tab-hover-bg, #404040);
+}
+
+/* 浅色模式下hover tab背景 */
+:root.light-theme .tab:hover:not(.active) {
+    --tab-hover-bg: #e3e6e9;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 0 5px 5px 5px;
+    /* 深浅色tab内容背景区分 */
+    background-color: var(--tab-content-bg, #2d2d2d);
+    margin-bottom: 20px;
+}
+
+/* 浅色模式下tab内容背景 */
+:root.light-theme .tab-content {
+    --tab-content-bg: white;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+.input-group select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    min-height: 150px;
+    font-family: inherit;
+    resize: vertical;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+button:disabled {
+    /* 深浅色禁用按钮背景区分 */
+    background-color: var(--btn-disabled-bg, #666666);
+    cursor: not-allowed;
+}
+
+/* 浅色模式下禁用按钮背景 */
+:root.light-theme button:disabled {
+    --btn-disabled-bg: #cccccc;
+}
+
+.result {
+    background-color: var(--result-bg-color);
+    border: 1px solid var(--result-border-color);
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+    position: relative;
+    color: var(--text-color);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.result-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.copy-btn {
+    padding: 5px 10px;
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.copy-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--notification-bg-color);
+    color: var(--notification-text-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: none;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    border-top: 1px solid var(--border-color);
+    padding: 2rem;
+    color: var(--secondary-color);
+}
+
+
+/* ========== Base64页面容器样式 ========== */
+.base64-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.base64-container h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* ========== Code元素美化 ========== */
+code {
+    /* 深浅色code背景区分 */
+    background-color: var(--code-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--code-border, rgba(255, 255, 255, 0.1));
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 1.5;
+}
+
+/* 浅色模式下code样式 */
+:root.light-theme code {
+    --code-bg: rgba(0, 0, 0, 0.05);
+    --code-border: rgba(0, 0, 0, 0.1);
+}
+
+/* pre标签内的code样式 */
+pre code {
+    display: block;
+    padding: 1em;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* ========== 主题切换开关样式 ========== */
+/* 字体切换开关样式 - 与主题切换按钮保持一致 */
+.font-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    /* 确保按钮位置固定，不随滚动条变化 */
+    flex-shrink: 0;
+}
+
+.font-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 深浅色开关背景区分 */
+    background-color: var(--slider-bg, #404040);
+    transition: .4s;
+    border-radius: 24px;
+}
+
+/* 浅色模式下开关背景 */
+:root.light-theme .slider {
+    --slider-bg: #ccc;
+}
+
+/* 兼容旧的theme属性（可选，确保向下兼容） */
+:root[theme="light"] .slider {
+    background-color: #ccc;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 23px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .back-to-top {
+        display: block;
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 2rem;
+        /* 在移动设备上也保持滚动功能 */
+        max-height: 400px;
+        overflow-y: auto;
+        width: 100%;
+    }
+}
