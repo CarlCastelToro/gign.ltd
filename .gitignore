@@ -1,0 +1,8 @@
+# 忽略根目录下的 web.config
+web.config
+
+# 如果需要忽略所有目录下的 web.config（包括子文件夹）
+# **/web.config
+
+# 如果需要忽略 web.config 的变体（如 web.Debug.config、web.Release.config）
+# web.*.config
