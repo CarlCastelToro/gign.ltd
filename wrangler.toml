@@ -1,19 +1,6 @@
-# 基础配置：解决 Worker 名称 undefined 警告
 name = "gign"
-#main = "./index.js"  # 可选：如果有 Worker 脚本，指定入口文件（无则注释）
+compatibility_date = "2026-02-24" # 命令行会覆盖，这里仅做兜底
+#main = "./index.js" # 无Worker脚本可注释
 
-# 静态资产配置：排除 .git 目录，只上传需要的文件
 [assets]
-directory = "./"  # 资产根目录（如果有 dist 目录，改为 ./dist 更优）
-# 排除无关文件，核心是 .git 目录
-exclude = [
-  ".git/**/*",          # 排除所有 Git 相关文件
-  #"node_modules/**/*",  # 可选：排除依赖目录（如果不需要部署）
-  "*.log",              # 可选：排除日志文件
-  "wrangler.toml"       # 可选：排除配置文件本身
-]
-
-# 可选：部署环境配置（如生产/测试）
-[env.production]
-name = "gign"
-#compatibility_date = "2025-12-08"
+directory = "./" # 和「路径」选项保持一致，优先用dist目录避开.git
