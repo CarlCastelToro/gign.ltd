@@ -82,6 +82,30 @@ embed {
     transition: none !important;
 }
 
+/* 通用图片样式：适配布局、自动缩放、保持1:1比例 */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
+/* 为section内的图片添加更具体的样式，确保完全适配容器宽度 */
+.section img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 允许特定情况下覆盖图片比例 */
+img.no-aspect-ratio {
+    aspect-ratio: auto;
+}
+
 /* 滚动条过渡效果 */
 ::-webkit-scrollbar {
     width: 0px;

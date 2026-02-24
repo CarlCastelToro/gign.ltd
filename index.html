@@ -24,7 +24,7 @@
                 <h2>航导录目</h2>
 
                 <div>
-                    <div class="section-title">快速跳转</div>
+                    <div class="section-title">快速跳转 - 实验性</div>
                     <ul>
                         <li><a href="#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
                         <li><a href="https://www.bing.com/translator" target="_blank">Bing翻译</a></li>
@@ -45,12 +45,13 @@
                 </div>
 
                 <div>
-                    <div class="section-title">文学作品</div>
+                    <div class="section-title">艺术作品</div>
                     <ul>
-                        <li><a href="#literary-works" onClick="window.location.hash = '#literary-works';">精选文学作品</a>
+                        <li><a href="#literary-works" onClick="window.location.hash = '#literary-works';">文学作品</a> - <a
+                                href="Tolland" onClick="window.location.href = 'Tolland';">完整作品集</a>
                         </li>
                         <li><a href="#news" onClick="window.location.hash = '#news';">新闻</a></li>
-                        <li><a href="Tolland" onClick="window.location.href = 'Tolland';">完整作品集</a></li>
+                        <li><a href="#gallery" onClick="window.location.hash = '#gallery';">画廊</a></li>
                     </ul>
                 </div>
 
@@ -72,6 +73,14 @@
                         <li><a href="#tfhs" onClick="window.location.hash = '#tfhs';">TestFileHttpServer</a></li>
                     </ul>
                 </div>
+
+                <div>
+                    <div class="section-title">联系方式</div>
+                    <ul>
+                        <li><a href="#contact" onClick="window.location.hash = '#contact';">联系我</a></li>
+                    </ul>
+                </div>
+
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
@@ -123,7 +132,7 @@
             </section>
 
             <section id="literary-works" class="section">
-                <h2>文学作品</h2>
+                <h2>艺术作品</h2>
                 <div class="chapter">
                     <div class="chapter-content">
                         <h3>《Tolland》 - 《废墟图书馆》 (Bibliothèque des ruines)</h3>
@@ -149,15 +158,22 @@
                             <h3>《Tolland》完整作品集, 点击查看更多</h3>
                         </a>
                     </div>
-                </div>
-            </section>
 
-            <section id="news" class="section">
-                <h2>新闻</h2>
-                <a href="news.html">
-                    <h3>关于本次有关广州市信息技术职业学校的新规定的见解与思考, 点击查看更多</h3>
-                </a>
-                <p>Carl Castel Toro, 2025.12.18, Original released on gign.ltd</p>
+                    <div class="chapter-content">
+                        <h2 id="news" class="section-title">新闻</h2>
+                        <a href="news.html">
+                            <h3>关于本次有关广州市信息技术职业学校的新规定的见解与思考, 点击查看更多</h3>
+                        </a>
+                        <p>Carl Castel Toro, 2025.12.18, Original released on gign.ltd</p>
+                    </div>
+                    <div class="chapter-content">
+                        <h2 id="gallery" class="section-title">画廊</h2>
+                        <p>由Carl Castel Toro创作的艺术图像 (署名为IAmSystem32)</p>
+                        <a href="gallery">
+                            <h3>点击查看更多</h3>
+                        </a>
+                    </div>
+                </div>
             </section>
 
             <section id="tutorial" class="section">
@@ -244,7 +260,7 @@
                 </div>
             </section>
 
-            <section class="section">
+            <section class="section" id="contact">
                 <h2>联系方式</h2>
                 <div class="chapter">
                     <div class="chapter-content">
