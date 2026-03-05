@@ -123,11 +123,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const video = document.getElementById('autoplayvideo');
     
+    var videofirsttimeplay = false;
     // 监听用户交互事件（如点击、触摸等）
     document.addEventListener('click', function() {
         // 开始播放视频
-        video.play().catch(function(error) {
-            console.log('播放失败:', error);
-        });
+        if(!videofirsttimeplay){
+            video.play().catch(function(error) {
+                console.log('播放失败:', error);
+            });
+            videofirsttimeplay = true;
+        }
     });
 });
