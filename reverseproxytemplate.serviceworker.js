@@ -1,11 +1,11 @@
 // 反代目标网站.
-const upstream = 'www.pixiv.net'
+const upstream = 'www.google.com'
 
 // 反代目标网站的移动版.
-const upstream_mobile = 'www.pixiv.net'
+const upstream_mobile = 'www.google.com'
 
 // 访问区域黑名单（按需设置）.
-const blocked_region = []
+const blocked_region = ['US', 'JP','zh_TW', 'zh_CN']
 
 // IP地址黑名单（按需设置）.
 const blocked_ip_address = []
@@ -45,7 +45,7 @@ if (await device_status(user_agent)) {
 url.host = upstream_domain;
 
 if (blocked_region.includes(region)) {
-    response = new Response('Access denied: WorkersProxy is not available in your region yet.', {
+    response = new Response('Access denied: WorkersProxy is not available in your region yet.\nYour region doesn\'need this service.We\'re sorry, but we have to save our resources.', {
         status: 403
     });
 } else if(blocked_ip_address.includes(ip_address)){
