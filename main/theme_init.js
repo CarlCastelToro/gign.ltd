@@ -67,7 +67,7 @@
             } else {
                 localStorage.setItem('siteTheme', 'light');
             }
-            localStorage.setItem('siteFont', 'yahei'); // 新增：默认保存雅黑字体
+            localStorage.setItem('siteFont', 'yahei');
         }
     }
 

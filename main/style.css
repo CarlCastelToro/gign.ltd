@@ -113,6 +113,16 @@ img.no-aspect-ratio {
     height: auto;
     display: block;
     margin: 0 auto;
+    object-fit: contain;
+    max-height: 100vh;
+}
+
+/* 针对iOS设备的特殊处理 */
+@supports (-webkit-touch-callout: none) {
+    .video-responsive {
+        -webkit-playsinline: true;
+        playsinline: true;
+    }
 }
 
 /* 滚动条过渡效果 */
