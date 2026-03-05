@@ -106,6 +106,15 @@ img.no-aspect-ratio {
     aspect-ratio: auto;
 }
 
+/* 视频响应式样式：自动缩放到合适宽度 */
+.video-responsive {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 /* 滚动条过渡效果 */
 ::-webkit-scrollbar {
     width: 0px;

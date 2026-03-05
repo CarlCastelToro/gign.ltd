@@ -120,4 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // 绑定字体切换事件
         fontToggle.addEventListener('change', switchFont, { passive: true });
     }
+
+    const video = document.getElementById('autoplayvideo');
+    
+    // 监听用户交互事件（如点击、触摸等）
+    document.addEventListener('click', function() {
+        // 开始播放视频
+        video.play().catch(function(error) {
+            console.log('播放失败:', error);
+        });
+    });
 });
