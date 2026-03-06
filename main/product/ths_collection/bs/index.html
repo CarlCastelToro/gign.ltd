@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,6 @@
         <h1 id="_jumptitle">产品介绍</h1>
         <p>BasicHttpServer - 轻量级HTTP服务器工具</p>
     </header>
-
     <div class="container">
         <aside class="sidebar">
             <nav class="toc">
@@ -23,8 +23,7 @@
                 <div>
                     <div class="section-title">目录</div>
                     <ul>
-                        <li><a href="#user-manual" onClick="window.location.hash = '#user-manual';">常见问题（FAQ）</a>
-                        </li>
+                        <li><a href="#user-manual" onClick="window.location.hash = '#user-manual';">常见问题（FAQ）</a> </li>
                         <li><a href="#full_description" onClick="window.location.hash = '#full_description';">开发人员文档</a>
                         </li>
                     </ul>
@@ -32,53 +31,35 @@
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    深浅色切换
-                    <label class="theme-switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    字体切换 (Georgia/雅黑)
-                    <label class="font-switch">
-                        <input type="checkbox" id="fontToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label> </h2>
             </nav>
         </aside>
-
         <main class="content">
-            <main class="content">
-                <!-- 工具封面与核心介绍区 -->
+            <main class="content"> <!-- 工具封面与核心介绍区 -->
                 <section class="section">
                     <div class="app-header"
                         style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                        <!-- 工具图标（可替换为实际图标路径） -->
-                        <img src="icon.ico" alt="BasicHttpServer图标"
+                        <!-- 工具图标（可替换为实际图标路径） --> <img src="icon.ico" alt="BasicHttpServer图标"
                             style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
                         <div class="app-intro">
                             <h2>BasicHttpServer</h2>
                             <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
                                 轻量、高效的HTTP服务器工具</p>
-                            <p style="margin: 1rem 0;">支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p>
-                            <!-- 下载按钮（突出显示） -->
+                            <p style="margin: 1rem 0;">支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p> <!-- 下载按钮（突出显示） -->
                             <a href=".\BasicHttpServer.exe" class="download-btn"
                                 style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
-                                立即下载
-                            </a>
-                            <a href="#user-manual"
+                                立即下载 </a> <a href="#user-manual"
                                 style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看用户手册</a>
                         </div>
                     </div>
-                </section>
-
-                <!-- 核心功能区 -->
+                </section> <!-- 核心功能区 -->
                 <section class="section">
                     <h2>核心功能</h2>
-
                     <div id="feature-1" class="chapter">
                         <h3>静态文件服务</h3>
                         <div class="chapter-content">
@@ -86,7 +67,6 @@
                             <p>支持大文件传输，优化的文件读取机制，提供稳定可靠的文件服务能力。</p>
                         </div>
                     </div>
-
                     <div id="feature-2" class="chapter">
                         <h3>目录浏览</h3>
                         <div class="chapter-content">
@@ -98,7 +78,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div id="feature-3" class="chapter">
                         <h3>可配置的服务器参数</h3>
                         <div class="chapter-content">
@@ -111,7 +90,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div id="feature-4" class="chapter">
                         <h3>轻量级设计</h3>
                         <div class="chapter-content">
@@ -124,12 +102,9 @@
                             </ol>
                         </div>
                     </div>
-                </section>
-
-                <!-- 系统要求与安装说明 -->
+                </section> <!-- 系统要求与安装说明 -->
                 <section class="section">
                     <h2>系统要求与安装</h2>
-
                     <div id="system-requirements" class="chapter">
                         <h3>最低系统要求</h3>
                         <div class="chapter-content">
@@ -141,7 +116,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div id="installation" class="chapter">
                         <h3>使用说明</h3>
                         <div class="chapter-content">
@@ -151,19 +125,17 @@
                                 <li>双击运行 <code
                                         style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">BasicHttpServer.exe</code>
                                 </li>
-                                <li>程序运行时, 会检查其运行目录下是否存在一个foldername.txt，该文件用于指定服务器所使用的文件夹名称，不存在时会自动创建，并指定文件夹为files并创建</li>
+                                <li>程序运行时, 会检查其运行目录下是否存在一个foldername.txt，该文件用于指定服务器所使用的文件夹名称，不存在时会自动创建，并指定文件夹为files并创建
+                                </li>
                                 <li>在界面中设置端口号，点击「Start」即可开始提供HTTP服务</li>
                             </ol>
                             <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
                                 注意：确保端口不被其他应用占用，且有足够的文件系统访问权限。</p>
                         </div>
                     </div>
-                </section>
-
-                <!-- 用户手册与常见问题 -->
+                </section> <!-- 用户手册与常见问题 -->
                 <section class="section">
                     <h2 id="user-manual">常见问题</h2>
-
                     <div id="faq" class="chapter">
                         <h3>常见问题（FAQ）</h3>
                         <div class="chapter-content">
@@ -182,27 +154,26 @@
                             <div style="margin-bottom: 1.5rem;">
                                 <p style="font-weight: bold; color: var(--primary-color);">Q4：如何联系技术支持？</p>
                                 <p>A4：若遇到问题或有功能建议，请发送邮件至 <a href="mailto:IAmSystem32@outlook.com"
-                                        class="link">IAmSystem32@outlook.com</a>，注明「BasicHttpServer+问题描述+系统版本」，我们会在3个工作日内回复。</p>
+                                        class="link">IAmSystem32@outlook.com</a>，注明「BasicHttpServer+问题描述+系统版本」，我们会在3个工作日内回复。
+                                </p>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="section">
                     <h2 id="full_description">完整技术文档</h2>
-
                     <div class="chapter">
                         <h3>开发人员文档 - BasicHttpServer 技术实现解析</h3>
                         <div class="chapter-content">
                             <h4>1. 服务器架构与核心组件</h4>
                             <p>BasicHttpServer 是一个基于 .NET HttpListener 构建的轻量级 HTTP 服务器，采用事件驱动架构设计，以下是其核心架构组成：</p>
                             <ul>
-                                <li><strong>事件循环模型</strong>：使用 BeginGetContext/EndGetContext 异步模式处理连接请求，实现非阻塞 I/O 操作</li>
+                                <li><strong>事件循环模型</strong>：使用 BeginGetContext/EndGetContext 异步模式处理连接请求，实现非阻塞 I/O 操作
+                                </li>
                                 <li><strong>请求处理线程池</strong>：每个客户端请求由独立线程处理，避免请求间相互阻塞，提高并发能力</li>
                                 <li><strong>模块化设计</strong>：功能按职责划分为不同模块，便于维护和扩展</li>
                                 <li><strong>资源管理系统</strong>：完善的资源创建、使用和释放机制，确保不发生资源泄漏</li>
                             </ul>
-
                             <h4>2. HTTP 协议实现细节</h4>
                             <p>服务器实现了完整的 HTTP/1.1 协议子集，支持以下特性：</p>
                             <ul>
@@ -212,17 +183,14 @@
                                 <li><strong>内容协商</strong>：根据 Accept 头和文件类型返回适当的 Content-Type 响应头</li>
                                 <li><strong>错误状态处理</strong>：实现标准 HTTP 错误状态码和自定义错误页面（404、500、503、405）</li>
                             </ul>
-
                             <h4>3. API 端点与功能说明</h4>
                             <p>服务器提供以下主要 API 端点和功能：</p>
-
                             <h5>3.1 文件服务 API</h5>
                             <ul>
                                 <li><strong>静态文件获取</strong>：`GET /{path}/{filename}` - 返回指定路径下的文件内容，自动设置正确的 MIME 类型</li>
                                 <li><strong>目录浏览</strong>：`GET /{directory}/` - 当目录存在 index.html 时返回，否则返回 404 错误页面</li>
                                 <li><strong>图标请求</strong>：`GET /favicon.ico` - 自动响应浏览器图标请求，支持多位置图标查找</li>
                             </ul>
-
                             <h5>3.2 系统控制 API</h5>
                             <ul>
                                 <li><strong>隐藏窗口</strong>：`GET /cmd?command=hide` - 隐藏服务器主窗口</li>
@@ -231,15 +199,12 @@
                                 <li><strong>清理日志</strong>：`GET /cmd?command=clearlog` - 清空日志内容</li>
                                 <li><strong>切换日志锁定</strong>：`GET /cmd?command=togglelocklog` - 切换日志锁定状态，控制是否继续写入日志</li>
                             </ul>
-
                             <h5>3.3 临时数据存储 API</h5>
                             <ul>
                                 <li><strong>存储临时文本</strong>：`POST /tempstring?key={key}` - 存储临时文本内容到指定键名</li>
                                 <li><strong>获取临时文本</strong>：`GET /tempstring?key={key}` - 获取之前存储的临时文本内容</li>
                             </ul>
-
                             <h4>4. 核心类与方法详解</h4>
-
                             <h5>4.1 Form1 类（主窗体与控制中心）</h5>
                             <ul>
                                 <li><strong>Server_Start()</strong>：初始化并启动 HTTP 服务器，配置监听端口和基本设置</li>
@@ -248,45 +213,38 @@
                                 <li><strong>HandleFileRequest()</strong>：处理文件请求，包括路径解析、文件读取和响应生成</li>
                                 <li><strong>ProcessRangeRequestAsync()</strong>：异步处理 Range 请求，实现断点续传功能</li>
                             </ul>
-
                             <h5>4.2 辅助类与工具函数</h5>
                             <ul>
-                                <li><strong>Log 类</strong>：实现日志记录功能，支持实时控制台输出和文件持久化存储，使用 RTF 格式增强可读性
-                                    <ul>
+                                <li><strong>Log 类</strong>：实现日志记录功能，支持实时控制台输出和文件持久化存储，使用 RTF 格式增强可读性 <ul>
                                         <li>Write()：写入普通日志信息
                                         <li>WriteError()：写入错误日志，使用红色显示
                                         <li>WriteRequest()：写入请求日志，使用蓝色显示
                                     </ul>
                                 </li>
-                                <li><strong>UrlHelper 模块</strong>：提供 URL 解析和参数提取功能
-                                    <ul>
+                                <li><strong>UrlHelper 模块</strong>：提供 URL 解析和参数提取功能 <ul>
                                         <li>GetUrlParameters()：从 URL 提取查询参数
                                         <li>GetUrlPart()：提取 URL 中的特定部分
                                     </ul>
                                 </li>
-                                <li><strong>UrlParameters 类</strong>：参数管理类，提供参数的添加、获取和检查功能
-                                    <ul>
+                                <li><strong>UrlParameters 类</strong>：参数管理类，提供参数的添加、获取和检查功能 <ul>
                                         <li>Add()：添加键值对参数
                                         <li>Get()：获取指定键的参数值
                                         <li>Contains()：检查是否包含指定键
                                     </ul>
                                 </li>
-                                <li><strong>HttpAssistant 模块</strong>：HTTP 相关辅助功能
-                                    <ul>
+                                <li><strong>HttpAssistant 模块</strong>：HTTP 相关辅助功能 <ul>
                                         <li>GetMimeType()：根据文件扩展名获取 MIME 类型
                                         <li>SendHttpResponse()：统一的 HTTP 响应发送方法
                                         <li>FindByteSequence()：在字节数组中查找特定序列
                                     </ul>
                                 </li>
                             </ul>
-
                             <h4>5. 配置选项与环境变量</h4>
                             <ul>
                                 <li><strong>端口配置</strong>：默认端口 721，可通过界面自定义或通过 foldername.txt 配置
                                 <li><strong>服务文件夹设置</strong>：默认为当前目录下的 "files" 文件夹，可通过 foldername.txt 自定义
                                 <li><strong>图标路径配置</strong>：支持多位置图标查找，包括当前目录、服务目录和默认内置图标
                             </ul>
-
                             <h4>6. 错误处理与调试机制</h4>
                             <p>服务器实现了全面的错误处理和调试功能：</p>
                             <ul>
@@ -295,7 +253,6 @@
                                 <li><strong>用户友好错误页面</strong>：为常见错误提供清晰的错误页面和状态码，帮助客户端理解问题
                                 <li><strong>资源安全释放</strong>：使用 using 语句和 finally 块确保所有文件和网络资源正确释放
                             </ul>
-
                             <h4>7. 安全考虑与最佳实践</h4>
                             <ul>
                                 <li><strong>路径遍历防护</strong>：通过路径规范化和验证防止目录遍历攻击，确保只能访问服务目录内的文件
@@ -303,7 +260,6 @@
                                 <li><strong>资源限制</strong>：实现请求处理超时和资源限制，防止恶意请求消耗过多系统资源
                                 <li><strong>最佳实践建议</strong>：建议在生产环境中部署时配合防火墙使用，限制访问来源，并定期检查日志
                             </ul>
-
                             <h4>8. 扩展开发指南</h4>
                             <p>要扩展服务器功能，开发者可以：</p>
                             <ul>
@@ -312,7 +268,6 @@
                                 <li>修改 InlinePages 模块自定义错误页面内容
                                 <li>为 Log 类添加更多日志级别和功能
                             </ul>
-
                             <h4>9. 技术规格与依赖项</h4>
                             <ul>
                                 <li><strong>开发语言</strong>：Visual Basic .NET
@@ -324,10 +279,8 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="section">
                     <h2>开发人员按钮...</h2>
-
                     <div class="chapter">
                         <div class="chapter-content">
                             <p>GUI右上角区域有一个显示为"B"的按钮</p>
@@ -335,12 +288,9 @@
                             <p>不推荐在生产环境使用</p>
                         </div>
                     </div>
-                </section>
-
-                <!-- 版权与许可协议 -->
+                </section> <!-- 版权与许可协议 -->
                 <section class="section">
                     <h2>版权与许可</h2>
-
                     <div id="copyright" class="chapter">
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
@@ -351,13 +301,12 @@
                 </section>
             </main>
         </main>
-    </div>
-
-    <!-- 简洁的底部信息 -->
+    </div> <!-- 简洁的底部信息 -->
     <footer style="text-align: center; padding: 2rem; color: var(--secondary-color);">
         <p>BasicHttpServer - 轻量级HTTP服务器工具</p>
         <p>&copy; 2025 I Am System32. All rights reserved.</p>
         <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
     </footer>
 </body>
+
 </html>

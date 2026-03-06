@@ -16,49 +16,33 @@
         <h1 id="_jumptitle">如何使用符号链接使Microsoft Onedrive备份计算机的指定文件夹</h1>
         <p>教程</p>
     </header>
-
     <div class="container">
         <aside class="sidebar">
             <nav class="toc">
                 <h2>Table des matières</h2>
-
                 <div>
                     <div class="section-title">正文</div>
                     <ul>
                         <li><a href="#p1" onClick="window.location.hash = '#p1';">关于mklink命令</a></li>
-                        <li><a href="#p2" onClick="window.location.hash = '#p2';">具体实现</a>
-                        </li>
+                        <li><a href="#p2" onClick="window.location.hash = '#p2';">具体实现</a> </li>
                     </ul>
                 </div>
-
-
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    深浅色切换
-                    <label class="theme-switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    字体切换 (Georgia/雅黑)
-                    <label class="font-switch">
-                        <input type="checkbox" id="fontToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label> </h2>
             </nav>
         </aside>
-
         <main class="content">
             <section class="section">
                 <h2>本页介绍</h2>
                 <p>本页介绍如何使用mklink命令解决Onedrive只能统一同步一个文件目录的问题, 通过创建符号链接实现多个本地文件夹与Onedrive的同步, 保持云端文件一致性。</p>
             </section>
-
             <section class="section">
                 <h2>正文</h2>
                 <div id="p1" class="chapter">
@@ -68,20 +52,14 @@
                             下用于创建符号链接的工具, 存在于 Windows Vista 及以后版本的 Windows 操作系统中。</p>
                         <p>使用方式: <code>MKLINK [[/D] | [/H] | [/J]] Link Target </code></p>
                         <h4>说明: </h4>
-                        <p>/D 创建目录符号链接而不是文件符号链接（默认为文件符号链接）
-                            /H 创建硬链接而不是符号链接
-                            /J 创建目录连接点
-                            Link 指定新的符号链接名称
-                            Target 指定新链接引用的路径（绝对路径或者相对路径均可） </p>
+                        <p>/D 创建目录符号链接而不是文件符号链接（默认为文件符号链接） /H 创建硬链接而不是符号链接 /J 创建目录连接点 Link 指定新的符号链接名称 Target
+                            指定新链接引用的路径（绝对路径或者相对路径均可） </p>
                         <p>参数 Link 和 Target 要求<strong>不能</strong>使用 Windows 中不允许用作文件名的字符（\ / : * ? " <> |）。并且如果 Link 和
                                 Target 这两个参数中需要包含<strong>空格</strong>, 则必须使用<strong>英文双引号</strong>将内容引起来, 以避免参数识别错误。</p>
                         <h4>符号链接在系统启动的时候是不工作的, 所以下面这些文件（夹）是不可以作为符号链接替换的: </h4>
-                        <code>\Windows
-\Windows\system32
-\Windows\system32\config</code>
+                        <code>\Windows\Windows\system32\Windows\system32\config</code>
                     </div>
                 </div>
-
                 <div class="chapter" id="p2">
                     <h2>具体实现</h2>
                     <div class="chapter-content">

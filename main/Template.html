@@ -16,75 +16,51 @@
         <h1 id="_jumptitle">标准HTML模板</h1>
         <p>包含各种标准元素和正确的引用方式</p>
     </header>
-
     <div class="container">
         <aside class="sidebar">
             <nav class="toc">
-                <h2>
-                    目录
-                </h2>
-
+                <h2> 目录 </h2>
                 <div>
                     <div class="section-title">文本元素</div>
                     <ul>
                         <li><a href="#text" onClick="window.location.hash = '#text';">标题层级和文本格式</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <div class="section-title">列表元素</div>
                     <ul>
-                        <li><a href="#lists" onClick="window.location.hash = '#lists';">无序列表和有序列表</a>
-                        </li>
+                        <li><a href="#lists" onClick="window.location.hash = '#lists';">无序列表和有序列表</a> </li>
                     </ul>
                 </div>
-
                 <div>
                     <div class="section-title">表格和表单</div>
                     <ul>
-                        <li><a href="#tables" onClick="window.location.hash = '#tables';">表格元素</a>
-                        </li>
-                        <li><a href="#forms" onClick="window.location.hash = '#forms';">表单元素</a>
-                        </li>
+                        <li><a href="#tables" onClick="window.location.hash = '#tables';">表格元素</a> </li>
+                        <li><a href="#forms" onClick="window.location.hash = '#forms';">表单元素</a> </li>
                     </ul>
                 </div>
-
                 <div>
                     <div class="section-title">媒体元素</div>
                     <ul>
-                        <li><a href="#media" onClick="window.location.hash = '#media';">图片、音频和视频</a>
-                        </li>
+                        <li><a href="#media" onClick="window.location.hash = '#media';">图片、音频和视频</a> </li>
                     </ul>
                 </div>
-
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    深浅色切换
-                    <label class="theme-switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    字体切换 (Georgia/雅黑)
-                    <label class="font-switch">
-                        <input type="checkbox" id="fontToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label> </h2>
             </nav>
         </aside>
-
         <main class="content">
             <section class="section">
                 <h2>模板介绍</h2>
                 <p>本模板提供标准HTML元素的使用示例和最佳实践，包含文本、列表、表格、表单和媒体等常见元素。</p>
             </section>
-
             <section class="section">
                 <h2>文本元素</h2>
                 <div id="text" class="chapter">
@@ -98,7 +74,6 @@
                         <h6>六级标题 (h6)</h6>
                     </div>
                 </div>
-
                 <div class="chapter">
                     <h3>段落和文本格式</h3>
                     <div class="chapter-content">
@@ -110,7 +85,6 @@
                     </div>
                 </div>
             </section>
-
             <section class="section">
                 <h2>列表元素</h2>
                 <div id="lists" class="chapter">
@@ -118,8 +92,7 @@
                     <div class="chapter-content">
                         <ul>
                             <li>项目一</li>
-                            <li>项目二
-                                <ul>
+                            <li>项目二 <ul>
                                     <li>子项目一</li>
                                     <li>子项目二</li>
                                 </ul>
@@ -128,14 +101,12 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="chapter">
                     <h3>有序列表</h3>
                     <div class="chapter-content">
                         <ol>
                             <li>第一步</li>
-                            <li>第二步
-                                <ol>
+                            <li>第二步 <ol>
                                     <li>子步骤一</li>
                                     <li>子步骤二</li>
                                 </ol>
@@ -144,7 +115,6 @@
                         </ol>
                     </div>
                 </div>
-
                 <div class="chapter">
                     <h3>定义列表</h3>
                     <div class="chapter-content">
@@ -159,7 +129,6 @@
                     </div>
                 </div>
             </section>
-
             <section class="section">
                 <h2>表格元素</h2>
                 <div id="tables" class="chapter">
@@ -194,102 +163,67 @@
                     </div>
                 </div>
             </section>
-
             <section class="section">
                 <h2>表单元素</h2>
                 <div id="forms" class="chapter">
                     <h3>标准表单</h3>
                     <div class="chapter-content">
                         <form action="#" method="post">
-                            <div class="form-group">
-                                <label for="username">用户名：</label>
-                                <input type="text" id="username" name="username" placeholder="请输入用户名">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">电子邮箱：</label>
-                                <input type="email" id="email" name="email" placeholder="请输入电子邮箱">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">密码：</label>
-                                <input type="password" id="password" name="password" placeholder="请输入密码">
-                            </div>
-
-                            <div class="form-group">
-                                <label>性别：</label>
-                                <div class="radio-group">
-                                    <label><input type="radio" name="gender" value="male"> 男</label>
-                                    <label><input type="radio" name="gender" value="female"> 女</label>
+                            <div class="form-group"> <label for="username">用户名：</label> <input type="text" id="username"
+                                    name="username" placeholder="请输入用户名"> </div>
+                            <div class="form-group"> <label for="email">电子邮箱：</label> <input type="email" id="email"
+                                    name="email" placeholder="请输入电子邮箱"> </div>
+                            <div class="form-group"> <label for="password">密码：</label> <input type="password"
+                                    id="password" name="password" placeholder="请输入密码"> </div>
+                            <div class="form-group"> <label>性别：</label>
+                                <div class="radio-group"> <label><input type="radio" name="gender" value="male">
+                                        男</label> <label><input type="radio" name="gender" value="female"> 女</label>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label>兴趣爱好：</label>
-                                <div class="checkbox-group">
-                                    <label><input type="checkbox" name="hobbies[]" value="coding"> 编程</label>
-                                    <label><input type="checkbox" name="hobbies[]" value="reading"> 阅读</label>
-                                    <label><input type="checkbox" name="hobbies[]" value="music"> 音乐</label>
-                                </div>
+                            <div class="form-group"> <label>兴趣爱好：</label>
+                                <div class="checkbox-group"> <label><input type="checkbox" name="hobbies[]"
+                                            value="coding"> 编程</label> <label><input type="checkbox" name="hobbies[]"
+                                            value="reading"> 阅读</label> <label><input type="checkbox" name="hobbies[]"
+                                            value="music"> 音乐</label> </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="department">部门：</label>
-                                <select id="department" name="department">
+                            <div class="form-group"> <label for="department">部门：</label> <select id="department"
+                                    name="department">
                                     <option value="">请选择部门</option>
                                     <option value="tech">技术部</option>
                                     <option value="hr">人力资源部</option>
                                     <option value="marketing">市场部</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message">留言：</label>
-                                <textarea id="message" name="message" rows="4" placeholder="请输入留言内容"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="button">提交表单</button>
-                                <button type="reset" class="button secondary">重置</button>
-                            </div>
+                                </select> </div>
+                            <div class="form-group"> <label for="message">留言：</label> <textarea id="message"
+                                    name="message" rows="4" placeholder="请输入留言内容"></textarea> </div>
+                            <div class="form-group"> <button type="submit" class="button">提交表单</button> <button
+                                    type="reset" class="button secondary">重置</button> </div>
                         </form>
                     </div>
                 </div>
             </section>
-
             <section class="section">
                 <h2>媒体元素</h2>
                 <div id="media" class="chapter">
                     <h3>图片元素</h3>
                     <div class="chapter-content">
-                        <figure>
-                            <img src="https://via.placeholder.com/600x400" alt="示例图片" class="img-responsive">
+                        <figure> <img src="https://via.placeholder.com/600x400" alt="示例图片" class="img-responsive">
                             <figcaption>图片说明文字</figcaption>
                         </figure>
                     </div>
                 </div>
-
                 <div class="chapter">
                     <h3>音频元素</h3>
-                    <div class="chapter-content">
-                        <audio controls>
-                            <source src="#" type="audio/mpeg">
-                            您的浏览器不支持音频元素。
-                        </audio>
-                    </div>
+                    <div class="chapter-content"> <audio controls>
+                            <source src="#" type="audio/mpeg"> 您的浏览器不支持音频元素。
+                        </audio> </div>
                 </div>
-
                 <div class="chapter">
                     <h3>视频元素</h3>
-                    <div class="chapter-content">
-                        <video controls class="video-responsive">
-                            <source src="#" type="video/mp4">
-                            您的浏览器不支持视频元素。
-                        </video>
-                    </div>
+                    <div class="chapter-content"> <video controls class="video-responsive">
+                            <source src="#" type="video/mp4"> 您的浏览器不支持视频元素。
+                        </video> </div>
                 </div>
             </section>
-
             <section class="section">
                 <h2>引用方式</h2>
                 <div class="chapter">
@@ -297,20 +231,15 @@
                     <div class="chapter-content">
                         <h4>CSS引用方式</h4>
                         <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
-
                         <h4>JavaScript引用方式</h4>
                         <pre><code>&lt;script src="main.js" defer&gt;&lt;/script&gt;</code></pre>
-
                         <h4>字体引用方式</h4>
-                        <pre><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"&gt;</code></pre>
+                        <pre><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"&gt;</code></pre>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-
     <footer>
         <p>&copy; 2025 I Am System32. All rights reserved.</p>
         <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>

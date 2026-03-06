@@ -16,14 +16,10 @@
         <h1 id="_jumptitle">价值率计算器</h1>
         <p>用一种数学的方式来计算你是否真的值得去做某件事情</p>
     </header>
-
     <div class="container">
         <aside class="sidebar">
             <nav class="toc">
-                <h2>
-                    目录
-                </h2>
-
+                <h2> 目录 </h2>
                 <div>
                     <div class="section-title">章节标题</div>
                     <ul>
@@ -31,59 +27,33 @@
                                 onClick="window.location.hash = '#value_rate_formula';">价值率公式</a></li>
                     </ul>
                 </div>
-
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    深浅色切换
-                    <label class="theme-switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
-
-                <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                    字体切换 (Georgia/雅黑)
-                    <label class="font-switch">
-                        <input type="checkbox" id="fontToggle">
-                        <span class="slider round"></span>
-                    </label>
-                </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label> </h2>
             </nav>
         </aside>
-
         <main class="content">
             <section class="section" id="value_rate_formula">
                 <h2>关于价值率公式</h2>
                 <code>Value Rate = Time<sup>-2</sup> × Cost<sup>-1</sup> × 2 × (Interest)<sup>2</sup></code>
-                <pre>有这么一个计算公式：价值率=时间⁻²*代价⁻¹*2(兴趣²)
-时间Time, 指的是你完成一件任务所需要的标准时间, 例如一堂课程需要40分钟来完成, 而你使用了40分钟, 那么时间的值为1, 如果你使用了50分钟来完成, 那么时间的值为1.25
-代价Cost, 指的是你完成这件任务所需要的标准代价, 我们假设完成一堂课程之需要看ppt和写题, 且一直都是如此, 那么代价为1, 但如果在常规的课程中出现了特殊事件, 例如自习, 考试, 那么代价就应当下调到0.7或者1.3, 取决于其对完成这件任务本身的影响
-特殊的例子比如说全程上课睡觉, 那么代价为0, 这会导致总的价值率为0
-兴趣Interest, 取决于主观, 在0～1之间, 0.5是标准值
-最终我们得出标准的价值率Value Rate为0.5
-你可以计算出一些事物的价值率, 例如吃一顿正餐的代价为1.1, 时间为1.1而兴趣为0.7, 而吃快餐的代价为0.8, 时间为0.8, 兴趣为0.25, 前者的价值率约为0.74, 后者的价值率约为0.25, 即吃正餐的价值率远高于吃快餐, 由此可见兴趣对于价值率的影响特别重要
-假设兴趣不变, 即为0.5, 前者的价值率为0.38, 后者的价值率为0.98, 从事实上讲如果你对食物的口感漠不关心, 只对其价格和方便程度做出选择, 那么快餐的价值率是远大于正餐的
-                </pre>
+                <pre>有这么一个计算公式：价值率=时间⁻²*代价⁻¹*2(兴趣²)时间Time, 指的是你完成一件任务所需要的标准时间, 例如一堂课程需要40分钟来完成, 而你使用了40分钟, 那么时间的值为1, 如果你使用了50分钟来完成, 那么时间的值为1.25代价Cost, 指的是你完成这件任务所需要的标准代价, 我们假设完成一堂课程之需要看ppt和写题, 且一直都是如此, 那么代价为1, 但如果在常规的课程中出现了特殊事件, 例如自习, 考试, 那么代价就应当下调到0.7或者1.3, 取决于其对完成这件任务本身的影响特殊的例子比如说全程上课睡觉, 那么代价为0, 这会导致总的价值率为0兴趣Interest, 取决于主观, 在0～1之间, 0.5是标准值最终我们得出标准的价值率Value Rate为0.5你可以计算出一些事物的价值率, 例如吃一顿正餐的代价为1.1, 时间为1.1而兴趣为0.7, 而吃快餐的代价为0.8, 时间为0.8, 兴趣为0.25, 前者的价值率约为0.74, 后者的价值率约为0.25, 即吃正餐的价值率远高于吃快餐, 由此可见兴趣对于价值率的影响特别重要假设兴趣不变, 即为0.5, 前者的价值率为0.38, 后者的价值率为0.98, 从事实上讲如果你对食物的口感漠不关心, 只对其价格和方便程度做出选择, 那么快餐的价值率是远大于正餐的                </pre>
             </section>
-
             <section class="section" id="value_rate_calculator">
                 <h2>价值率计算器</h2>
-                <form id="valueRateForm">
-                    <label for="time">时间 (假设你吃一颗苹果的标准时间为五分钟, 且实际用了五分钟, 那么值为1, 如果实际用了六分钟, 那么值为1.2)</label><br>
-                    <input type="number" id="time" name="time" step="0.01" required><br>
-
-                    <label for="cost">代价 (假设你吃一颗苹果的标准代价为1元, 且实际用了1元, 那么值为1, 如果实际用了2元, 那么值为2)</label><br>
-                    <input type="number" id="cost" name="cost" step="0.01" required><br>
-
-                    <label for="interest">兴趣 (0-1之间的小数, 如果你对你所做的事情漠不关心, 请使用标准值0.5)</label><br>
-                    <input type="number" id="interest" name="interest" step="0.01" min="0" max="1" required><br>
-
-                    <button type="submit">计算价值率</button>
-                    <label for="value_rate">价值率 (结果)</label>
-                    <input type="number" id="value_rate" name="value_rate" disabled><br>
+                <form id="valueRateForm"> <label for="time">时间 (假设你吃一颗苹果的标准时间为五分钟, 且实际用了五分钟, 那么值为1, 如果实际用了六分钟,
+                        那么值为1.2)</label><br> <input type="number" id="time" name="time" step="0.01" required><br> <label
+                        for="cost">代价 (假设你吃一颗苹果的标准代价为1元, 且实际用了1元, 那么值为1, 如果实际用了2元, 那么值为2)</label><br> <input
+                        type="number" id="cost" name="cost" step="0.01" required><br> <label for="interest">兴趣
+                        (0-1之间的小数, 如果你对你所做的事情漠不关心, 请使用标准值0.5)</label><br> <input type="number" id="interest"
+                        name="interest" step="0.01" min="0" max="1" required><br> <button type="submit">计算价值率</button>
+                    <label for="value_rate">价值率 (结果)</label> <input type="number" id="value_rate" name="value_rate"
+                        disabled><br>
                     <p>标准的价值率为0.5, 有效的价值率至少为0</p>
                     <p>价值率高不一定意味着做这件事一定更好, 取决于多种因素</p>
                     <p>例如, 如果你对食物的口感漠不关心, 只对其价格和方便程度做出选择, 那么快餐的价值率是远大于正餐的</p>
@@ -91,103 +61,29 @@
                     <p>但同样, 价值率为0也不能代表做这件事毫无价值</p>
                     <p>例如你在考试上睡觉, 虽然对于考试这件事的价值为0, 但你起码是真的有在睡觉, 放松自己</p>
                 </form>
-
-                <script>
-                    document.getElementById('cost').value = 1;
-                    document.getElementById('interest').value = 0.5;
-                    document.getElementById('time').value = 1;
-                    document.getElementById('valueRateForm').addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        const time = parseFloat(document.getElementById('time').value);
-                        const cost = parseFloat(document.getElementById('cost').value);
-                        const interest = parseFloat(document.getElementById('interest').value);
-                        let valueRate;
-                        if (cost === 0) {
-                            valueRate = 0;
-                        } else {
-                            valueRate = Math.pow(time, -2) * Math.pow(cost, -1) * 2 * Math.pow(interest, 2);
-                        }
-                        document.getElementById('value_rate').value = valueRate.toFixed(4);
-                    });
-                    const inputs = ['time', 'cost', 'interest'];
-                    inputs.forEach(inputId => {
-                        document.getElementById(inputId).addEventListener('input', function () {
-                            const time = parseFloat(document.getElementById('time').value);
-                            const cost = parseFloat(document.getElementById('cost').value);
-                            const interest = parseFloat(document.getElementById('interest').value);
-                            if (time > 0 && cost >= 0 && interest >= 0 && interest <= 1) {
-                                let valueRate;
-                                if (cost === 0) {
-                                    valueRate = 0;
-                                } else {
-                                    valueRate = Math.pow(time, -2) * Math.pow(cost, -1) * 2 * Math.pow(interest, 2);
-                                }
-                                document.getElementById('value_rate').value = valueRate.toFixed(4);
-                            }
-                        });
-                    });
-                </script>
+                <script>                    document.getElementById('cost').value = 1; document.getElementById('interest').value = 0.5; document.getElementById('time').value = 1; document.getElementById('valueRateForm').addEventListener('submit', function (e) { e.preventDefault(); const time = parseFloat(document.getElementById('time').value); const cost = parseFloat(document.getElementById('cost').value); const interest = parseFloat(document.getElementById('interest').value); let valueRate; if (cost === 0) { valueRate = 0; } else { valueRate = Math.pow(time, -2) * Math.pow(cost, -1) * 2 * Math.pow(interest, 2); } document.getElementById('value_rate').value = valueRate.toFixed(4); }); const inputs = ['time', 'cost', 'interest']; inputs.forEach(inputId => { document.getElementById(inputId).addEventListener('input', function () { const time = parseFloat(document.getElementById('time').value); const cost = parseFloat(document.getElementById('cost').value); const interest = parseFloat(document.getElementById('interest').value); if (time > 0 && cost >= 0 && interest >= 0 && interest <= 1) { let valueRate; if (cost === 0) { valueRate = 0; } else { valueRate = Math.pow(time, -2) * Math.pow(cost, -1) * 2 * Math.pow(interest, 2); } document.getElementById('value_rate').value = valueRate.toFixed(4); } }); });                </script>
             </section>
-
             <section class="section" id="value_rate_text_generator">
                 <p>在下面五个框分别输入你做这件事的: 标准时间、实际花费时间、标准代价、实际花费代价、兴趣</p>
                 <p>然后我们会为你生成一段描述做这件事是否值得的废话……</p>
-                <form id="textGeneratorForm">
-                    <label for="standard_time">标准时间</label><br>
-                    <input type="number" id="standard_time" name="standard_time" required><br>
-
-                    <label for="actual_time">实际花费时间</label><br>
-                    <input type="number" id="actual_time" name="actual_time" required><br>
-
-                    <label for="standard_cost">标准代价</label><br>
-                    <input type="number" id="standard_cost" name="standard_cost" required><br>
-
-                    <label for="actual_cost">实际花费代价</label><br>
-                    <input type="number" id="actual_cost" name="actual_cost" required><br>
-
-                    <label for="interest">兴趣</label><br>
-                    <input type="number" id="interest" name="interest" step="0.01" min="0" max="1" required><br>
-
-                    <button type="submit">生成描述</button>
-                    <label for="description">描述 (结果)</label>
-                    <input type="text" id="description" name="description" disabled><br>
-                </form>
-
-                <script>//在此处需要着重提出兴趣的影响, 当兴趣值与标准的值相差0.1时提到, 每增加0.2, 其严重性就会上升一次
-                    document.getElementById('textGeneratorForm').addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        const standardTime = parseFloat(document.getElementById('standard_time').value);
-                        const actualTime = parseFloat(document.getElementById('actual_time').value);
-                        const standardCost = parseFloat(document.getElementById('standard_cost').value);
-                        const actualCost = parseFloat(document.getElementById('actual_cost').value);
-                        const interest = parseFloat(document.getElementById('interest').value);
-                        const valueRate = Math.pow(actualTime, -2) * Math.pow(actualCost, -1) * Math.pow(2 * interest, 2);
-                        let description = '';
-                        if (valueRate > 0.5) {
-                            description = '做这件事是值得的, 因为价值率为' + valueRate.toFixed(4) + ', 高于标准值0.5';
-                        } else if (valueRate < 0.5) {
-                            description = '做这件事不是值得的, 因为价值率为' + valueRate.toFixed(4) + ', 低于标准值0.5';
-                        } else {
-                            description = '做这件事的价值率为0.5, 与标准值相等, 因此是否值得取决于其他因素';
-                        }
-                        document.getElementById('description').value = description;
-                        if (Math.abs(interest - 0.5) >= 0.1) {
-                            description += ' 同时, 你对这件事的兴趣为' + interest.toFixed(2) + ', 与标准值相差0.1以上, 因此其价值率会受到影响, 你可以稍稍思考一下自己是否有足够的精力去完成这一整件事情';
-                        }
-                        if (Math.abs(interest - 0.5) >= 0.2) {
-                            description += ' 同时, 你对这件事的兴趣为' + interest.toFixed(2) + ', 与标准值相差0.2以上, 因此其价值率会受到更严重的影响, 你可以思考一下自己真的是否对这件事情特别感兴趣';
-                        }
-                    });
-                </script>
+                <form id="textGeneratorForm"> <label for="standard_time">标准时间</label><br> <input type="number"
+                        id="standard_time" name="standard_time" required><br> <label
+                        for="actual_time">实际花费时间</label><br> <input type="number" id="actual_time" name="actual_time"
+                        required><br> <label for="standard_cost">标准代价</label><br> <input type="number"
+                        id="standard_cost" name="standard_cost" required><br> <label
+                        for="actual_cost">实际花费代价</label><br> <input type="number" id="actual_cost" name="actual_cost"
+                        required><br> <label for="interest">兴趣</label><br> <input type="number" id="interest"
+                        name="interest" step="0.01" min="0" max="1" required><br> <button type="submit">生成描述</button>
+                    <label for="description">描述 (结果)</label> <input type="text" id="description" name="description"
+                        disabled><br> </form>
+                <script>//在此处需要着重提出兴趣的影响, 当兴趣值与标准的值相差0.1时提到, 每增加0.2, 其严重性就会上升一次                    document.getElementById('textGeneratorForm').addEventListener('submit', function (e) {                        e.preventDefault();                        const standardTime = parseFloat(document.getElementById('standard_time').value);                        const actualTime = parseFloat(document.getElementById('actual_time').value);                        const standardCost = parseFloat(document.getElementById('standard_cost').value);                        const actualCost = parseFloat(document.getElementById('actual_cost').value);                        const interest = parseFloat(document.getElementById('interest').value);                        const valueRate = Math.pow(actualTime, -2) * Math.pow(actualCost, -1) * Math.pow(2 * interest, 2);                        let description = '';                        if (valueRate > 0.5) {                            description = '做这件事是值得的, 因为价值率为' + valueRate.toFixed(4) + ', 高于标准值0.5';                        } else if (valueRate < 0.5) {                            description = '做这件事不是值得的, 因为价值率为' + valueRate.toFixed(4) + ', 低于标准值0.5';                        } else {                            description = '做这件事的价值率为0.5, 与标准值相等, 因此是否值得取决于其他因素';                        }                        document.getElementById('description').value = description;                        if (Math.abs(interest - 0.5) >= 0.1) {                            description += ' 同时, 你对这件事的兴趣为' + interest.toFixed(2) + ', 与标准值相差0.1以上, 因此其价值率会受到影响, 你可以稍稍思考一下自己是否有足够的精力去完成这一整件事情';                        }                        if (Math.abs(interest - 0.5) >= 0.2) {                            description += ' 同时, 你对这件事的兴趣为' + interest.toFixed(2) + ', 与标准值相差0.2以上, 因此其价值率会受到更严重的影响, 你可以思考一下自己真的是否对这件事情特别感兴趣';                        }                    });                </script>
             </section>
-
             <section>
                 <p>也许你可以请我喝瓶可乐</p>
                 <p>当然这一段是废话</p>
             </section>
         </main>
     </div>
-
     <footer>
         <p>&copy; 2025 I Am System32. All rights reserved.</p>
         <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
