@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 监听用户交互事件（如点击、触摸等）
     document.addEventListener('click', function() {
         // 开始播放视频
-        if(!videofirsttimeplay){
+        if(!videofirsttimeplay && video){
             video.play().catch(function(error) {
                 console.log('播放失败:', error);
             });
