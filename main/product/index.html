@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产品列表</title>
-    <link rel="stylesheet" href="/assests/css/style.css" id="main-theme">
-    <script src="/assests/scripts/dependency.js"></script>
-    <script src="/assests/scripts/theme_init.js"></script>
-    <script src="/assests/scripts/script.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/style.css" id="main-theme">
+    <script src="/assets/scripts/dependency.js"></script>
+    <script src="/assets/scripts/theme_init.js"></script>
+    <script src="/assets/scripts/script.js" defer></script>
 </head>
 
 <body>
@@ -27,6 +27,7 @@
                         <li><a href="#quickrtf" onClick="window.location.hash = '#quickrtf';">QuickRTF Editor</a></li>
                         <li><a href="#fbm" onClick="window.location.hash = '#fbm';">Folder Backup Management</a></li>
                         <li><a href="#bs" onClick="window.location.hash = '#bs';">BasicHttpServer</a></li>
+                        <li><a href="#photobackupextractor" onClick="window.location.hash = '#photobackupextractor';">Photo Backup Extractor</a></li>
                     </ul>
                 </div>
                 <div class="section-title"><a href="#_jumptitle"
@@ -55,7 +56,7 @@
                 <section id="quickrtf" class="section">
                     <div class="app-header">
                         <!-- 软件图标（可替换为实际图标路径） -->
-                        <img src="\assests\img\ico\quickrtf.ico" alt="QuickRTF 图标" />
+                        <img src="\assets\img\ico\quickrtf.ico" alt="QuickRTF 图标" />
                         <div class="app-intro">
                             <h2>QuickRTF Editor</h2>
                             <p>超轻量、安全的 RTF 文档编辑工具</p>
@@ -64,7 +65,7 @@
                             <a href=".\quickrtf\" class="download-btn">
                                 了解更多
                             </a>
-                            <a href=".\Wquickrtf\#user-manual">查看完整指南</a>
+                            <a href=".\quickrtf\#user-manual">查看完整指南</a>
                         </div>
                     </div>
                 </section>
@@ -72,7 +73,7 @@
                 <section class="section" id="fbm">
                     <div class="app-header"
                         style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                        <img src="\assests\img\ico\fbm.ico" alt="文件夹备份工具图标"
+                        <img src="\assets\img\ico\fbm.ico" alt="文件夹备份工具图标"
                             style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
                         <div class="app-intro">
                             <h2>Folder Backup Management</h2>
@@ -92,7 +93,7 @@
                 <section class="section" id="bs">
                     <div class="app-header"
                         style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                        <img src="\assests\img\ico\bs.ico" alt="BasicHttpServer图标"
+                        <img src="\assets\img\ico\bs.ico" alt="BasicHttpServer图标"
                             style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
                         <div class="app-intro">
                             <h2>BasicHttpServer</h2>
@@ -105,6 +106,23 @@
                             </a>
                             <a href="ths_collection\bs\#user-manual"
                                 style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看用户手册</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="photobackupextractor">
+                    <div class="app-header"
+                        style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <!-- 工具图标（可替换为实际图标路径） --> <img src="\assets\img\ico\photobackupextractor.ico" alt="文件夹备份工具图标"
+                            style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
+                        <div class="app-intro">
+                            <h2>Photo Backup Extractor</h2>
+                            <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
+                                轻量、高效的Windows照片备份提取工具</p>
+                            <p style="margin: 1rem 0;">从一大堆冗余的照片备份中提取出唯一副本, 并确保它们的内容精确到字节不同</p> <!-- 下载按钮（突出显示） --> <a
+                                href=".\photobackupextractor" class="download-btn"
+                                style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                                了解更多 </a> 
                         </div>
                     </div>
                 </section>

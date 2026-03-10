@@ -32,7 +32,7 @@
     // 4. 核心修改：只加载一个包含CSS变量的统一样式表（替代原来的两个样式表）
     const mainStyle = document.createElement('link');
     mainStyle.rel = 'stylesheet';
-    mainStyle.href = '/assests/css/style.css'; // 这个文件包含所有CSS变量和主题样式
+    mainStyle.href = '/assets/css/style.css'; // 这个文件包含所有CSS变量和主题样式
     mainStyle.id = 'main-theme';
     
     // 5. 优先加载样式表，确保页面渲染前样式已就绪（消除初始闪烁）

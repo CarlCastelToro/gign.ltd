@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Backup Extractor工具 | 产品详情</title>
+    <link rel="stylesheet" href="/assets/css/style.css" id="main-theme">
+    <script src="/assets/scripts/dependency.js"></script>
+    <script src="/assets/scripts/theme_init.js"></script>
+    <script src="/assets/scripts/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">产品介绍</h1>
+        <p>Photo Backup Extractor - 轻量级的照片备份提取工具</p>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2>Table des matières</h2>
+                <div>
+                    <div class="section-title">目录</div>
+                    <ul>
+                        <li><a href="#sourcecode" onClick="window.location.hash = '#sourcecode';">源代码</a> </li>
+                    </ul>
+                </div>
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label> </h2>
+            </nav>
+        </aside>
+        <main class="content">
+            <main class="content"> <!-- 工具封面与核心介绍区 -->
+                <section class="section">
+                    <div class="app-header"
+                        style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <!-- 工具图标（可替换为实际图标路径） --> <img src="\assets\img\ico\photobackupextractor.ico" alt="文件夹备份工具图标"
+                            style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
+                        <div class="app-intro">
+                            <h2>Photo Backup Extractor</h2>
+                            <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
+                                轻量、高效的Windows照片备份提取工具</p>
+                            <p style="margin: 1rem 0;">从一大堆冗余的照片备份中提取出唯一副本, 并确保它们的内容精确到字节不同</p> <!-- 下载按钮（突出显示） --> <a
+                                href=".\Photo_Backup_Extractor.exe" class="download-btn"
+                                style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                                立即下载 </a> <a href="#sourcecode"
+                                style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看源代码</a>
+                        </div>
+                    </div>
+                </section> <!-- 核心功能区 -->
+                <section class="section">
+                    <h2>核心功能</h2>
+                    <div id="feature-1" class="chapter">
+                        <h3>唯一副本提取</h3>
+                        <div class="chapter-content">
+                            <p>通过Sha256方法从整个文件计算哈希值, 你的文件遇到重复的概率和在宇宙中遇到两个一模一样苹果的概率还小, 精确到原子</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div id="feature-2" class="chapter">
+                        <h3>可以使用多个源文件夹</h3>
+                        <div class="chapter-content">
+                            <p>通过输入多个文件夹路径, 可以从多个来源提取唯一副本：</p>
+                        </div>
+                    </div>
+                    <div id="feature-3" class="chapter">
+                        <h3>高效率操作</h3>
+                        <div class="chapter-content">
+                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                                <li>📝 没有GUI, 没有任何冗余功能, 除了错误报告</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="feature-4" class="chapter">
+                        <h3>简单易用的操作体验</h3>
+                        <div class="chapter-content">
+                            <p>无需复杂配置，二步即可完成提取：</p>
+                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                                <li>✅ 输入导出的目标文件夹路径, 回车</li>
+                                <li>✅ 输入“源”文件夹路径, 回车, 重复以上步骤添加多个源文件夹, 当你不需要再添加时, 直接在输入为空时回车</li>
+                                <li>✅ 静候佳音</li>
+                            </ol>
+                            <p>例子: </p>
+                            <p>假设你有一个备份文件夹 D:\Backup, 里面有多个子文件夹, 每个子文件夹都是一个备份, 你想把所有备份提取到 D:\Export 文件夹中, 你可以这样操作：</p>
+                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                                <li>✅ 输入 D:\Export, 回车</li>
+                                <li>✅ 输入 D:\Backup\Folder1, 回车</li>
+                                <li>✅ 输入 D:\Backup\Folder2, 回车</li>
+                                <li>✅ 输入 D:\Backup\Folder3, 回车</li>
+                                <li>✅ 回车</li>
+                                <li>✅ 静候佳音</li>
+                            </ol>
+
+                        </div>
+                    </div>
+                </section> <!-- 系统要求与安装说明 -->
+                <section class="section">
+                    <h2>系统要求与安装</h2>
+                    <div id="system-requirements" class="chapter">
+                        <h3>最低系统要求</h3>
+                        <div class="chapter-content">
+                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                                <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
+                                <li>🔧 .NET Framework 4.7.2 或更高版本（未安装会自动提示下载）</li>
+                                <li>💾 硬盘空间：1MB（工具本身）+ 备份文件所需空间</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="installation" class="chapter">
+                        <h3>安装说明</h3>
+                        <div class="chapter-content">
+                            <p>本工具为绿色软件，无需安装，解压即可使用：</p>
+                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                                <li>下载压缩包并解压到任意目录（如 D:\Tools\）</li>
+                                <li>双击运行 <code
+                                        style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">FolderBackupTool.exe</code>
+                                </li>
+                                <li>如果存在错误, 自动在运行目录下生成错误报告</li>
+                            </ol>
+                            <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
+                                </p>
+                        </div>
+                    </div>
+                </section> 
+                <section class="section">
+                    <h2>版权与许可</h2>
+                    <div id="copyright" class="chapter">
+                        <div class="chapter-content">
+                            <p>© 2025 I Am System32. 保留所有权利。</p>
+                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
+                            <p>使用本软件即表示您接受 <a href="eula.html" class="link">《最终用户许可协议（EULA）》</a> 中的所有条款。</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 id="sourcecode">源代码</h2>
+                    <code class="loadstylesheet" name="vb.net"><pre>Imports System.IO
+Imports System.Security.Cryptography
+Imports System.Text
+Imports System.Text.RegularExpressions
+Module Module1
+    Private errorLogs As New List(Of String)()
+    Sub Main()
+        Dim sourceFolders As New List(Of String) From {}
+        Dim hashToFiles As New Dictionary(Of String, List(Of FileInfo))()
+        Dim targetDir As String = ""
+        Console.Write("Type in export destination folder: ")
+        targetDir = Console.ReadLine()
+        Try
+            If Not Directory.Exists(targetDir) Then
+                Directory.CreateDirectory(targetDir)
+            End If
+        Catch ex As Exception
+            Dim errorMsg As String = $"【Create Folder Failed】Target: {targetDir} | Exceptions Message: {ex.Message} | StackTrace: {ex.StackTrace}"
+            errorLogs.Add(errorMsg)
+            Console.WriteLine(errorMsg)
+            targetDir = ""
+        End Try
+        If targetDir = "" Then
+            Dim errorMsg As String = "【Exit Program】No valid target folder specified or directory creation failed"
+            errorLogs.Add(errorMsg)
+            Console.Write(errorMsg & vbCrLf & "Manually creating the target folder will avoid many problems" & vbCrLf & "Remember, do not put quotes around the folder……" & vbCrLf & "Press any key to exit")
+            Console.ReadKey()
+            GenerateErrorReport(targetDir)
+            Return
+        End If
+        Dim EmptyLine As String = ""
+        While True
+            Console.Write("Enter a line to specify you as the 'source' folder for reading file contents" & vbCrLf & "Enter a blank line to finish: ")
+            EmptyLine = Console.ReadLine()
+            If EmptyLine = "" Then
+                Exit While
+            Else
+                sourceFolders.Add(EmptyLine)
+            End If
+        End While
+        Console.WriteLine("Start scanning files and calculating hash values (Method: Sha256) ...")
+        For Each folder In sourceFolders
+            If Directory.Exists(folder) Then
+                Try
+                    Dim files As FileInfo() = New DirectoryInfo(folder).GetFiles("*.*", SearchOption.AllDirectories)
+                    For Each file In files
+                        Try
+                            Dim hash As String = GetFileHash(file.FullName)
+                            If Not hashToFiles.ContainsKey(hash) Then
+                                hashToFiles.Add(hash, New List(Of FileInfo)())
+                            End If
+                            hashToFiles(hash).Add(file)
+                            Console.WriteLine($"Proceed: {file.FullName}")
+                        Catch ex As Exception
+                            Dim errorMsg As String = $"【File hash calculation failed】FilePath: {file.FullName} | Exceptions Message: {ex.Message} | StackTrace: {ex.StackTrace}"
+                            errorLogs.Add(errorMsg)
+                            Console.WriteLine(errorMsg)
+                        End Try
+                    Next
+                Catch ex As Exception
+                    Dim errorMsg As String = $"【Folder scan failed】FolderPath: {folder} | Exceptions Message: {ex.Message} | StackTrace: {ex.StackTrace}"
+                    errorLogs.Add(errorMsg)
+                    Console.WriteLine(errorMsg)
+                End Try
+            Else
+                Dim errorMsg As String = $"【Folder not found】FolderPath: {folder}"
+                errorLogs.Add(errorMsg)
+                Console.WriteLine(errorMsg)
+            End If
+        Next
+        Console.WriteLine("Start deduplication and copy unique files...")
+        For Each kvp In hashToFiles
+            Dim sortedFiles = SortFilesByNamingRule(kvp.Value)
+            Dim uniqueFile = sortedFiles(0)
+            Try
+                Dim targetFilePath As String = Path.Combine(targetDir, uniqueFile.Name)
+                Dim counter As Integer = 1
+                While File.Exists(targetFilePath)
+                    targetFilePath = Path.Combine(targetDir,
+                            $"{Path.GetFileNameWithoutExtension(uniqueFile.Name)}_{counter}{Path.GetExtension(uniqueFile.Name)}")
+                    counter += 1
+                End While
+                File.Copy(uniqueFile.FullName, targetFilePath, False)
+                Console.WriteLine($"Unique file copied: {uniqueFile.FullName} -> {targetFilePath}")
+            Catch ex As Exception
+                Dim errorMsg As String = $"【File copy failed】SourceFilePath: {uniqueFile.FullName} | Exceptions Message: {ex.Message} | StackTrace: {ex.StackTrace}"
+                errorLogs.Add(errorMsg)
+                Console.WriteLine(errorMsg)
+            End Try
+        Next
+        GenerateErrorReport(targetDir)
+        Console.WriteLine("Deduplication completed")
+        Console.WriteLine($"Proceed {hashToFiles.Count} unique files, stored at {targetDir}")
+        Console.WriteLine($"Recorded {errorLogs.Count} error message, see more detail in log file")
+        Console.ReadLine()
+    End Sub
+    Private Function GetFileHash(filePath As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Using stream As FileStream = File.OpenRead(filePath)
+                Dim hashBytes As Byte() = sha256.ComputeHash(stream)
+                Return BitConverter.ToString(hashBytes).Replace("-", "").ToLower()
+            End Using
+        End Using
+    End Function
+    Private Function SortFilesByNamingRule(files As List(Of FileInfo)) As List(Of FileInfo)
+        ' 排序规则优先级：
+        ' 1. 2021_08_03_19_53_IMG_6782.PNG（日期时间格式）
+        ' 2. 2016_02_14_22_51_CE24289B-97BB-4098-AC9C-96393946C665.JPG（日期时间+UUID格式）
+        ' 3. IMG_67902.PNG（纯IMG格式）
+        Return files.OrderBy(Function(f)
+                                 Dim fileName As String = Path.GetFileNameWithoutExtension(f.Name)
+                                 If Regex.IsMatch(fileName, "^(\d{4})_(\d{2})_(\d{2})_(\d{2})_(\d{2})_IMG_\d+$") Then
+                                     Return 0
+                                 End If
+                                 If Regex.IsMatch(fileName, "^(\d{4})_(\d{2})_(\d{2})_(\d{2})_(\d{2})_[0-9A-F-]+$", RegexOptions.IgnoreCase) Then
+                                     Return 1
+                                 End If
+                                 If Regex.IsMatch(fileName, "^IMG_\d+$") Then
+                                     Return 2
+                                 End If
+                                 Return 3
+                             End Function).ToList()
+    End Function
+    Private Sub GenerateErrorReport(targetDir As String)
+        Dim timeStamp As String = DateTime.Now.ToString("yyyyMMdd_HHmmss")
+        Dim errorReportPath As String = Path.Combine(targetDir, $"{timeStamp}-errorreport.txt")
+        Try
+            Dim reportContent As New StringBuilder()
+            reportContent.AppendLine("========== File Deduplication Error Report ==========")
+            reportContent.AppendLine($"Generation Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}")
+            reportContent.AppendLine($"TargetDir: {targetDir}")
+            reportContent.AppendLine($"Total Error(s): {errorLogs.Count}")
+            reportContent.AppendLine("======================================")
+            reportContent.AppendLine()
+            If errorLogs.Count > 0 Then
+                For i As Integer = 0 To errorLogs.Count - 1
+                    reportContent.AppendLine($"【Error {i + 1}】{errorLogs(i)}")
+                    reportContent.AppendLine()
+                Next
+            Else
+                reportContent.AppendLine("No error during process")
+            End If
+            File.WriteAllText(errorReportPath, reportContent.ToString(), Encoding.UTF8)
+            Console.WriteLine()
+            Console.WriteLine("========== Error Report Summary ==========")
+            Console.WriteLine($"The error report file has been saved to: {errorReportPath}")
+            Console.WriteLine($"A total of {errorLogs.Count} errors occurred during this operation: ")
+            If errorLogs.Count > 0 Then
+                For Each errorMsg In errorLogs
+                    Console.WriteLine($"- {errorMsg}")
+                Next
+            Else
+                Console.WriteLine("- no errors")
+            End If
+            Console.WriteLine("==================================")
+        Catch ex As Exception
+            Console.WriteLine($"【Failed to generate error report】Exception Message: {ex.Message}")
+        End Try
+    End Sub
+End Module
+                    </pre></code>
+                </section>
+            </main>
+        </main>
+    </div>
+        <footer>
+        <p>Photo Backup Extractor - 照片备份提取工具</p>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
+</body>
+
+</html>

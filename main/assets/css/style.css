@@ -692,11 +692,23 @@ footer {
     margin-bottom: 20px;
 }
 
-/* ========== Code元素美化 ========== */
+/* ========== Code元素美化 - IDE风格 ========== */
+/* 代码区块容器 */
+pre {
+    position: relative;
+    background-color: var(--code-bg, #1e1e1e);
+    border: 1px solid var(--code-border, #333);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+/* 代码元素基础样式 */
 code {
     /* 深浅色code背景区分 */
-    background-color: var(--code-bg, rgba(255, 255, 255, 0.05));
-    border: 1px solid var(--code-border, rgba(255, 255, 255, 0.1));
+    background-color: var(--code-bg, #1e1e1e);
+    border: 1px solid var(--code-border, #333);
     border-radius: 3px;
     padding: 0.2em 0.4em;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -708,23 +720,161 @@ code {
     display: inline-block;
     max-width: 100%;
     line-height: 1.5;
+    color: var(--code-text, #d4d4d4);
 }
 
 /* 浅色模式下code样式 */
 :root.light-theme code {
-    --code-bg: rgba(0, 0, 0, 0.05);
-    --code-border: rgba(0, 0, 0, 0.1);
+    --code-bg: #f8f8f8;
+    --code-border: #e0e0e0;
+    --code-text: #333;
 }
 
-/* pre标签内的code样式 */
+/* pre标签内的code样式 - IDE风格 */
 pre code {
     display: block;
-    padding: 1em;
+    padding: 1.5em;
     overflow-x: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
     word-break: break-all;
     overflow-wrap: break-word;
+    border: none;
+    border-radius: 0;
+    line-height: 1.6;
+    font-size: 0.95em;
+    max-width: 100%;
+}
+
+/* 代码语法高亮 */
+/* 关键字 */
+code .keyword {
+    color: var(--code-keyword, #569cd6);
+}
+
+/* 字符串 */
+code .string {
+    color: var(--code-string, #ce9178);
+}
+
+/* 注释 */
+code .comment {
+    color: var(--code-comment, #6a9955);
+    font-style: italic;
+}
+
+/* 数字 */
+code .number {
+    color: var(--code-number, #b5cea8);
+}
+
+/* 函数 */
+code .function {
+    color: var(--code-function, #dcdcaa);
+}
+
+/* 操作符 */
+code .operator {
+    color: var(--code-operator, #d4d4d4);
+}
+
+/* 浅色模式下的语法高亮 */
+:root.light-theme code .keyword {
+    --code-keyword: #0000ff;
+}
+
+:root.light-theme code .string {
+    --code-string: #a31515;
+}
+
+:root.light-theme code .comment {
+    --code-comment: #008000;
+}
+
+:root.light-theme code .number {
+    --code-number: #098658;
+}
+
+:root.light-theme code .function {
+    --code-function: #795e26;
+}
+
+:root.light-theme code .operator {
+    --code-operator: #000000;
+}
+
+/* 为带有class="loadstylesheet"的code元素添加IDE风格样式 */
+code.ide-style-code {
+    /* 确保应用IDE风格样式 */
+    background-color: var(--code-bg, #1e1e1e);
+    color: var(--code-text, #d4d4d4);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* 浅色模式下的IDE风格样式 */
+:root.light-theme code.ide-style-code {
+    background-color: var(--code-bg, #f8f8f8);
+    color: var(--code-text, #333);
+}
+
+/* 支持自定义语法高亮类 */
+code.ide-style-code .keyword,
+code.loadstylesheet .keyword {
+    color: var(--code-keyword, #569cd6);
+}
+
+code.ide-style-code .function,
+code.loadstylesheet .function {
+    color: var(--code-function, #dcdcaa);
+}
+
+code.ide-style-code .comment,
+code.loadstylesheet .comment {
+    color: var(--code-comment, #6a9955);
+    font-style: italic;
+}
+
+code.ide-style-code .variable,
+code.loadstylesheet .variable {
+    color: var(--code-variable, #9cdcfe);
+}
+
+code.ide-style-code .string,
+code.loadstylesheet .string {
+    color: var(--code-string, #ce9178);
+}
+
+/* 浅色模式下的自定义语法高亮 */
+:root.light-theme code.ide-style-code .keyword,
+:root.light-theme code.loadstylesheet .keyword {
+    color: var(--code-keyword, #0000ff);
+}
+
+:root.light-theme code.ide-style-code .function,
+:root.light-theme code.loadstylesheet .function {
+    color: var(--code-function, #795e26);
+}
+
+:root.light-theme code.ide-style-code .comment,
+:root.light-theme code.loadstylesheet .comment {
+    color: var(--code-comment, #008000);
+}
+
+:root.light-theme code.ide-style-code .variable,
+:root.light-theme code.loadstylesheet .variable {
+    color: var(--code-variable, #001080);
+}
+
+:root.light-theme code.ide-style-code .string,
+:root.light-theme code.loadstylesheet .string {
+    color: var(--code-string, #a31515);
 }
 
 /* ========== 主题切换开关样式 ========== */
