@@ -1,11 +1,11 @@
 // 反代目标网站.
-const upstream = 'www.google.com'
+const upstream = 'www.duckduckgo.com'
 
 // 反代目标网站的移动版.
-const upstream_mobile = 'www.google.com'
+const upstream_mobile = 'www.duckduckgo.com'
 
 // 访问区域黑名单（按需设置）.
-const blocked_region = ['US', 'JP','zh_TW', 'zh_CN']
+const blocked_region = []
 
 // IP地址黑名单（按需设置）.
 const blocked_ip_address = []
@@ -77,6 +77,9 @@ if (blocked_region.includes(region)) {
     new_response_headers.delete('content-security-policy');
     new_response_headers.delete('content-security-policy-report-only');
     new_response_headers.delete('clear-site-data');
+    new_response_headers.delete('x-frame-options');
+    new_response_headers.delete('frame-options');
+    new_response_headers.set('x-frame-options', 'allowall');
 
     const content_type = new_response_headers.get('content-type');
     if (content_type.includes('text/html') && content_type.includes('UTF-8')) {

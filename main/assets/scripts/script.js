@@ -346,5 +346,73 @@ document.addEventListener('DOMContentLoaded', function () {
     // 执行自动应用IDE风格样式的函数
     applyIDEStyleToCode();
 
+    // DuckDuckGo iFrame导航逻辑
+    const ddgFrame = document.getElementById('ddg-frame');
+    const ddgUrlInput = document.getElementById('ddg-url');
+    const ddgGoButton = document.getElementById('ddg-go');
+    const ddgBackButton = document.getElementById('ddg-back');
+    const ddgForwardButton = document.getElementById('ddg-forward');
+
+    if (ddgFrame && ddgUrlInput && ddgGoButton && ddgBackButton && ddgForwardButton) {
+        // 监听iFrame加载完成事件，更新URL
+        ddgFrame.addEventListener('load', function() {
+            try {
+                // 尝试获取iFrame的当前URL
+                if (ddgFrame.contentWindow && ddgFrame.contentWindow.location) {
+                    ddgUrlInput.value = ddgFrame.contentWindow.location.href;
+                }
+            } catch (e) {
+                // 跨域安全限制，无法获取URL
+                console.log('无法获取iFrame URL:', e);
+            }
+        });
+
+        // 监听iFrame错误事件
+        ddgFrame.addEventListener('error', function() {
+            console.log('iFrame加载错误，可能是X-Frame-Options限制');
+        });
+
+        // 前往按钮点击事件
+        ddgGoButton.addEventListener('click', function() {
+            const url = ddgUrlInput.value.trim();
+            if (url) {
+                // 确保URL有协议
+                let fullUrl = url;
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    fullUrl = 'https://' + url;
+                }
+                ddgFrame.src = fullUrl;
+            }
+        });
+
+        // 回车键触发前往
+        ddgUrlInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                ddgGoButton.click();
+            }
+        });
+
+        // 后退按钮点击事件
+        ddgBackButton.addEventListener('click', function() {
+            try {
+                if (ddgFrame.contentWindow && ddgFrame.contentWindow.history && ddgFrame.contentWindow.history.back) {
+                    ddgFrame.contentWindow.history.back();
+                }
+            } catch (e) {
+                console.log('无法执行后退操作:', e);
+            }
+        });
+
+        // 前进按钮点击事件
+        ddgForwardButton.addEventListener('click', function() {
+            try {
+                if (ddgFrame.contentWindow && ddgFrame.contentWindow.history && ddgFrame.contentWindow.history.forward) {
+                    ddgFrame.contentWindow.history.forward();
+                }
+            } catch (e) {
+                console.log('无法执行前进操作:', e);
+            }
+        });
+    }
 
 });

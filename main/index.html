@@ -103,6 +103,17 @@
                     </div>
                 </div>
             </section>
+            <section id="ddg-section" class="section">
+                <h2>DuckDuckGo 搜索 - <span id="ddg-url">https://ddg.gign.ltd/</span></h2>
+                <div id="ddg-nav">
+                    <span>当前地址:</span>
+                    <input type="text" id="ddg-url" value="https://ddg.gign.ltd/" readonly>
+                    <button id="ddg-go">前往</button>
+                    <button id="ddg-back">后退</button>
+                    <button id="ddg-forward">前进</button>
+                </div>
+                <iframe id="ddg-frame" src="https://ddg.gign.ltd/"></iframe>
+            </section>
             <section id="about" class="section">
                 <h2>个人简介</h2>
                 <div class="chapter">
@@ -233,21 +244,6 @@
     </footer>
 
 
-    <script>const inputEle = document.getElementById('quickcommand_inputText');
-        const btnEle = document.getElementById('quickcommand_jumpBtn');
-        inputEle.addEventListener('input', function () {
-            btnEle.disabled = this.value.trim() === '';
-        });
-        function quickcommand_jumpToLink() {
-            const inputValue = inputEle.value.trim();
-            if (!inputValue) {
-                alert('跳转的链接不能为空');
-                return;
-            }
-            const targetUrl = `https://urp.gign.ltd/${inputValue}`;
-            window.open(targetUrl, '_blank');
-        }
-        btnEle.disabled = true;</script>
 </body>
 
 </html>
