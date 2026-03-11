@@ -12,7 +12,7 @@
         <h1 id="_jumptitle">External Template</h1>
         <p>外部模板</p>
                 <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
-                        class="theme-switch"> <input type="checkbox" id="themeToggle" checked="True"> <span
+                        class="theme-switch"> <input type="checkbox" id="themeToggle" checked> <span
                             class="slider round"></span> </label> </h2>
     </header>
     <div class="container">
@@ -42,16 +42,18 @@
                         <p>你也可以从这个页面学习我们的布局, 样式表和script.js的引用方式, 以及script.js中的代码美化功能</p>
                         <p>如果你在浏览器里面打开了这个页面, 按Ctrl+U查看源代码</p>
                         <code class="loadstylesheet" name="vb.net">
-'你好
 '我们的样式表默认采用暗色模式
-'我们往html元素加入 class="light-theme" 来默认使用其暗色模式
-Console.WriteLine("希望这可以帮到你")
+'我们往html元素加入 class="light-theme" 来默认使用其亮色模式
+Console.WriteLine("但如果你加载了script.js, 并且同时有一个input type为checkbox id为themeToggle 且不存在checked, 那么就会默认使用暗色模式")
+Console.WriteLine("在这种情况下会覆盖亮色模式标签")
 '如果你需要像这样自动加载code的美化样式, 在code中加入class="loadstylesheet", 这样我们的script.js就能识别到类并加载美化
 '在code元素中加入 name="" 来指定代码语言, 默认是"js", 也可以使用"vb.net", 暂时还没有其他语言
+Console.WriteLine("希望这可以帮到你")
 Console.Write("联系IAmSystem32?")
 Console.ReadKey()
 [ENTER]
-Console.WriteLine("IAmSystem32@outlook.com")</code>
+Console.WriteLine("IAmSystem32@outlook.com")
+Exit [CODE]</code>
                     </div>
                     <div class="chapter-content">
                         <a class="download-btn" href="cssGuide.html">学习我们的特殊CSS规则</a>
