@@ -9,7 +9,7 @@
     <script src="/assets/scripts/dependency.js"></script>
     <script src="/assets/scripts/theme_init.js"></script>
     <script src="/assets/scripts/script.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="/assets//ico/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/ico/favicon.ico">
 </head>
 
 <body>
@@ -64,6 +64,18 @@
             <section class="section" id="unnamed">
                 <h2>介绍</h2>
                 <p>带你去各种地方…不乏有用的。</p>
+            </section>
+
+            <section id="proxyjump" class="section">
+                <h2>代理跳转</h2>
+                <p>用于通过Cloudflare反向代理下载平常在国内下载速度很慢的大文件, 但需要注意的是不目标文件链接不能使用例如请求头等验证方式</p>
+                <div class="chapter">
+                    <div class="chapter-content" style="white-space: nowrap"> <input type="text"
+                            id="quickcommand_inputText" placeholder="请输入要跳转的链接" style="height: 39px;"> <button
+                            id="quickcommand_jumpBtn" onclick="quickcommand_jumpToLink()" disabled="">跳转</button> </div>
+                </div>
+                <p>直接输入包含http(s)开头的链接, 例如, https://www.baidu.com/img.png</p>
+                <h3>注意: 旧的域名已经过期, 服务已转移到urp.gign.ltd</h3>
             </section>
 
             <section class="section" id="ikuuu">

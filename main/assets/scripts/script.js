@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 定义关键字列表
         const keywords = {
             'js': ['var', 'let', 'const', 'function', 'return', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'class', 'extends', 'import', 'export', 'from', 'async', 'await', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'super', 'static'],
-            'vb.net': ['Object', 'As' , 'Handles', 'End', 'Module', 'Class', 'Dim', 'Private', 'Public', 'Function', 'Sub', 'Return', 'If', 'Else', 'For', 'While', 'Do', 'Select', 'Case', 'Default', 'Exit', 'Continue', 'Class', 'Inherits', 'Import', 'Export', 'Async', 'Await', 'Try', 'Catch', 'Finally', 'Throw', 'New', 'Me', 'MyBase', 'Shared']
+            'vb.net': ['Console', 'Object', 'As' , 'Handles', 'End', 'Module', 'Class', 'Dim', 'Private', 'Public', 'Function', 'Sub', 'Return', 'If', 'Else', 'For', 'While', 'Do', 'Select', 'Case', 'Default', 'Exit', 'Continue', 'Class', 'Inherits', 'Import', 'Export', 'Async', 'Await', 'Try', 'Catch', 'Finally', 'Throw', 'New', 'Me', 'MyBase', 'Shared']
         };
 
         // 获取当前语法的关键字列表

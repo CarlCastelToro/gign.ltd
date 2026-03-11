@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="light_theme">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <script src="/assets/scripts/dependency.js"></script>
     <script src="/assets/scripts/theme_init.js"></script>
     <script src="/assets/scripts/script.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="/assets//ico/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/ico/favicon.ico">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <div>
                     <div class="section-title">快速跳转 - 实验性</div>
                     <ul>
-                        <li><a href="#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
+                        <li><a href="/p#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
                         <li><a href="https://www.bing.com/translator" target="_blank">Bing翻译</a></li>
                         <li><a href="ValueRateCalculator.html"
                                 onClick="window.location.href = 'ValueRateCalculator.html';">价值率计算器</a></li>
@@ -63,8 +63,6 @@
                     <ul>
                         <li><a href="#quickrtf" onClick="window.location.hash = '#quickrtf';">QuickRTF Editor</a></li>
                         <li><a href="#fbm" onClick="window.location.hash = '#fbm';">Folder Backup Management</a></li>
-                        <li><a href="#bs" onClick="window.location.hash = '#bs';">BasicHttpServer</a></li>
-                        <li><a href="#tfhs" onClick="window.location.hash = '#tfhs';">TestFileHttpServer</a></li>
                         <li><a href="#photobackupextractor" onClick="window.location.hash = '#photobackupextractor';">Photo Backup Extractor</a></li>
                     </ul>
                 </div>
@@ -86,25 +84,7 @@
                 </h2>
             </nav>
         </aside>
-        <main class="content">
-            <section class="section">
-                <h2>QuickRTF Editor - Advertisement Video</h2> <video controls class="video-responsive" playsinline webkit-playsinline autoplay loop muted="muted">
-                    <source src="\product\quickrtf\video.mp4" type="video/mp4"> 您的浏览器不支持视频元素。
-                </video> <button id="jumpBtn" onClick="window.location.hash = '#quickrtf';">跳转</button>
-                <code>Made By IAmSystem32
-Voiceactor By IAmSystem32</code>
-            </section>
-            <section id="proxyjump" class="section">
-                <h2>代理跳转</h2>
-                <p>用于通过Cloudflare反向代理下载平常在国内下载速度很慢的大文件, 但需要注意的是不目标文件链接不能使用例如请求头等验证方式</p>
-                <div class="chapter">
-                    <div class="chapter-content" style="white-space: nowrap"> <input type="text"
-                            id="quickcommand_inputText" placeholder="请输入要跳转的链接" style="height: 39px;"> <button
-                            id="quickcommand_jumpBtn" onclick="quickcommand_jumpToLink()" disabled="">跳转</button> </div>
-                </div>
-                <p>直接输入包含http(s)开头的链接, 例如, https://www.baidu.com/img.png</p>
-                <h3>注意: 旧的域名已经过期, 服务已转移到urp.gign.ltd</h3>
-            </section>
+        <main class="content">            
             <section id="about" class="section">
                 <h2>个人简介</h2>
                 <div class="chapter">
@@ -179,36 +159,6 @@ Voiceactor By IAmSystem32</code>
                         <p>轻量、高效的Windows文件夹备份解决方案</p>
                         <p>支持断点续传、自动备份、智能冲突处理, 保护你的重要文件免受丢失风险</p> <!-- 下载按钮（突出显示） --> <a href=".\product\fbm"
                             class="download-btn"> 了解更多 </a> <a href=".\product\fbm\#user-manual">查看用户手册</a>
-                    </div>
-                </div>
-            </section>
-            <section id="bs" class="section">
-                <div class="app-header"> <!-- 工具图标（可替换为实际图标路径） --> <img src=".\assets\\ico\bs.ico"
-                        alt="BasicHttpServer图标" />
-                    <div class="app-intro">
-                        <h2>BasicHttpServer</h2>
-                        <p>轻量、高效的HTTP服务器工具</p>
-                        <p>支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p> <!-- 下载按钮（突出显示） --> <a
-                            href=".\product\ths_collection\bs" class="download-btn"> 了解更多 </a> <a
-                            href=".\product\ths_collection\bs\#user-manual">查看常见问题</a>
-                    </div>
-                </div>
-            </section>
-            <section id="tfhs" class="section">
-                <div class="app-header"
-                    style="display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                    <!-- 工具图标（可替换为实际图标路径） --> <img src=".\assets\\ico\tfhs.ico"
-                        alt="TestFileHttpServer图标"
-                        style="width: 100px; height: 100px; border-radius: 8px; background: var(--primary-color); padding: 1rem;" />
-                    <div class="app-intro">
-                        <h2>TestFileHttpServer</h2>
-                        <p style="font-size: 1.1rem; color: var(--secondary-color); margin: 0.5rem 0;">
-                            轻量、高效的文件HTTP服务器工具</p>
-                        <p style="margin: 1rem 0;">支持静态文件服务、文件上传下载、目录浏览、API端点，为开发和测试提供便捷的文件共享服务器环境</p>
-                        <!-- 下载按钮（突出显示） --> <a href=".\product\ths_collection\tfhs" class="download-btn"
-                            style="display: inline-block; padding: 0.8rem 1.5rem; background: var(--primary-color); color: white; border-radius: 4px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
-                            了解更多 </a> <a href=".\product\ths_collection\tfhs#user-manual"
-                            style="margin-left: 1rem; color: var(--secondary-color); text-decoration: underline;">查看用户手册</a>
                     </div>
                 </div>
             </section>
