@@ -978,3 +978,124 @@ input:checked+.slider:before {
         width: 100%;
     }
 }
+
+
+/* ========== 产品页面样式 ========== */
+/* 应用头部样式 */
+.app-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* 应用图标样式 */
+.app-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    padding: 1rem;
+}
+
+/* 应用介绍样式 */
+.app-intro {
+    flex: 1;
+    min-width: 300px;
+}
+
+.app-intro h2 {
+    margin-bottom: 0.5rem;
+}
+
+.app-intro p:first-of-type {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+}
+
+.app-intro p:last-of-type {
+    margin: 1rem 0;
+}
+
+/* 下载按钮样式 */
+.download-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background: var(--secondary-color);
+}
+
+/* 链接样式 */
+.app-intro a:not(.download-btn) {
+    margin-left: 1rem;
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* 列表样式 */
+ul {
+    margin: 1rem 2rem;
+    line-height: 2;
+}
+
+ol {
+    margin: 1rem 2rem;
+    line-height: 2;
+}
+
+/* 代码样式 */
+code {
+    background: var(--light-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
+/* 常见问题样式 */
+#faq .chapter-content>div {
+    margin-bottom: 1.5rem;
+}
+
+#faq .chapter-content p:first-child {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* 技术文档标题样式 */
+.chapter-content h4 {
+    margin-top: 2rem;
+    color: var(--primary-color);
+}
+
+.chapter-content h5 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 强调文本样式 */
+.chapter-content p:last-child {
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-color);
+}
+
+/* 版权信息样式 */
+#copyright p {
+    margin: 1rem 0;
+}
