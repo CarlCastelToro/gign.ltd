@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html class="light-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS使用指南</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/scripts/script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/assets/ico/favicon.ico">
+    <style>
+        /* 指南页面专用样式 */
+        .css-guide {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .guide-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .guide-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .code-example {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+
+        .example-container {
+            border: 2px dashed var(--border-color);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">CSS使用指南</h1>
+        <p>gign.ltd 网站样式表使用指南</p>
+        <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+    </header>
+    <div class="container">
+        <main class="content">
+            <section class="section">
+                <h2>CSS使用指南</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>本指南详细介绍了gign.ltd网站的CSS样式表使用方式，包括特殊规则、容器样式和使用示例。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 基础结构 -->
+            <section class="section">
+                <h2>基础结构</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <h3>HTML基础结构</h3>
+                        <div class="code-example">
+                            <!DOCTYPE html>
+                            <html class="light-theme">
+
+                            <head>
+                                <meta charset="UTF-8">
+                                <title>页面标题</title>
+                                <link rel="stylesheet" href="/assets/css/style.css">
+                                <script src="/assets/scripts/script.js" defer></script>
+                                <link rel="icon" type="image/x-icon" href="/assets/ico/favicon.ico">
+                            </head>
+
+                            <body>
+                                <header>
+                                    <h1 id="_jumptitle">页面标题</h1>
+                                    <p>页面描述</p>
+                                </header>
+                                <div class="container">
+                                    <aside class="sidebar">
+                                        <!-- 侧边栏内容 -->
+                                    </aside>
+                                    <main class="content">
+                                        <!-- 主要内容 -->
+                                    </main>
+                                </div>
+                                <footer>
+                                    <!-- 页脚内容 -->
+                                </footer>
+                            </body>
+
+                            </html>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 特殊规则 -->
+            <section class="section">
+                <h2>特殊规则</h2>
+
+                <!-- download-btn -->
+                <div class="chapter">
+                    <h3>download-btn 按钮</h3>
+                    <div class="chapter-content">
+                        <p>用于创建突出显示的下载或操作按钮。</p>
+                        <div class="code-example">
+                            <a href="#" class="download-btn">立即下载</a>
+                        </div>
+                        <div class="example-container">
+                            <a href="#" class="download-btn">立即下载</a>
+                            <a href="#" class="download-btn" style="margin-left: 1rem;">了解更多</a>
+                        </div>
+                        <ul class="feature-list">
+                            <li>蓝色背景，白色文字</li>
+                            <li>悬停效果</li>
+                            <li>圆角边框</li>
+                            <li>粗体文字</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- loadstylesheet -->
+                <div class="chapter">
+                    <h3>loadstylesheet 代码高亮</h3>
+                    <div class="chapter-content">
+                        <p>用于自动应用代码高亮样式。</p>
+                        <div class="code-example">
+                            <code class="loadstylesheet" name="js">
+function hello() {
+    console.log("Hello World!");
+}
+</code>
+                        </div>
+                        <div class="example-container">
+                            <code class="loadstylesheet" name="vb.net">
+Module Main
+    Sub Main()
+        Console.Write("Hello World")
+    End Sub
+End Module
+</code>
+                        </div>
+                        <ul class="feature-list">
+                            <li>自动应用IDE风格的代码高亮</li>
+                            <li>支持指定语言（name属性）</li>
+                            <li>支持JavaScript和VB.NET</li>
+                            <li>自动处理语法高亮</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- video-responsive -->
+                <div class="chapter">
+                    <h3>video-responsive 视频响应式</h3>
+                    <div class="chapter-content">
+                        <p>用于使视频自适应容器宽度，保持正确的宽高比。</p>
+                        <div class="code-example">
+                            <video controls class="video-responsive">
+                                <source src="/product/quickrtf/video.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                        <ul class="feature-list">
+                            <li>自动适应容器宽度</li>
+                            <li>保持16:9的宽高比</li>
+                            <li>移动设备上不自动全屏</li>
+                            <li>响应式设计</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- no-aspect-ratio -->
+                <div class="chapter">
+                    <h3>no-aspect-ratio 图片比例覆盖</h3>
+                    <div class="chapter-content">
+                        <p>用于覆盖图片的1:1比例限制，使其自适应容器。</p>
+                        <div class="code-example">
+                            <img src="https://files.seeusercontent.com/2026/03/09/4Jbh/3.png" alt="图片"
+                                class="no-aspect-ratio">
+                            </code>
+                        </div>
+                        <ul class="feature-list">
+                            <li>移除1:1比例限制</li>
+                            <li>宽度自动适应容器</li>
+                            <li>高度自动调整</li>
+                            <li>保持图片原始比例</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- placeholder -->
+                <div class="chapter">
+                    <h3>placeholder 占位符</h3>
+                    <div class="chapter-content">
+                        <p>用于显示占位内容的容器。</p>
+                        <div class="code-example">
+                            <div class="placeholder">
+                                占位内容
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="placeholder">
+                                这是一个占位符示例
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>灰色背景</li>
+                            <li>居中对齐</li>
+                            <li>内边距</li>
+                            <li>边框</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- link -->
+                <div class="chapter">
+                    <h3>link 特殊链接</h3>
+                    <div class="chapter-content">
+                        <p>用于创建特殊样式的链接。</p>
+                        <div class="code-example">
+                            <a href="#" class="link">特殊链接</a>
+                        </div>
+                        <div class="example-container">
+                            <a href="#" class="link">特殊链接</a>
+                        </div>
+                        <ul class="feature-list">
+                            <li>蓝色文字</li>
+                            <li>下划线</li>
+                            <li>悬停效果</li>
+                            <li>与普通链接区分</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- back-to-top -->
+                <div class="chapter">
+                    <h3>back-to-top 回到顶部</h3>
+                    <div class="chapter-content">
+                        <p>用于创建回到顶部的按钮。</p>
+                        <div class="code-example">
+                            <div class="back-to-to p">
+                                <a href="#">但实际上它是自动创建的, 这里故意多打了一个空, 同时存在两个会导致无法使用</a>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>固定位置</li>
+                            <li>圆形按钮</li>
+                            <li>悬停效果</li>
+                            <li>自动显示/隐藏</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- tab -->
+                <div class="chapter">
+                    <h3>tab 标签页</h3>
+                    <div class="chapter-content">
+                        <p>用于创建标签页导航。</p>
+                        <div class="code-example">
+                            <div class="tab-container">
+                                <div class="tab active">标签1</div>
+                                <div class="tab">标签2</div>
+                                <div class="tab-content active">标签1内容</div>
+                                <div class="tab-content">标签2内容</div>
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="tab-container">
+                                <div class="tab active">标签1</div>
+                                <div class="tab">标签2</div>
+                                <div class="tab-content active">标签1内容</div>
+                                <div class="tab-content">标签2内容</div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>可点击切换</li>
+                            <li>激活状态样式</li>
+                            <li>悬停效果</li>
+                            <li>内容区域显示/隐藏</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- form-group & input-group -->
+                <div class="chapter">
+                    <h3>form-group & input-group 表单元素</h3>
+                    <div class="chapter-content">
+                        <p>用于创建表单元素。</p>
+                        <div class="code-example">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" placeholder="输入内容">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <select>
+                                        <option>选项1</option>
+                                        <option>选项2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" placeholder="输入内容">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 1rem;">
+                                <div class="input-group">
+                                    <select>
+                                        <option>选项1</option>
+                                        <option>选项2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>统一的表单样式</li>
+                            <li>输入框和选择框样式</li>
+                            <li>响应式设计</li>
+                            <li>主题适配</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- result -->
+                <div class="chapter">
+                    <h3>result 结果区域</h3>
+                    <div class="chapter-content">
+                        <p>用于显示结果内容的容器。</p>
+                        <div class="code-example">
+                            <div class="result">
+                                <div class="result-header">
+                                    <h3>结果标题</h3>
+                                </div>
+                                <div class="result-content">
+                                    结果内容
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="result">
+                                <div class="result-header">
+                                    <h3>示例结果</h3>
+                                </div>
+                                <div class="result-content">
+                                    这是一个结果区域示例
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>边框和阴影效果</li>
+                            <li>标题区域样式</li>
+                            <li>内容区域内边距</li>
+                            <li>主题适配</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- notification -->
+                <div class="chapter">
+                    <h3>notification 通知</h3>
+                    <div class="chapter-content">
+                        <p>用于显示通知消息。</p>
+                        <div class="code-example">
+                            <div class="notification">
+                                通知消息
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="notification">
+                                这是一个通知示例
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>黄色背景</li>
+                            <li>边框和阴影</li>
+                            <li>内边距</li>
+                            <li>主题适配</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 容器样式 -->
+            <section class="section">
+                <h2>容器样式</h2>
+
+                <!-- product-grid -->
+                <div class="chapter">
+                    <h3>product-grid 产品网格</h3>
+                    <div class="chapter-content">
+                        <p>用于展示产品卡片的网格布局。</p>
+                        <div class="code-example">
+                            <div class="product-grid">
+                                <div class="product-card">
+                                    <div class="product-icon">
+                                        <img src="/assets/ico/quickrtf.ico" alt="产品图标" />
+                                    </div>
+                                    <div class="product-content">
+                                        <h3>产品名称</h3>
+                                        <p class="product-desc">产品描述</p>
+                                        <p class="product-feature">产品特性</p>
+                                        <a href="#" class="download-btn">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="product-grid">
+                                <div class="product-card">
+                                    <div class="product-icon">
+                                        <img src="/assets/ico/quickrtf.ico" alt="QuickRTF 图标" />
+                                    </div>
+                                    <div class="product-content">
+                                        <h3>QuickRTF Editor</h3>
+                                        <p class="product-desc">超轻量、安全的 RTF 文档编辑工具</p>
+                                        <p class="product-feature">支持富文本编辑、加密存储</p>
+                                        <a href="#" class="download-btn">了解更多</a>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-icon">
+                                        <img src="/assets/ico/fbm.ico" alt="FBM 图标" />
+                                    </div>
+                                    <div class="product-content">
+                                        <h3>Folder Backup Management</h3>
+                                        <p class="product-desc">轻量、高效的Windows文件夹备份解决方案</p>
+                                        <p class="product-feature">支持断点续传、自动备份</p>
+                                        <a href="#" class="download-btn">了解更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>响应式网格布局</li>
+                            <li>产品卡片悬停效果</li>
+                            <li>自适应列数</li>
+                            <li>移动设备友好</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- app-header -->
+                <div class="chapter">
+                    <h3>app-header 应用头部</h3>
+                    <div class="chapter-content">
+                        <p>用于展示应用信息的头部区域。</p>
+                        <div class="code-example">
+                            <div class="app-header">
+                                <img src="/assets/ico/photobackupextractor.ico" alt="应用图标" />
+                                <div class="app-intro">
+                                    <h2>应用名称</h2>
+                                    <p>应用描述</p>
+                                    <p>应用特性</p>
+                                    <a href="#" class="download-btn">下载</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-container">
+                            <div class="app-header">
+                                <img src="/assets/ico/quickrtf.ico" alt="QuickRTF 图标" />
+                                <div class="app-intro">
+                                    <h2>QuickRTF Editor</h2>
+                                    <p>超轻量、安全的 RTF 文档编辑工具</p>
+                                    <p>支持富文本编辑、加密存储（SRTF 格式）、Markdown 导出、快速存档</p>
+                                    <a href="#" class="download-btn">了解更多</a>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="feature-list">
+                            <li>灵活的Flex布局</li>
+                            <li>响应式设计</li>
+                            <li>自动换行</li>
+                            <li>图标与文本对齐</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 响应式设计 -->
+            <section class="section">
+                <h2>响应式设计</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>样式表内置响应式设计，自动适应不同屏幕尺寸。</p>
+                        <ul class="feature-list">
+                            <li>移动设备上自动堆叠布局</li>
+                            <li>侧边栏在小屏幕上变为静态</li>
+                            <li>产品网格在小屏幕上变为单列</li>
+                            <li>图片和视频自动缩放</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 主题和字体切换 -->
+            <section class="section">
+                <h2>主题和字体切换</h2>
+                <div class="chapter">
+                    <h3>主题切换</h3>
+                    <div class="chapter-content">
+                        <p>网站支持深浅色主题切换。</p>
+                        <div class="code-example">
+                            <!-- 默认浅色主题 -->
+                            <html class="light-theme">
+
+                            <!-- 默认深色主题（移除light-theme类） -->
+                            <html>
+                        </div>
+                        <ul class="feature-list">
+                            <li>通过添加/移除 light-theme 类切换主题</li>
+                            <li>所有颜色使用CSS变量定义</li>
+                            <li>平滑的主题过渡效果</li>
+                            <li>自动保存主题偏好</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chapter">
+                    <h3>字体切换</h3>
+                    <div class="chapter-content">
+                        <p>网站支持字体切换功能。</p>
+                        <div class="code-example">
+                            <!-- 使用Georgia字体 -->
+                            <html class="font-georgia">
+
+                            <!-- 使用雅黑字体 -->
+                            <html class="font-yahei">
+                        </div>
+                        <ul class="feature-list">
+                            <li>支持Georgia和雅黑字体切换</li>
+                            <li>通过添加相应的类名切换字体</li>
+                            <li>自动保存字体偏好</li>
+                            <li>响应式字体大小</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 最佳实践 -->
+            <section class="section">
+                <h2>最佳实践</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <ul class="feature-list">
+                            <li>使用语义化HTML标签</li>
+                            <li>遵循现有的命名约定</li>
+                            <li>使用提供的CSS类而不是内联样式</li>
+                            <li>确保响应式设计兼容</li>
+                            <li>测试不同主题下的显示效果</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>CSS使用指南 - gign.ltd</p>
+    </footer>
+</body>
+
+</html>

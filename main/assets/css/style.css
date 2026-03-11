@@ -1,17 +1,10 @@
-/* ========== 全局基础样式（通用） ========== */
 :root {
-    /* 基础主题色（深浅色通用） */
     --primary-color: #3a5065;
     --secondary-color: #5d7fa3;
-
-    /* 深色模式默认变量（核心） */
     --text-color: #e0e0e0;
     --light-bg: #1e1e1e;
     --border-color: #404040;
-    /* 添加阴影透明度变量 */
     --shadow-opacity: 0.3;
-
-    /* Base64页面变量 - 深色模式默认 */
     --tab-active-color: #0078d4;
     --tab-hover-color: #005a9e;
     --input-bg-color: #2d2d2d;
@@ -22,43 +15,29 @@
     --result-border-color: #505050;
     --notification-bg-color: #0078d4;
     --notification-text-color: #fff;
-
-    /* 全局过渡：确保所有样式切换平滑无闪烁 */
-    --theme-transition: background-color 0.3s ease, color 0.3s ease,
-        border-color 0.3s ease, box-shadow 0.3s ease;
+    --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 浅色模式变量覆盖（通过light-theme类名激活） */
 :root.light-theme {
     --text-color: #333;
     --light-bg: #f5f7fa;
     --border-color: #e0e0e0;
-    /* 浅色模式下阴影透明度较低 */
     --shadow-opacity: 0.1;
-
-    /* Base64页面变量 - 浅色模式 */
     --input-bg-color: #fff;
     --input-border-color: #d0d7de;
     --result-bg-color: #f6f8fa;
     --result-border-color: #e1e4e8;
 }
 
-/* ========== 全局样式重置 & 过渡 ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* 通用长文本自动换行修复 */
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
-
-
-    /* 应用全局过渡（核心：消除闪烁） */
     transition: var(--theme-transition);
-
     scrollbar-width: none;
-    /* 隐藏Firefox滚动条 */
     -ms-overflow-style: none;
 }
 
@@ -72,7 +51,6 @@
     font-family: '微软雅黑', 'Microsoft YaHei UI', sans-serif;
 }
 
-/* 图片等不适合过渡的元素：禁用过渡 */
 img,
 video,
 canvas,
@@ -82,7 +60,6 @@ embed {
     transition: none !important;
 }
 
-/* 通用图片样式：适配布局、自动缩放、保持1:1比例 */
 img {
     max-width: 100%;
     height: auto;
@@ -90,7 +67,6 @@ img {
     aspect-ratio: 1 / 1;
 }
 
-/* 为section内的图片添加更具体的样式，确保完全适配容器宽度 */
 .section img {
     width: 100%;
     max-width: 100%;
@@ -101,12 +77,10 @@ img {
     margin: 0 auto;
 }
 
-/* 允许特定情况下覆盖图片比例 */
 img.no-aspect-ratio {
     aspect-ratio: auto;
 }
 
-/* 视频响应式样式：自动缩放到合适宽度 */
 .video-responsive {
     width: 100%;
     max-width: 100%;
@@ -117,7 +91,6 @@ img.no-aspect-ratio {
     max-height: 100vh;
 }
 
-/* 针对iOS设备的特殊处理 */
 @supports (-webkit-touch-callout: none) {
     .video-responsive {
         -webkit-playsinline: true;
@@ -125,29 +98,23 @@ img.no-aspect-ratio {
     }
 }
 
-/* 滚动条过渡效果 */
 ::-webkit-scrollbar {
     width: 0px;
-    /* 隐藏垂直滚动条 */
     height: 0px;
-    /* 隐藏水平滚动条 */
     transition: width 0.3s ease;
 }
 
 ::-webkit-scrollbar-track {
     background: transparent;
-    /* 滚动条轨道透明 */
     transition: background-color 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb {
     background: transparent;
-    /* 滚动条滑块透明 */
     border-radius: 0;
     transition: background-color 0.3s ease, border-radius 0.3s ease;
 }
 
-/* 加强处理长文本元素 */
 p,
 div,
 span,
@@ -166,13 +133,11 @@ th {
     hyphens: auto;
 }
 
-/* 链接换行修复 */
 a {
     word-break: break-all;
     overflow-wrap: break-word;
 }
 
-/* pre标签长文本修复 */
 pre {
     white-space: pre-wrap;
     word-break: break-word;
@@ -181,7 +146,6 @@ pre {
     overflow-x: auto;
 }
 
-/* ========== 页面基础样式 ========== */
 body {
     color: var(--text-color);
     line-height: 1.6;
@@ -210,50 +174,38 @@ h1 {
     gap: 2rem;
 }
 
-/* ========== 侧边栏样式修改 - 添加滚动条支持 ========== */
 .sidebar {
     flex: 0 0 300px;
     position: sticky;
     top: 2rem;
     align-self: flex-start;
-    /* 添加最大高度限制 */
     max-height: calc(100vh - 5rem);
-    /* 启用垂直滚动 */
     overflow-y: auto;
-    /* 隐藏水平滚动条 */
     overflow-x: hidden;
-    /* 固定侧边栏宽度，不受滚动条影响 */
     width: 300px;
-    /* 添加阴影效果，与目录阴影保持一致 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
 }
 
-/* 侧边栏滚动条样式 */
 .sidebar::-webkit-scrollbar {
     width: 6px;
-    /* 滚动条宽度适中 */
     transition: width 0.3s ease;
 }
 
 .sidebar::-webkit-scrollbar-track {
     background: transparent;
-    /* 滚动条轨道透明 */
     border-radius: 3px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
     background-color: rgba(150, 150, 150, 0.3);
-    /* 半透明滚动条滑块 */
     border-radius: 3px;
     transition: background-color 0.3s ease;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
     background-color: rgba(150, 150, 150, 0.5);
-    /* 悬停时加深颜色 */
 }
 
-/* 浅色模式下调整侧边栏滚动条颜色 */
 :root.light-theme .sidebar::-webkit-scrollbar-thumb {
     background-color: rgba(100, 100, 100, 0.2);
 }
@@ -262,26 +214,20 @@ h1 {
     background-color: rgba(100, 100, 100, 0.4);
 }
 
-/* ========== 目录样式 - 解决主题切换按钮位移问题 ========== */
 .toc {
-    /* 深色：#2d2d2d | 浅色：white → 统一用变量+背景逻辑 */
     background: var(--light-bg);
     border-radius: 8px;
     padding: 1.5rem;
-    /* 深浅色阴影区分 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
-    /* 确保目录内容宽度稳定 */
     width: 100%;
     box-sizing: border-box;
 }
 
-/* 主题切换开关样式调整 - 确保定位稳定 */
 .theme-switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 24px;
-    /* 确保按钮位置固定，不随滚动条变化 */
     flex-shrink: 0;
 }
 
@@ -289,8 +235,6 @@ h1 {
     flex: 1;
 }
 
-/* ========== 目录样式（适配深浅色） ========== */
-/* 浅色模式下调整目录阴影 */
 :root.light-theme .toc {
     --shadow-opacity: 0.1;
 }
@@ -300,11 +244,9 @@ h1 {
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--border-color);
-    /* 确保主题切换按钮容器的宽度稳定 */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* 给按钮预留足够空间，不受滚动条影响 */
     padding-right: 10px;
 }
 
@@ -334,7 +276,6 @@ h1 {
     color: var(--secondary-color);
 }
 
-/* ========== 内容区块样式 ========== */
 .section {
     background: var(--light-bg);
     border-radius: 8px;
@@ -343,7 +284,6 @@ h1 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
 }
 
-/* 浅色模式下调整内容区块阴影 */
 :root.light-theme .section {
     --shadow-opacity: 0.1;
 }
@@ -376,7 +316,6 @@ h1 {
 }
 
 .placeholder {
-    /* 深浅色占位符颜色区分 */
     color: var(--placeholder-text, #aaa);
     font-style: italic;
     background-color: var(--placeholder-bg, #3a3a3a);
@@ -384,7 +323,6 @@ h1 {
     border-radius: 4px;
 }
 
-/* 浅色模式下占位符样式 */
 :root.light-theme .placeholder {
     --placeholder-text: #777;
     --placeholder-bg: #f9f9f9;
@@ -400,10 +338,8 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ========== 回到顶部按钮 ========== */
 .back-to-top {
     display: none;
-    /* 默认隐藏 */
     position: fixed;
     right: 1rem;
     top: 1rem;
@@ -421,12 +357,10 @@ a:hover {
     border-radius: 50%;
     text-decoration: none;
     font-size: 1.5rem;
-    /* 深浅色阴影区分 */
     box-shadow: 0 2px 8px rgba(0, 0, 0, var(--btn-shadow-opacity, 0.4));
     transition: background-color 0.3s;
 }
 
-/* 浅色模式下按钮阴影 */
 :root.light-theme .back-to-top a {
     --btn-shadow-opacity: 0.2;
 }
@@ -435,7 +369,6 @@ a:hover {
     background-color: var(--secondary-color);
 }
 
-/* ========== 应用头部样式 ========== */
 .app-header {
     display: flex;
     gap: 2rem;
@@ -464,23 +397,6 @@ a:hover {
     margin: 0.5rem 0;
 }
 
-.download-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.download-btn:hover {
-    background: var(--secondary-color);
-    text-decoration: none;
-}
-
-/* ========== Base64页面专用样式 ========== */
 .tab {
     display: inline-block;
     padding: 10px 20px;
@@ -489,34 +405,28 @@ a:hover {
     border-bottom: none;
     border-radius: 5px 5px 0 0;
     margin-right: 5px;
-    /* 深浅色tab背景区分 */
     background-color: var(--tab-bg, #3a3a3a);
     transition: background-color 0.3s;
 }
 
-/* 浅色模式下tab背景 */
 :root.light-theme .tab {
     --tab-bg: var(--light-bg);
 }
 
 .tab.active {
-    /* 深浅色active tab背景区分 */
     background-color: var(--tab-active-bg, #2d2d2d);
     color: var(--tab-active-color);
     font-weight: bold;
 }
 
-/* 浅色模式下active tab背景 */
 :root.light-theme .tab.active {
     --tab-active-bg: white;
 }
 
 .tab:hover:not(.active) {
-    /* 深浅色hover tab背景区分 */
     background-color: var(--tab-hover-bg, #404040);
 }
 
-/* 浅色模式下hover tab背景 */
 :root.light-theme .tab:hover:not(.active) {
     --tab-hover-bg: #e3e6e9;
 }
@@ -526,12 +436,10 @@ a:hover {
     padding: 20px;
     border: 1px solid var(--border-color);
     border-radius: 0 5px 5px 5px;
-    /* 深浅色tab内容背景区分 */
     background-color: var(--tab-content-bg, #2d2d2d);
     margin-bottom: 20px;
 }
 
-/* 浅色模式下tab内容背景 */
 :root.light-theme .tab-content {
     --tab-content-bg: white;
 }
@@ -598,12 +506,10 @@ button:hover {
 }
 
 button:disabled {
-    /* 深浅色禁用按钮背景区分 */
     background-color: var(--btn-disabled-bg, #666666);
     cursor: not-allowed;
 }
 
-/* 浅色模式下禁用按钮背景 */
 :root.light-theme button:disabled {
     --btn-disabled-bg: #cccccc;
 }
@@ -678,8 +584,6 @@ footer {
     color: var(--secondary-color);
 }
 
-
-/* ========== Base64页面容器样式 ========== */
 .base64-container {
     max-width: 900px;
     margin: 0 auto;
@@ -692,8 +596,6 @@ footer {
     margin-bottom: 20px;
 }
 
-/* ========== Code元素美化 - IDE风格 ========== */
-/* 代码区块容器 */
 pre {
     position: relative;
     background-color: var(--code-bg, #1e1e1e);
@@ -704,9 +606,7 @@ pre {
     overflow: hidden;
 }
 
-/* 代码元素基础样式 */
 code {
-    /* 深浅色code背景区分 */
     background-color: var(--code-bg, #1e1e1e);
     border: 1px solid var(--code-border, #333);
     border-radius: 3px;
@@ -723,14 +623,12 @@ code {
     color: var(--code-text, #d4d4d4);
 }
 
-/* 浅色模式下code样式 */
 :root.light-theme code {
     --code-bg: #f8f8f8;
     --code-border: #e0e0e0;
     --code-text: #333;
 }
 
-/* pre标签内的code样式 - IDE风格 */
 pre code {
     display: block;
     padding: 1.5em;
@@ -746,39 +644,31 @@ pre code {
     max-width: 100%;
 }
 
-/* 代码语法高亮 */
-/* 关键字 */
 code .keyword {
     color: var(--code-keyword, #569cd6);
 }
 
-/* 字符串 */
 code .string {
     color: var(--code-string, #ce9178);
 }
 
-/* 注释 */
 code .comment {
     color: var(--code-comment, #6a9955);
     font-style: italic;
 }
 
-/* 数字 */
 code .number {
     color: var(--code-number, #b5cea8);
 }
 
-/* 函数 */
 code .function {
     color: var(--code-function, #dcdcaa);
 }
 
-/* 操作符 */
 code .operator {
     color: var(--code-operator, #d4d4d4);
 }
 
-/* 浅色模式下的语法高亮 */
 :root.light-theme code .keyword {
     --code-keyword: #0000ff;
 }
@@ -803,9 +693,7 @@ code .operator {
     --code-operator: #000000;
 }
 
-/* 为带有class="loadstylesheet"的code元素添加IDE风格样式 */
 code.ide-style-code {
-    /* 确保应用IDE风格样式 */
     background-color: var(--code-bg, #1e1e1e);
     color: var(--code-text, #d4d4d4);
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -818,13 +706,11 @@ code.ide-style-code {
     max-width: 100%;
 }
 
-/* 浅色模式下的IDE风格样式 */
 :root.light-theme code.ide-style-code {
     background-color: var(--code-bg, #f8f8f8);
     color: var(--code-text, #333);
 }
 
-/* 支持自定义语法高亮类 */
 code.ide-style-code .keyword,
 code.loadstylesheet .keyword {
     color: var(--code-keyword, #569cd6);
@@ -851,7 +737,6 @@ code.loadstylesheet .string {
     color: var(--code-string, #ce9178);
 }
 
-/* 浅色模式下的自定义语法高亮 */
 :root.light-theme code.ide-style-code .keyword,
 :root.light-theme code.loadstylesheet .keyword {
     color: var(--code-keyword, #0000ff);
@@ -877,14 +762,11 @@ code.loadstylesheet .string {
     color: var(--code-string, #a31515);
 }
 
-/* ========== 主题切换开关样式 ========== */
-/* 字体切换开关样式 - 与主题切换按钮保持一致 */
 .font-switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 24px;
-    /* 确保按钮位置固定，不随滚动条变化 */
     flex-shrink: 0;
 }
 
@@ -914,18 +796,15 @@ code.loadstylesheet .string {
     left: 0;
     right: 0;
     bottom: 0;
-    /* 深浅色开关背景区分 */
     background-color: var(--slider-bg, #404040);
     transition: .4s;
     border-radius: 24px;
 }
 
-/* 浅色模式下开关背景 */
 :root.light-theme .slider {
     --slider-bg: #ccc;
 }
 
-/* 兼容旧的theme属性（可选，确保向下兼容） */
 :root[theme="light"] .slider {
     background-color: #ccc;
 }
@@ -958,8 +837,6 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
-
-/* ========== 响应式设计 ========== */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -972,42 +849,17 @@ input:checked+.slider:before {
     .sidebar {
         position: static;
         margin-bottom: 2rem;
-        /* 在移动设备上也保持滚动功能 */
         max-height: 400px;
         overflow-y: auto;
         width: 100%;
     }
 }
 
-
-/* ========== 产品页面样式 ========== */
-/* 应用头部样式 */
-.app-header {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-/* 应用图标样式 */
-.app-header img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    background: var(--primary-color);
-    padding: 1rem;
-}
-
-/* 应用介绍样式 */
 .app-intro {
     flex: 1;
     min-width: 300px;
 }
 
-.app-intro h2 {
-    margin-bottom: 0.5rem;
-}
 
 .app-intro p:first-of-type {
     font-size: 1.1rem;
@@ -1019,7 +871,6 @@ input:checked+.slider:before {
     margin: 1rem 0;
 }
 
-/* 下载按钮样式 */
 .download-btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
@@ -1033,16 +884,15 @@ input:checked+.slider:before {
 
 .download-btn:hover {
     background: var(--secondary-color);
+    text-decoration: none;
 }
 
-/* 链接样式 */
 .app-intro a:not(.download-btn) {
     margin-left: 1rem;
     color: var(--secondary-color);
     text-decoration: underline;
 }
 
-/* 列表样式 */
 ul {
     margin: 1rem 2rem;
     line-height: 2;
@@ -1053,14 +903,6 @@ ol {
     line-height: 2;
 }
 
-/* 代码样式 */
-code {
-    background: var(--light-bg);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-}
-
-/* 常见问题样式 */
 #faq .chapter-content>div {
     margin-bottom: 1.5rem;
 }
@@ -1070,7 +912,6 @@ code {
     color: var(--primary-color);
 }
 
-/* 技术文档标题样式 */
 .chapter-content h4 {
     margin-top: 2rem;
     color: var(--primary-color);
@@ -1081,21 +922,81 @@ code {
     margin-bottom: 0.5rem;
 }
 
-/* 强调文本样式 */
 .chapter-content p:last-child {
     color: var(--secondary-color);
     font-weight: bold;
     margin-top: 1rem;
 }
 
-/* 页脚样式 */
-footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--secondary-color);
-}
-
-/* 版权信息样式 */
 #copyright p {
     margin: 1rem 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: var(--light-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.product-icon img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    padding: 0.8rem;
+}
+
+.product-content {
+    text-align: center;
+}
+
+.product-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.product-desc {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+}
+
+.product-feature {
+    margin: 1rem 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        padding: 1rem;
+    }
+
+    .product-icon img {
+        width: 60px;
+        height: 60px;
+        padding: 0.6rem;
+    }
 }
