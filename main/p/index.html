@@ -149,34 +149,26 @@
                 <br>
                 <a class="download-btn" href="https://chatglm.cn/main/">跳转</a>
             </section>
+
+            <section class="section" id="skinlib">
+                <h2>web.baimiaoapp.com</h2>
+                <p>白描网页版</p>
+                <p>用于文字识别</p>
+                <br>
+                <a class="download-btn" href="https://web.baimiaoapp.com/">跳转</a>
+            </section>
+
+            <section class="section" id="skinlib">
+                <h2>特色内容</h2>
+                <br>
+                <a class="download-btn" href="/feature">跳转</a>
+            </section>
         </main>
     </div>
     <footer>
         <p>&copy; 2025 I Am System32. All rights reserved.</p>
         <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
     </footer>
-
-
-
-    
-    <script>const inputEle = document.getElementById('quickcommand_inputText');
-        const btnEle = document.getElementById('quickcommand_jumpBtn');
-        if (inputEle && btnEle) {
-            inputEle.addEventListener('input', function () {
-                btnEle.disabled = this.value.trim() === '';
-            });
-            function quickcommand_jumpToLink() {
-                const inputValue = inputEle.value.trim();
-                if (!inputValue) {
-                    alert('跳转的链接不能为空');
-                    return;
-                }
-                const targetUrl = `https://urp.gign.ltd/${inputValue}`;
-                window.open(targetUrl, '_blank');
-            }
-            btnEle.disabled = true;
-        }
-    </script>
 </body>
 
 </html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特色项目</title>
+    <link rel="stylesheet" href="/assets/css/style.css" id="main-theme">
+    <script src="/assets/scripts/dependency.js"></script>
+    <script src="/assets/scripts/theme_init.js"></script>
+    <script src="/assets/scripts/script.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/assets/svg/favicon.svg" />
+    <link rel="icon" type="image/png" href="/assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/json/sitefavicon.webmanifest" />
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">特色项目</h1>
+        <p> <strong>噢, 这是一个隐藏页面</strong> </p>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2> 目录 </h2>
+                <div>
+                    <div class="section-title">章节</div>
+                    <ul>
+                        <li><a href="#about" onClick="window.location.hash = '#about';">介绍</a></li>
+                        <li><a href="#proxyjump" onClick="window.location.hash = '#proxyjump';">代理跳转</a></li>
+                        <li><a href="#ddg" onClick="window.location.hash = '#ddg';">ddg.gign.ltd</a></li>
+                        <li><a href="#wikipedia" onClick="window.location.hash = '#wikipedia';">wiki.gign.ltd</a></li>
+                        <li><a href="#aboutfeature" onClick="window.location.hash = '#aboutfeature';">特色内容说明</a></li>
+                    </ul>
+                    <div class="section-title">特色内容</div>
+                    <li><a href="\ValueRateCalculator.html"
+                            onClick="window.location.href = 'ValueRateCalculator.html';">价值率计算器</a></li>
+                    <li><a href="\Template.html" onClick="window.location.href = 'Template.html';">模板HTML</a></li>
+                    <li><a href="\empty_Template.html"
+                            onClick="window.location.href = 'empty_Template.html';">最简HTML模板</a></li>
+                    <li><a href="\External_Template.html"
+                            onClick="window.location.href = 'External_Template.html';">外部HTML模板</a></li>
+                    <li><a href="\archived" onClick="window.location.href = 'archived';">已归档项目</a></li>
+                </div>
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                        class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
+                            class="slider round"></span> </label> </h2>
+                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
+                            class="slider round"></span> </label>
+                </h2>
+            </nav>
+        </aside>
+        <main class="content">
+            <section class="section" id="about">
+                <h2>介绍</h2>
+                <p>由gign.ltd提供的一些特色项目</p>
+            </section>
+            <section id="proxyjump" class="section">
+                <h2>代理跳转</h2>
+                <p>用于通过Cloudflare反向代理下载平常在国内下载速度很慢的大文件, 但需要注意的是不目标文件链接不能使用例如请求头等验证方式</p>
+                <div class="chapter">
+                    <div class="chapter-content" style="white-space: nowrap"> <input type="text"
+                            id="quickcommand_inputText" placeholder="请输入要跳转的链接" style="height: 39px;"> <button
+                            id="quickcommand_jumpBtn" onclick="quickcommand_jumpToLink()" disabled="">跳转</button> </div>
+                </div>
+                <p>直接输入包含http(s)开头的链接, 例如, https://www.baidu.com/img.png</p>
+                <p>将会跳转到https://urp.gign.ltd/https://www.baidu.com/img.png</p>
+                <h3>服务已转移到urp.gign.ltd</h3>
+                <script>
+                    const inputEle = document.getElementById('quickcommand_inputText');
+                    const btnEle = document.getElementById('quickcommand_jumpBtn');
+                    if (inputEle && btnEle) {
+                        inputEle.addEventListener('input', function () {
+                            btnEle.disabled = this.value.trim() === '';
+                        });
+                        // 监听回车键触发跳转
+                        inputEle.addEventListener('keypress', function (e) {
+                            if (e.key === 'Enter') {
+                                quickcommand_jumpToLink();
+                            }
+                        });
+                        function quickcommand_jumpToLink() {
+                            const inputValue = inputEle.value.trim();
+                            if (!inputValue) {
+                                alert('跳转的链接不能为空');
+                                return;
+                            }
+                            const targetUrl = `https://urp.gign.ltd/${inputValue}`;
+                            window.open(targetUrl, '_blank');
+                        }
+                        btnEle.disabled = true;
+                    }
+                </script>
+            </section>
+            <section class="section" id="ddg">
+                <h2>ddg.gign.ltd</h2>
+                <p>DuckDuckGo搜索引擎</p>
+                <p>一个免费的搜索引擎, 不记录用户搜索记录, 也不显示广告</p>
+                <p>由gign.ltd反代, 使中国大陆用户也可以访问</p>
+                <br>
+                <a class="download-btn" href="https://ddg.gign.ltd/">跳转</a>
+            </section>
+
+            <section class="section" id="wikipedia">
+                <h2>wikipedia.gign.ltd</h2>
+                <p>Wikipedia</p>
+                <p>全球最大的免费在线百科全书, 由gign.ltd反代, 使中国大陆用户也可以访问</p>
+                <br>
+                <a class="download-btn" href="https://wikipedia.gign.ltd/wiki/Wikipedia:%E9%A6%96%E9%A1%B5">跳转</a>
+            </section>
+
+            <section class="section" id="aboutfeature">
+                <h2>特色内容说明</h2>
+                <p>此处是有关侧边菜单中“特色内容”及其跳转的页面的说明</p>
+                <ul>
+                    <li>"价值率"是我们提出的一个实验性概念，而"价值率计算器"只是基于一个很简单的模型编写而成</li>
+                    <li>"HTML模板"是gign.ltd的站点作者在创建新页面时用于参考的模板, 其中包含了绝大多数常规H5元素的实现方式供参考</li>
+                    <li>"最简HTML模板"是gign.ltd的站点作者在创建新页面时直接复用的模板, 几乎不需要进行修改</li>
+                    <li>"外部HTML模板"是一个用于参考gign.ltd的HTML教程, 通过学习此教程, 你可以借助我们的样式表和脚本快速创建出具有个性化的站点 (此教程包含另外一个跳转,
+                        带你去学习gign.ltd的特殊css规则)</li>
+                    <li>"已归档项目"包含一些旧网站的存档, 包括不属于gign.ltd的页面, 目前没有实际用途, 它们也不会更新</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
+</body>
+
+</html>

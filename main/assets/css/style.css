@@ -1013,3 +1013,16 @@ ol {
     border: none;
     display: block;
 }
+
+#wikipedia-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+}
+
+#wikipedia-frame {
+    width: 100%;
+    height: 800px;
+    border: none;
+    display: block;
+}

@@ -1,8 +1,8 @@
 // 反代目标网站.
-const upstream = 'www.duckduckgo.com'
+const upstream = 'zh.wikipedia.org'
 
 // 反代目标网站的移动版.
-const upstream_mobile = 'www.duckduckgo.com'
+const upstream_mobile = 'zh.wikipedia.org'
 
 // 访问区域黑名单（按需设置）.
 const blocked_region = []
@@ -13,7 +13,8 @@ const blocked_ip_address = []
 // 路径替换.
 const replace_dict = {
 '$upstream': '$custom_domain',
-'//archiveofourown.org': ''
+'//archiveofourown.org': '',
+'upload.wikimedia.org': 'wikimediareverseproxy.gign.ltd'
 }
 
 addEventListener('fetch', event => {
@@ -117,6 +118,13 @@ for (i in replace_dict) {
     let re = new RegExp(i, 'g')
     text = text.replace(re, j);
 }
+
+// 替换upstream和upstream_mobile为当前域名
+const upstream_regex = new RegExp(upstream, 'g');
+const upstream_mobile_regex = new RegExp(upstream_mobile, 'g');
+text = text.replace(upstream_regex, host_name);
+text = text.replace(upstream_mobile_regex, host_name);
+
 return text;
 }
 
