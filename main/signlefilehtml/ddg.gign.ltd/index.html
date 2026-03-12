@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="light-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <title>reverseproxytemplate.serviceworker.js</title>
+    <link rel="stylesheet" href="https://gign.ltd/assets/css/style.css">
+    <script src="https://gign.ltd/assets/scripts/script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="https://gign.ltd/assets/ico/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">reverseproxytemplate.serviceworker.js</h1>
+        <p>reverseproxytemplate.serviceworker.js</p>
+        <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                class="theme-switch"> <input type="checkbox" id="themeToggle" checked> <span
+                    class="slider round"></span> </label> </h2>
+        <div class="chapter-content">
+            <a class="download-btn" href="javascript:history.back()">返回上一页</a>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <section id="literary-works" class="section">
+                <code class="loadstylesheet" name="js">
+// 反代目标网站.
+const upstream = 'www.duckduckgo.com'
+
+// 反代目标网站的移动版.
+const upstream_mobile = 'www.duckduckgo.com'
+
+// 访问区域黑名单（按需设置）.
+const blocked_region = []
+
+// IP地址黑名单（按需设置）.
+const blocked_ip_address = []
+
+// 路径替换.
+const replace_dict = {
+'$upstream': '$custom_domain',
+'//archiveofourown.org': ''
+}
+
+addEventListener('fetch', event => {
+event.respondWith(fetchAndApply(event.request));
+})
+
+async function fetchAndApply(request) {
+
+const region = request.headers.get('cf-ipcountry').toUpperCase();
+const ip_address = request.headers.get('cf-connecting-ip');
+const user_agent = request.headers.get('user-agent');
+
+let response = null;
+let url = new URL(request.url);
+let url_host = url.host;
+
+if (url.protocol == 'http:') {
+    url.protocol = 'https:'
+    response = Response.redirect(url.href);
+    return response;
+}
+
+if (await device_status(user_agent)) {
+    var upstream_domain = upstream;
+} else {
+    var upstream_domain = upstream_mobile;
+}
+
+url.host = upstream_domain;
+
+if (blocked_region.includes(region)) {
+    response = new Response('Access denied: WorkersProxy is not available in your region yet.\nYour region doesn\'need this service.We\'re sorry, but we have to save our resources.', {
+        status: 403
+    });
+} else if(blocked_ip_address.includes(ip_address)){
+    response = new Response('Access denied: Your IP address is blocked by WorkersProxy.', {
+        status: 403
+    });
+} else{
+    let method = request.method;
+    let request_headers = request.headers;
+    let new_request_headers = new Headers(request_headers);
+
+    new_request_headers.set('Host', upstream_domain);
+    new_request_headers.set('Referer', url.href);
+
+    let original_response = await fetch(url.href, {
+        method: method,
+        headers: new_request_headers
+    })
+
+    let original_response_clone = original_response.clone();
+    let original_text = null;
+    let response_headers = original_response.headers;
+    let new_response_headers = new Headers(response_headers);
+    let status = original_response.status;
+
+    new_response_headers.set('cache-control' ,'public, max-age=14400')
+    new_response_headers.set('access-control-allow-origin', '*');
+    new_response_headers.set('access-control-allow-credentials', 'true');
+    new_response_headers.delete('content-security-policy');
+    new_response_headers.delete('content-security-policy-report-only');
+    new_response_headers.delete('clear-site-data');
+    new_response_headers.delete('x-frame-options');
+    new_response_headers.delete('frame-options');
+    new_response_headers.set('x-frame-options', 'allowall');
+
+    const content_type = new_response_headers.get('content-type');
+    if (content_type.includes('text/html') && content_type.includes('UTF-8')) {
+        original_text = await replace_response_text(original_response_clone, upstream_domain, url_host);
+    } else {
+        original_text = original_response_clone.body
+    }
+
+    response = new Response(original_text, {
+        status,
+        headers: new_response_headers
+    })
+}
+return response;
+}
+
+async function replace_response_text(response, upstream_domain, host_name) {
+let text = await response.text()
+
+var i, j;
+for (i in replace_dict) {
+    j = replace_dict[i]
+    if (i == '$upstream') {
+        i = upstream_domain
+    } else if (i == '$custom_domain') {
+        i = host_name
+    }
+    
+    if (j == '$upstream') {
+        j = upstream_domain
+    } else if (j == '$custom_domain') {
+        j = host_name
+    }
+
+    let re = new RegExp(i, 'g')
+    text = text.replace(re, j);
+}
+return text;
+}
+
+
+async function device_status (user_agent_info) {
+var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+var flag = true;
+for (var v = 0; v < agents.length; v++) {
+    if (user_agent_info.indexOf(agents[v]) > 0) {
+        flag = false;
+        break;
+    }
+}
+return flag;
+}
+</code>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
