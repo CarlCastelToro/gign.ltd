@@ -345,47 +345,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 执行自动应用IDE风格样式的函数
     applyIDEStyleToCode();
-
-    // 复制iframe地址功能
-    const copyButton = document.getElementById('copy-iframe-url');
-    const ddgFrame = document.getElementById('ddg-frame');
-
-    if (copyButton && ddgFrame) {
-        copyButton.addEventListener('click', function() {
-            try {
-                // 尝试获取iframe的当前URL
-                let url = '';
-                if (ddgFrame.contentWindow && ddgFrame.contentWindow.location) {
-                    url = ddgFrame.contentWindow.location.href;
-                } else {
-                    // 如果无法获取内部URL，使用src属性
-                    url = ddgFrame.src;
-                }
-
-                // 复制到剪贴板
-                navigator.clipboard.writeText(url)
-                    .then(function() {
-                        // 显示成功提示
-                        alert('已复制地址: ' + url);
-                    })
-                    .catch(function(err) {
-                        console.error('复制失败:', err);
-                        alert('复制失败，请手动复制');
-                    });
-            } catch (e) {
-                // 跨域安全限制，使用src属性
-                console.log('无法获取iFrame URL，使用src属性:', e);
-                const url = ddgFrame.src;
-                navigator.clipboard.writeText(url)
-                    .then(function() {
-                        alert('已复制地址: ' + url);
-                    })
-                    .catch(function(err) {
-                        console.error('复制失败:', err);
-                        alert('复制失败，请手动复制');
-                    });
-            }
-        });
-    }
-
 });

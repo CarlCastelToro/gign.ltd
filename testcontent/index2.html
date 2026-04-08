@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>安全双重编码工具 · Base64 + 云端二次编码</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        body {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.2rem;
+            background: #f1f5f9;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
+            padding: 1.6rem 1.8rem;
+            transition: all 0.2s;
+            border: 1px solid #e9eef3;
+        }
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.35rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .badge {
+            background: #eef2ff;
+            color: #1e40af;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            margin-left: 0.75rem;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            background: #fefefe;
+            resize: vertical;
+            transition: 0.2s;
+            line-height: 1.45;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1rem 0 0.8rem 0;
+        }
+        button {
+            background: #1e293b;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        }
+        button.primary {
+            background: #2563eb;
+        }
+        button.primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        button.secondary {
+            background: #475569;
+        }
+        button.secondary:hover {
+            background: #334155;
+        }
+        button.warning {
+            background: #ca8a04;
+        }
+        button.warning:hover {
+            background: #b45309;
+        }
+        .info-line {
+            font-size: 0.8rem;
+            color: #4b5563;
+            background: #f8fafc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 12px;
+            margin: 0.6rem 0 0 0;
+            border-left: 3px solid #3b82f6;
+        }
+        .file-area {
+            border: 2px dashed #cbd5e1;
+            background: #fafcff;
+            border-radius: 18px;
+            padding: 1.3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.8rem;
+        }
+        .file-area:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+        .copy-btn {
+            margin-top: 0.4rem;
+        }
+        hr {
+            margin: 0.5rem 0;
+            border-color: #e2e8f0;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 640px) {
+            .card {
+                padding: 1.2rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+            }
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            background: #e6f0ff;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div style="margin-bottom: 0.2rem;">
+        <h2 style="margin-bottom: 0.2rem; color: #0f172a;">🔐 安全双重编码工具</h2>
+        <p style="color: #334155; margin-top: 0.3rem;">✨ Base64 内层加密 + 云端二次编码（API 双重保护）<br>所有操作统一以上方文本框为准，输出纯文本格式。</p>
+    </div>
+
+    <!-- 核心区域：统一以上方文本框为数据源 -->
+    <div class="card">
+        <h3>📝 文本编码 / 解码 <span class="badge">统一入口 · 以上框为准</span></h3>
+        <textarea id="mainInput" placeholder="输入原始文本内容（编码前）或粘贴待解码的密文（解码时自动识别）..." rows="4"></textarea>
+        <div class="button-group">
+            <button class="primary" id="encodeMainBtn">✨ 完整编码 (Base64 → 云端二次编码)</button>
+            <button class="secondary" id="decodeMainBtn">🔓 完整解码 (云端解码 → Base64解码)</button>
+            <button id="clearMainBtn" style="background:#6c757d;">🗑️ 清空</button>
+        </div>
+        <div class="info-line" id="statusMsg">⚡ 就绪 | 编码流程: 原始数据 → Base64 → 调用API (?e=) → 最终密文</div>
+        <textarea id="mainOutput" placeholder="编码结果（纯文本格式）将显示在此..." rows="5" readonly style="background:#f9fbfe;"></textarea>
+        <div class="button-group copy-btn">
+            <button class="secondary" id="copyOutputBtn">📋 复制编码结果</button>
+        </div>
+    </div>
+
+    <!-- 文件编码区域 (同样基于 base64 + 云端二次编码) -->
+    <div class="card">
+        <h3>📁 文件双重编码（图片/文档/任意文件）</h3>
+        <div class="file-area" id="fileDropZone" onclick="document.getElementById('fileInput').click()">
+            📂 点击或拖拽上传文件 → 自动进行 Base64 + 云端二次编码
+        </div>
+        <input type="file" id="fileInput" style="display:none">
+        <textarea id="fileOutput" placeholder="文件编码结果 (纯文本) 将显示在此..." rows="4" readonly style="background:#f9fbfe;"></textarea>
+        <div class="button-group">
+            <button class="secondary" id="copyFileResultBtn">📋 复制文件编码</button>
+            <button id="clearFileBtn" style="background:#6c757d;">🗑️ 清除文件结果</button>
+        </div>
+        <div class="info-line" id="fileStatus">📎 等待上传文件，自动调用双重编码链</div>
+    </div>
+
+    <div class="card" style="background:#fefce8; border-color:#fde047;">
+        <h3>🧩 API 说明 & 双重逻辑</h3>
+        <ul style="margin: 0; padding-left: 1.2rem; color: #3b2e1e;">
+            <li><strong>编码链路：</strong> 原始数据 → <code>Base64</code> → 调用 <code>https://b.gign.ltd?e={base64串}</code> → 得到最终纯文本密文</li>
+            <li><strong>解码链路：</strong> 密文 → 调用 <code>https://b.gign.ltd?d={密文}</code> → 得到 Base64 原文 → 再 Base64 解码 → 还原数据</li>
+            <li><strong>统一规则：</strong> 文本/文件均走此链路，输出不含特殊符号（云端API返回字母数字组合）。</li>
+            <li>⚠️ 依赖外部API稳定性，网络请求异步处理，请耐心等待提示。</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // ------------------------------
+    // 核心双重编码/解码 (基于 Base64 + 云端API)
+    // ------------------------------
+
+    /**
+     * 编码: 原始 Uint8Array -> base64字符串 -> 调用 ?e= 端点 -> 返回最终编码串
+     * @param {Uint8Array} data
+     * @returns {Promise<string>} 最终纯文本密文
+     */
+    async function doubleEncode(data) {
+        // 1. 生成标准 Base64 (使用内置 btoa 但需要处理二进制安全，Uint8Array 转 base64)
+        const base64Str = uint8ArrayToBase64(data);
+        if (!base64Str) throw new Error("Base64 编码失败");
+
+        // 2. 调用远程 API: https://b.gign.ltd?e=xxxx
+        const url = `https://b.gign.ltd?e=${encodeURIComponent(base64Str)}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`云端编码请求失败 (HTTP ${response.status})`);
+        }
+        const resultText = await response.text();
+        // 期望返回纯文本（字母数字组合，无额外空白? 去除首尾空白）
+        const encodedResult = resultText.trim();
+        if (encodedResult.length === 0) {
+            throw new Error("云端编码返回空结果");
+        }
+        return encodedResult;
+    }
+
+    /**
+     * 解码: 最终密文 -> 调用 ?d= 端点 -> 得到 Base64 字符串 -> 解码回 Uint8Array
+     * @param {string} cipherText 云端二次编码后的密文
+     * @returns {Promise<Uint8Array>}
+     */
+    async function doubleDecode(cipherText) {
+        if (!cipherText || cipherText.trim() === "") {
+            throw new Error("密文为空，无法解码");
+        }
+        // 1. 调用解码API: https://b.gign.ltd?d=密文
+        const url = `https://b.gign.ltd?d=${encodeURIComponent(cipherText.trim())}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`云端解码请求失败 (HTTP ${response.status})`);
+        }
+        const base64Result = await response.text();
+        const cleanedBase64 = base64Result.trim();
+        if (!cleanedBase64) {
+            throw new Error("云端解码返回空字符串，无法还原Base64");
+        }
+        // 2. Base64 解码回二进制数据
+        const binaryData = base64ToUint8Array(cleanedBase64);
+        return binaryData;
+    }
+
+    // ---------- 辅助函数: Uint8Array <-> Base64 (安全处理) ----------
+    function uint8ArrayToBase64(bytes) {
+        // 浏览器环境使用 btoa 处理二进制字符串
+        let binary = '';
+        const len = bytes.length;
+        for (let i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binary);
+    }
+
+    function base64ToUint8Array(base64Str) {
+        // 将base64还原为二进制字符串
+        const binaryStr = atob(base64Str);
+        const len = binaryStr.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryStr.charCodeAt(i);
+        }
+        return bytes;
+    }
+
+    // 文本编码器/解码器 (基于 UTF-8)
+    function textToUint8(text) {
+        return new TextEncoder().encode(text);
+    }
+
+    function uint8ToText(uint8) {
+        return new TextDecoder().decode(uint8);
+    }
+
+    // 显示状态信息 (主区域)
+    function setStatus(msg, isError = false) {
+        const statusDiv = document.getElementById('statusMsg');
+        if (statusDiv) {
+            statusDiv.innerHTML = isError ? `❌ ${msg}` : `✅ ${msg}`;
+            statusDiv.style.borderLeftColor = isError ? '#dc2626' : '#3b82f6';
+            if (isError) {
+                setTimeout(() => {
+                    if (document.getElementById('statusMsg')?.innerHTML.includes('❌')) {
+                        // 保留错误几秒后自动恢复温和样式但不覆盖严重错误？保持轻提示
+                    }
+                }, 3000);
+            }
+        }
+    }
+
+    function setFileStatus(msg, isError = false) {
+        const fileStatus = document.getElementById('fileStatus');
+        if (fileStatus) {
+            fileStatus.innerHTML = isError ? `⚠️ ${msg}` : `📁 ${msg}`;
+            fileStatus.style.borderLeftColor = isError ? '#dc2626' : '#84cc16';
+        }
+    }
+
+    // 主要文本编码 (基于主输入框)
+    async function handleTextEncode() {
+        const rawText = document.getElementById('mainInput').value;
+        if (rawText === "") {
+            setStatus("❌ 编码失败：请输入原始文本内容", true);
+            return;
+        }
+        setStatus("⏳ 编码中: 转换UTF-8 → Base64 → 请求云端二次编码...", false);
+        try {
+            const dataUint8 = textToUint8(rawText);
+            const finalCipher = await doubleEncode(dataUint8);
+            document.getElementById('mainOutput').value = finalCipher;
+            setStatus(`编码成功！ 原始字节: ${dataUint8.length} | 密文长度: ${finalCipher.length} | 双重加密完成`);
+        } catch (err) {
+            console.error(err);
+            setStatus(`编码失败: ${err.message}`, true);
+            document.getElementById('mainOutput').value = "";
+        }
+    }
+
+    // 主要文本解码 (基于主输入框: 从主输入框读取密文，解码后展示到主输入框？但需求: 统一以靠上文本框为准 —— 解码时读取上方文本框作为密文，解码结果展示到原始输入框？更合理: 解码结果展示到主输入框区域 (替换原文) 且输出框显示解码后的原文? 
+    // 根据需求「文本编码 / 解码区域统一以靠上的文本框为准」: 即编码时从上框取原文，输出到底部框；解码时从上框取密文，解码后把原文放回上框。
+    // 为了体验: 解码操作会将 mainInput 内容视为密文，解码后的原文展示到 mainInput (覆盖原密文)，同时 mainOutput 可选显示解码后的原文或者提示。但按照逻辑清晰: 解码后原文显示在上方输入框，输出框显示“解码成功”。
+    // 更优雅: 解码时从 mainInput 取值(密文) → 云端解码+base64解码 → 将明文放回 mainInput，并且mainOutput显示一条成功消息。
+    // 同时支持用户手动把编码结果粘贴到 mainInput 再解码。完全符合「统一以靠上的文本框为准」。
+    async function handleTextDecode() {
+        const cipherFromTop = document.getElementById('mainInput').value;
+        if (!cipherFromTop.trim()) {
+            setStatus("❌ 解码失败：上方文本框为空，请输入要解码的密文", true);
+            return;
+        }
+        setStatus("⏳ 解码中: 请求云端解码API → Base64解码 → 还原文本...", false);
+        try {
+            const decodedUint8 = await doubleDecode(cipherFromTop);
+            const originalText = uint8ToText(decodedUint8);
+            // 将原文放回上方输入框 (实现统一)
+            document.getElementById('mainInput').value = originalText;
+            // 输出框展示解码摘要或者原始密文? 为了直观，输出框显示解码后的原文(也可以显示成功标记)
+            document.getElementById('mainOutput').value = `✅ 解码成功，原文已显示在上方输入框。\n还原文本长度: ${decodedUint8.length} 字节\n原文内容: ${originalText.length > 200 ? originalText.substring(0,200)+'…' : originalText}`;
+            setStatus(`解码成功！还原 ${decodedUint8.length} 字节，已填充至上框`);
+        } catch (err) {
+            console.error(err);
+            setStatus(`解码失败: ${err.message}，请检查密文格式或网络`, true);
+            document.getElementById('mainOutput').value = `解码错误: ${err.message}`;
+        }
+    }
+
+    // 文件编码 (双重编码链)
+    async function encodeFileToDouble(file) {
+        if (!file) return;
+        setFileStatus(`正在处理文件: ${file.name} (${(file.size/1024).toFixed(2)} KB) → Base64 + 云端二次编码...`);
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const dataUint8 = new Uint8Array(arrayBuffer);
+            const finalCipher = await doubleEncode(dataUint8);
+            document.getElementById('fileOutput').value = finalCipher;
+            setFileStatus(`✅ 文件编码完成 | 原始 ${dataUint8.length} 字节 → 密文长度 ${finalCipher.length} 字符`);
+        } catch (err) {
+            console.error(err);
+            setFileStatus(`文件编码失败: ${err.message}`, true);
+            document.getElementById('fileOutput').value = "";
+        }
+    }
+
+    // 处理文件选择
+    function handleFileSelected(file) {
+        if (file) encodeFileToDouble(file);
+    }
+
+    // 复制相关
+    function copyToClipboard(text, successMsg = "已复制到剪贴板") {
+        if (!text) {
+            alert("无内容可复制");
+            return;
+        }
+        navigator.clipboard.writeText(text).then(() => {
+            alert(successMsg);
+        }).catch(() => {
+            alert("复制失败，可手动选择");
+        });
+    }
+
+    // ---------- 事件绑定及拖拽支持 ----------
+    document.addEventListener('DOMContentLoaded', () => {
+        // 主区域按钮
+        const encodeBtn = document.getElementById('encodeMainBtn');
+        const decodeBtn = document.getElementById('decodeMainBtn');
+        const clearMainBtn = document.getElementById('clearMainBtn');
+        const copyOutputBtn = document.getElementById('copyOutputBtn');
+
+        encodeBtn.addEventListener('click', handleTextEncode);
+        decodeBtn.addEventListener('click', handleTextDecode);
+        clearMainBtn.addEventListener('click', () => {
+            document.getElementById('mainInput').value = '';
+            document.getElementById('mainOutput').value = '';
+            setStatus('已清空文本框', false);
+        });
+        copyOutputBtn.addEventListener('click', () => {
+            const outputVal = document.getElementById('mainOutput').value;
+            copyToClipboard(outputVal, "编码结果已复制");
+        });
+
+        // 文件区域
+        const fileInput = document.getElementById('fileInput');
+        const copyFileResultBtn = document.getElementById('copyFileResultBtn');
+        const clearFileBtn = document.getElementById('clearFileBtn');
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                handleFileSelected(e.target.files[0]);
+            }
+        });
+
+        copyFileResultBtn.addEventListener('click', () => {
+            const fileOut = document.getElementById('fileOutput').value;
+            copyToClipboard(fileOut, "文件编码结果已复制");
+        });
+        clearFileBtn.addEventListener('click', () => {
+            document.getElementById('fileOutput').value = '';
+            setFileStatus("已清除文件编码结果");
+            if (fileInput) fileInput.value = '';
+        });
+
+        // 拖拽上传
+        const dropZone = document.getElementById('fileDropZone');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        dropZone.addEventListener('dragenter', () => dropZone.style.background = '#eef2ff');
+        dropZone.addEventListener('dragleave', () => dropZone.style.background = '#fafcff');
+        dropZone.addEventListener('drop', (e) => {
+            dropZone.style.background = '#fafcff';
+            const files = e.dataTransfer.files;
+            if (files && files.length > 0) {
+                handleFileSelected(files[0]);
+                if (fileInput) fileInput.files = files; // 同步
+            }
+        });
+
+        // 附加小优化: 若用户想直接粘贴编码结果到主输入框然后解码，体验完美
+        // 为防止误解，添加一个示例提示
+        const mainInputEl = document.getElementById('mainInput');
+        mainInputEl.placeholder = "编码：输入原始文本 → 点击「完整编码」\n解码：将密文粘贴至此 → 点击「完整解码」→ 原文将显示在此框内";
+    });
+
+    // 额外增加对特殊API返回格式处理: 因为示例 ?e=114514 返回 0606FMEogPNk，均为字母数字，符合预期
+    // 注意: 网络请求可能 CORS? 该API支持跨域资源请求? 通常公开API允许跨域，如不允许会报错，但根据需求场景实现即可。
+    // 添加通用错误拦截: 若API由于网络原因失败，友好提示用户。
+    // 对于文本解码时，用户可能误将未编码内容提交，导致云端返回无效base64，catch中会展示错误。
+    // 完全按照设计: 双重链路完成。
+</script>
+</body>
+</html>
