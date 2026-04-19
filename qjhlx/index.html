@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问了吗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: white;
+        }
+        .rank-header {
+            background-color: #ffd54f;
+            text-align: center;
+            padding: 15px;
+        }
+        .rank-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #000;
+        }
+        .character-img {
+            width: 100%;
+            aspect-ratio: 1 / 1.2;
+            background: #87CEEB url('img.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .name-bar {
+            background-color: #e53935;
+            text-align: center;
+            padding: 20px;
+        }
+        .name-bar h2 {
+            color: white;
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+        .days-bar {
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .days-bar .days {
+            color: #e53935;
+            font-size: 5rem;
+            font-weight: bold;
+        }
+        .days-bar .text {
+            color: #000;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .info-section {
+            background-color: #c5cae9;
+            text-align: center;
+            padding: 20px;
+        }
+        .club-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .date-info {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.8rem;
+        }
+        .date-col p:first-child {
+            margin-bottom: 10px;
+        }
+        .not-implemented {
+            color: #e53935;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 顶部排名 -->
+        <div class="rank-header">
+            <h1>第0位</h1>
+        </div>
+        <!-- 角色图片 -->
+        <div class="character-img"></div>
+        <!-- 角色名 -->
+        <div class="name-bar">
+            <h2>旗见绘里香</h2>
+        </div>
+        <!-- 天数显示 -->
+        <div class="days-bar">
+            <span class="days" id="daysCount">0</span>
+            <span class="text">天</span>
+        </div>
+        <!-- 信息栏 -->
+        <div class="info-section">
+            <div class="club-name">
+                格黑娜学院<br>归宅部
+            </div>
+            <div class="date-info">
+                <div class="date-col">
+                    <p>初登场时间</p>
+                    <p>2020/8/6</p>
+                </div>
+                <div class="date-col">
+                    <p>实装时间</p>
+                    <p class="not-implemented">未实装</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 计算从2020/8/6到今天的天数
+        function calculateDays() {
+            const startDate = new Date('2020-08-06');
+            const today = new Date();
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('daysCount').textContent = diffDays;
+        }
+        // 页面加载时执行计算
+        calculateDays();
+    </script>
+</body>
+</html>
