@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编码/解码工具 | GIGN.LTD</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/scripts/dependency.js"></script>
+    <script src="/assets/scripts/script.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/assets/svg/favicon.svg" />
+    <link rel="icon" type="image/png" href="/assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/json/sitefavicon.webmanifest" />
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">编码/解码工具</h1>
+        <p>支持 Base64、Safe62、Basecoder 三种编码格式</p>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2>目录</h2>
+                <div>
+                    <div class="section-title">工具</div>
+                    <ul>
+                        <li><a href="#coder" onClick="window.location.hash = '#coder';">编码/解码</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="section-title">说明</div>
+                    <ul>
+                        <li><a href="#about-base64" onClick="window.location.hash = '#about-base64';">Base64</a></li>
+                        <li><a href="#about-safe62" onClick="window.location.hash = '#about-safe62';">Safe62</a></li>
+                        <li><a href="#about-basecoder" onClick="window.location.hash = '#about-basecoder';">Basecoder</a></li>
+                    </ul>
+                </div>
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+                <h2 class="toc-heading"> 深浅色切换 <label class="theme-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
+                <h2 class="toc-heading"> 字体切换 (Georgia/雅黑)
+                    <label class="font-switch">
+                        <input type="checkbox" id="fontToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </h2>
+            </nav>
+        </aside>
+        <main class="content">
+            <section id="coder" class="section">
+                <h2>编码/解码工具</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <!-- 编码类型选择 -->
+                        <div class="coder-tabs">
+                            <button class="tab active" data-type="basecoder">Basecoder</button>
+                            <button class="tab" data-type="safe62">Safe62</button>
+                            <button class="tab" data-type="base64">Base64</button>
+                        </div>
+
+                        <!-- 模式切换 -->
+                        <div class="coder-mode">
+                            <label class="theme-switch">
+                                <input type="checkbox" id="modeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                            <span id="modeLabel">解码模式</span>
+                        </div>
+
+                        <!-- 输入区域 -->
+                        <div class="form-group">
+                            <label for="inputText">输入:</label>
+                            <textarea id="inputText" placeholder="请输入要转换的内容..."></textarea>
+                        </div>
+
+                        <!-- 按钮区域 -->
+                        <div class="coder-buttons">
+                            <button id="convertBtn" class="button">转换</button>
+                            <button id="clearBtn" class="button">清除</button>
+                        </div>
+
+                        <!-- 结果区域 -->
+                        <div class="result">
+                            <div class="result-header">
+                                <h3>结果</h3>
+                                <button id="copyBtn" class="copy-btn">复制</button>
+                            </div>
+                            <div id="resultText" class="result-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-base64" class="section">
+                <h2>Base64</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>Base64 是一种基于 64 个可打印字符来表示二进制数据的编码方式。常用于在 HTTP 环境下传递较长的标识信息。</p>
+                        <p>编码过程：每 3 个字节 → 4 个 Base64 字符。不足 3 字节时用 <code>=</code> 填充。</p>
+                        <p>字符集：A-Z、a-z、0-9、+、/</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-safe62" class="section">
+                <h2>Safe62</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>Safe62 是一种 URL 安全的 Base62 编码方案，使用 62 个字符（0-9、A-Z、a-z），不包含 +、/、= 等特殊字符。</p>
+                        <p>适用于 URL 参数、文件名等需要避免特殊字符的场景。</p>
+                        <p>编码流程：原始字节 → 分块（每 256 字节）→ BigInt 进制转换 → Base62 字符串</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-basecoder" class="section">
+                <h2>Basecoder</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <p>Basecoder 是本项目使用的组合编码方案，流程如下：</p>
+                        <p>编码：文本 → UTF-8 字节 → Base64 → Safe62</p>
+                        <p>解码：Safe62 → Base64 → UTF-8 字节 → 文本</p>
+                        <p>先用 Base64 将任意文本转为 ASCII 安全字符串，再用 Safe62 进一步编码为 URL 安全格式。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
+
+    <script>
+        (function () {
+            // 当前选中的编码类型
+            let currentType = 'basecoder';
+            // 当前模式：false=解码, true=编码
+            let isEncodeMode = false;
+
+            const inputText = document.getElementById('inputText');
+            const resultText = document.getElementById('resultText');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const modeToggle = document.getElementById('modeToggle');
+            const modeLabel = document.getElementById('modeLabel');
+            const tabButtons = document.querySelectorAll('.coder-tabs .tab');
+
+            // 编码类型切换
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentType = button.getAttribute('data-type');
+                    updatePlaceholder();
+                });
+            });
+
+            // 模式切换
+            modeToggle.addEventListener('change', () => {
+                isEncodeMode = modeToggle.checked;
+                modeLabel.textContent = isEncodeMode ? '编码模式' : '解码模式';
+                updatePlaceholder();
+            });
+
+            // 更新输入框提示
+            function updatePlaceholder() {
+                if (isEncodeMode) {
+                    inputText.placeholder = '请输入要编码的文本...';
+                } else {
+                    const hints = {
+                        'basecoder': '请输入 Basecoder 编码的字符串（Safe62 → Base64 → 文本）...',
+                        'safe62': '请输入 Safe62 编码的字符串...',
+                        'base64': '请输入 Base64 编码的字符串...'
+                    };
+                    inputText.placeholder = hints[currentType];
+                }
+            }
+
+            // 转换
+            convertBtn.addEventListener('click', () => {
+                const text = inputText.value.trim();
+                if (!text) {
+                    showNotification('请输入内容', true);
+                    return;
+                }
+
+                try {
+                    let result = '';
+                    if (isEncodeMode) {
+                        // 编码
+                        switch (currentType) {
+                            case 'basecoder':
+                                result = basecoderEncode(text);
+                                break;
+                            case 'safe62':
+                                result = _safe62.encode(new TextEncoder().encode(text));
+                                break;
+                            case 'base64':
+                                result = btoa(unescape(encodeURIComponent(text)));
+                                break;
+                        }
+                    } else {
+                        // 解码
+                        switch (currentType) {
+                            case 'basecoder':
+                                result = basecoderDecode(text);
+                                break;
+                            case 'safe62':
+                                const bytes = _safe62.decode(text);
+                                result = new TextDecoder().decode(bytes);
+                                break;
+                            case 'base64':
+                                result = decodeURIComponent(escape(atob(text)));
+                                break;
+                        }
+                    }
+                    resultText.textContent = result;
+                    showNotification('转换成功');
+                } catch (err) {
+                    showNotification('转换失败: ' + err.message, true);
+                    resultText.textContent = '';
+                }
+            });
+
+            // 清除
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                resultText.textContent = '';
+            });
+
+            // 复制
+            copyBtn.addEventListener('click', () => {
+                const text = resultText.textContent;
+                if (!text) {
+                    showNotification('没有可复制的内容', true);
+                    return;
+                }
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('复制成功');
+                }).catch(() => {
+                    showNotification('复制失败', true);
+                });
+            });
+
+            // 通知
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            document.body.appendChild(notification);
+
+            function showNotification(message, isError = false) {
+                notification.textContent = message;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+
+            // 初始化
+            updatePlaceholder();
+        })();
+    </script>
+</body>
+
+</html>
