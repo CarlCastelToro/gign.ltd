@@ -36,10 +36,10 @@
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                <h2 class="toc-heading"> 深浅色切换 <label
                         class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
                             class="slider round"></span> </label> </h2>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                <h2 class="toc-heading"> 字体切换 (Georgia/雅黑)
                     <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
                             class="slider round"></span> </label> </h2>
             </nav>
@@ -48,13 +48,13 @@
             <main class="content">
                 <section class="section">
                     <div class="app-header">
-                         <img src="\assets\ico\bs.ico" alt="BasicHttpServer图标" />
+                         <img src="/assets/ico/bs.ico" alt="BasicHttpServer图标" />
                         <div class="app-intro">
                             <h2>BasicHttpServer</h2>
                             <p>
                                 轻量、高效的HTTP服务器工具</p>
                             <p>支持静态文件服务、目录浏览、简单请求处理，为开发和测试提供便捷的本地服务器环境</p> 
-                            <a href=".\BasicHttpServer.exe" class="download-btn">
+                            <a href="/BasicHttpServer.exe" class="download-btn">
                                 立即下载 </a> <a href="#user-manual">查看用户手册</a>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <h3>目录浏览</h3>
                         <div class="chapter-content">
                             <p>自动生成美观的目录索引页面，方便浏览服务器上的文件结构：</p>
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>✅ 基本的HTTP服务器功能，静态页面服务</li>
                                 <li>✅ 提供未定义类型文件的自动下载</li>
                                 <li>✅ 目录安全</li>
@@ -83,7 +83,7 @@
                         <h3>可配置的服务器参数</h3>
                         <div class="chapter-content">
                             <p>灵活的配置选项，满足不同的使用需求：</p>
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>🔧 自定义端口号设置</li>
                                 <li>📂 可选择的根目录路径</li>
                                 <li>📝 详细的访问日志记录</li>
@@ -95,7 +95,7 @@
                         <h3>轻量级设计</h3>
                         <div class="chapter-content">
                             <p>极简设计理念，专注于核心功能：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>占用资源少，启动快速</li>
                                 <li>无需安装，绿色便携</li>
                                 <li>界面简洁直观，易于操作</li>
@@ -109,7 +109,7 @@
                     <div id="system-requirements" class="chapter">
                         <h3>最低系统要求</h3>
                         <div class="chapter-content">
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
                                 <li>🔧 .NET Framework 4.0 或更高版本</li>
                                 <li>💾 硬盘空间：5MB（工具本身）+ 网站文件存储所需空间</li>
@@ -121,16 +121,16 @@
                         <h3>使用说明</h3>
                         <div class="chapter-content">
                             <p>本工具为绿色软件，无需安装，直接运行：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>下载并解压到任意目录（如 D:\Tools\BasicHttpServer）</li>
                                 <li>双击运行 <code
-                                        style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">BasicHttpServer.exe</code>
+                                        class="inline-code-block">BasicHttpServer.exe</code>
                                 </li>
                                 <li>程序运行时, 会检查其运行目录下是否存在一个foldername.txt，该文件用于指定服务器所使用的文件夹名称，不存在时会自动创建，并指定文件夹为files并创建
                                 </li>
                                 <li>在界面中设置端口号，点击「Start」即可开始提供HTTP服务</li>
                             </ol>
-                            <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
+                            <p class="notice-text">
                                 注意：确保端口不被其他应用占用，且有足够的文件系统访问权限。</p>
                         </div>
                     </div>
@@ -140,20 +140,20 @@
                     <div id="faq" class="chapter">
                         <h3>常见问题（FAQ）</h3>
                         <div class="chapter-content">
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q1：如何更改服务器端口？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q1：如何更改服务器端口？</p>
                                 <p>A1：在应用程序界面中，直接修改端口号输入框的值，然后重新启动服务即可。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q2：如何访问服务器上的文件？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q2：如何访问服务器上的文件？</p>
                                 <p>A2：启动服务后，在浏览器中输入 http://localhost:端口号 即可访问根目录，或直接输入具体文件路径。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q3：为什么访问文件夹时需要输入完整路径？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q3：为什么访问文件夹时需要输入完整路径？</p>
                                 <p>A3：本工具支持无论URL是否以/结尾，都会检查请求路径是否为文件夹，并自动查找index.html文件。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q4：如何联系技术支持？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q4：如何联系技术支持？</p>
                                 <p>A4：若遇到问题或有功能建议，请发送邮件至 <a href="mailto:IAmSystem32@outlook.com"
                                         class="link">IAmSystem32@outlook.com</a>，注明「BasicHttpServer+问题描述+系统版本」，我们会在3个工作日内回复。
                                 </p>
@@ -285,7 +285,7 @@
                     <div class="chapter">
                         <div class="chapter-content">
                             <p>GUI右上角区域有一个显示为"B"的按钮</p>
-                            <p style="margin: 1rem 0;">按下会自动开放当前选定端口的防火墙，并自动启动服务器</p>
+                            <p class="paragraph-margin">按下会自动开放当前选定端口的防火墙，并自动启动服务器</p>
                             <p>不推荐在生产环境使用</p>
                         </div>
                     </div>
@@ -295,7 +295,7 @@
                     <div id="copyright" class="chapter">
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
-                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
+                            <p class="paragraph-margin">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
                             <p>使用本软件即表示您接受 《最终用户许可协议（EULA）》 中的所有条款。</p>
                         </div>
                     </div>

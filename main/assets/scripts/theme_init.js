@@ -7,7 +7,7 @@
     }
     const savedTheme = localStorage.getItem('siteTheme') || 'dark';
     // ===== 新增：初始化字体偏好 =====
-    const savedFont = localStorage.getItem('siteFont') || 'georgia'; // 默认Georgia
+    const savedFont = localStorage.getItem('siteFont') || 'yahei'; // 默认雅黑
     
     // 2. 核心修改：不再设置theme属性，改为直接添加/移除类名（匹配新方案）
     if (savedTheme === 'light') {
@@ -29,20 +29,19 @@
     const oldThemeStyles = document.querySelectorAll('link[id="dark-theme"], link[id="light-theme"]');
     oldThemeStyles.forEach(link => link.remove());
     
-    // 4. 核心修改：只加载一个包含CSS变量的统一样式表（替代原来的两个样式表）
-    const mainStyle = document.createElement('link');
-    mainStyle.rel = 'stylesheet';
-    mainStyle.href = '/assets/css/style.css'; // 这个文件包含所有CSS变量和主题样式
-    mainStyle.id = 'main-theme';
-    
-    // 5. 优先加载样式表，确保页面渲染前样式已就绪（消除初始闪烁）
-    mainStyle.onload = function() {
-        // 样式表加载完成后标记，避免重复加载
+    // 4. 核心修改：仅在样式表不存在时插入，避免重复加载
+    if (!document.getElementById('main-theme')) {
+        const mainStyle = document.createElement('link');
+        mainStyle.rel = 'stylesheet';
+        mainStyle.href = '/assets/css/style.css';
+        mainStyle.id = 'main-theme';
+        mainStyle.onload = function() {
+            document.documentElement.classList.add('theme-loaded');
+        };
+        document.head.insertBefore(mainStyle, document.head.firstChild);
+    } else {
         document.documentElement.classList.add('theme-loaded');
-    };
-    
-    // 6. 将统一样式表添加到文档头部（放在最前面，确保优先级）
-    document.head.insertBefore(mainStyle, document.head.firstChild);
+    }
 
     // 7. 预初始化开关状态（仅DOM加载后执行，不影响样式加载）
     function initToggleState() {
@@ -54,7 +53,7 @@
         }
         // ===== 新增：初始化字体开关状态 =====
         if (fontToggle) {
-            fontToggle.checked = savedFont === 'georgia'; // 勾选=Georgia，未勾选=雅黑
+            fontToggle.checked = savedFont !== 'georgia'; // 勾选=雅黑，未勾选=Georgia
         }
     }
 

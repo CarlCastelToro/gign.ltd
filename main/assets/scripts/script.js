@@ -345,4 +345,70 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 执行自动应用IDE风格样式的函数
     applyIDEStyleToCode();
+
+    // 为带有class="autodecrypt"的元素自动解密内容
+    function applyAutoDecrypt() {
+        const encryptedElements = document.querySelectorAll('.autodecrypt');
+
+        encryptedElements.forEach(element => {
+            // 检查元素是否已经被处理过
+            if (element.classList.contains('decrypted')) {
+                return;
+            }
+
+            // 标记元素为已处理
+            element.classList.add('decrypted');
+
+            // 获取加密类型（默认为basecoder）
+            const decryptType = element.getAttribute('name') || 'basecoder';
+
+            // 获取原始加密文本（去除首尾空白）
+            const encryptedText = element.textContent.trim();
+
+            if (!encryptedText) {
+                return;
+            }
+
+            // 解密
+            let decryptedText = '';
+            try {
+                switch (decryptType) {
+                    case 'basecoder':
+                        decryptedText = basecoderDecode(encryptedText);
+                        break;
+                    case 'safe62':
+                        // safe62 返回 Uint8Array，转为 UTF-8 文本
+                        const bytes = _safe62.decode(encryptedText);
+                        decryptedText = new TextDecoder().decode(bytes);
+                        break;
+                    case 'base64':
+                        // Base64 解码：先转二进制字符串，再转 UTF-8
+                        const binaryStr = atob(encryptedText);
+                        const uint8arr = Uint8Array.from([...binaryStr].map(c => c.charCodeAt(0)));
+                        decryptedText = new TextDecoder().decode(uint8arr);
+                        break;
+                    default:
+                        decryptedText = '[未知加密类型: ' + decryptType + ']';
+                }
+            } catch (err) {
+                decryptedText = '[解密失败: ' + err.message + ']';
+            }
+
+            // 清空元素内容
+            element.textContent = '';
+
+            // 按换行符分割，使用 DOM 节点正确处理换行
+            const lines = decryptedText.split('\n');
+            lines.forEach((line, index) => {
+                element.appendChild(document.createTextNode(line));
+                // 除了最后一行，每行末尾添加 <br>
+                if (index < lines.length - 1) {
+                    element.appendChild(document.createElement('br'));
+                }
+            });
+        });
+    }
+
+    // 执行自动解密函数
+    applyAutoDecrypt();
 });

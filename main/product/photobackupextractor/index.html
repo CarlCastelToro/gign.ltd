@@ -34,10 +34,10 @@
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                <h2 class="toc-heading"> 深浅色切换 <label
                         class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
                             class="slider round"></span> </label> </h2>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                <h2 class="toc-heading"> 字体切换 (Georgia/雅黑)
                     <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
                             class="slider round"></span> </label> </h2>
             </nav>
@@ -46,13 +46,13 @@
             <main class="content">
                 <section class="section" id="photobackupextractor">
                     <div class="app-header">
-                         <img src="\assets\ico\photobackupextractor.ico" alt="文件夹备份工具图标" />
+                         <img src="/assets/ico/photobackupextractor.ico" alt="文件夹备份工具图标" />
                         <div class="app-intro">
                             <h2>Photo Backup Extractor</h2>
                             <p>
                                 轻量、高效的Windows照片备份提取工具</p>
                             <p>从一大堆冗余的照片备份中提取出唯一副本, 并确保它们的内容精确到字节不同</p>  <a
-                                href=".\photobackupextractor" class="download-btn">
+                                href="/photobackupextractor" class="download-btn">
                                 下载 </a> <a href="#sourcecode">查看源代码</a>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div id="feature-3" class="chapter">
                         <h3>高效率操作</h3>
                         <div class="chapter-content">
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>📝 没有GUI, 没有任何冗余功能, 除了错误报告</li>
                             </ul>
                         </div>
@@ -84,14 +84,14 @@
                         <h3>简单易用的操作体验</h3>
                         <div class="chapter-content">
                             <p>无需复杂配置，二步即可完成提取：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>✅ 输入导出的目标文件夹路径, 回车</li>
                                 <li>✅ 输入“源”文件夹路径, 回车, 重复以上步骤添加多个源文件夹, 当你不需要再添加时, 直接在输入为空时回车</li>
                                 <li>✅ 静候佳音</li>
                             </ol>
                             <p>例子: </p>
                             <p>假设你有一个备份文件夹 D:\Backup, 里面有多个子文件夹, 每个子文件夹都是一个备份, 你想把所有备份提取到 D:\Export 文件夹中, 你可以这样操作：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>✅ 输入 D:\Export, 回车</li>
                                 <li>✅ 输入 D:\Backup\Folder1, 回车</li>
                                 <li>✅ 输入 D:\Backup\Folder2, 回车</li>
@@ -108,7 +108,7 @@
                     <div id="system-requirements" class="chapter">
                         <h3>最低系统要求</h3>
                         <div class="chapter-content">
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
                                 <li>🔧 .NET Framework 4.7.2 或更高版本（未安装会自动提示下载）</li>
                                 <li>💾 硬盘空间：1MB（工具本身）+ 备份文件所需空间</li>
@@ -119,14 +119,14 @@
                         <h3>安装说明</h3>
                         <div class="chapter-content">
                             <p>本工具为绿色软件，无需安装，解压即可使用：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>下载压缩包并解压到任意目录（如 D:\Tools\）</li>
                                 <li>双击运行 <code
-                                        style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">FolderBackupTool.exe</code>
+                                        class="inline-code-block">FolderBackupTool.exe</code>
                                 </li>
                                 <li>如果存在错误, 自动在运行目录下生成错误报告</li>
                             </ol>
-                            <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
+                            <p class="notice-text">
                                 </p>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                     <div id="copyright" class="chapter">
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
-                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
+                            <p class="paragraph-margin">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
                             <p>使用本软件即表示您接受 <a href="eula.html" class="link">《最终用户许可协议（EULA）》</a> 中的所有条款。</p>
                         </div>
                     </div>

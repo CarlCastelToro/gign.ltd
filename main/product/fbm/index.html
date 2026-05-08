@@ -34,26 +34,25 @@
                 <div class="section-title"><a href="#_jumptitle"
                         onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
                 <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 深浅色切换 <label
+                <h2 class="toc-heading"> 深浅色切换 <label
                         class="theme-switch"> <input type="checkbox" id="themeToggle"> <span
                             class="slider round"></span> </label> </h2>
-                <h2 style="display: flex; justify-content: space-between; align-items: center;"> 字体切换 (Georgia/雅黑)
+                <h2 class="toc-heading"> 字体切换 (Georgia/雅黑)
                     <label class="font-switch"> <input type="checkbox" id="fontToggle"> <span
                             class="slider round"></span> </label> </h2>
             </nav>
         </aside>
         <main class="content">
-            <main class="content"> 
                 <section class="section">
                     <div class="app-header">
-                         <img src="\assets\ico\fbm.ico" alt="文件夹备份工具图标" />
+                         <img src="/assets/ico/fbm.ico" alt="文件夹备份工具图标" />
                         <div class="app-intro">
                             <h2>Folder Backup Management</h2>
                             <p>
                                 轻量、高效的Windows文件夹备份解决方案</p>
-                            <p>支持断点续传、自动备份、智能冲突处理, 保护你的重要文件免受丢失风险</p>  <a href=".\fbm"
+                            <p>支持断点续传、自动备份、智能冲突处理, 保护你的重要文件免受丢失风险</p>  <a href="/fbm"
                                 class="download-btn">
-                                了解更多 </a> <a href=".\fbm\#user-manual">查看用户手册</a>
+                                了解更多 </a> <a href="/fbm/#user-manual">查看用户手册</a>
                         </div>
                     </div>
                 </section>
@@ -70,7 +69,7 @@
                         <h3>智能文件冲突处理</h3>
                         <div class="chapter-content">
                             <p>遇到目标文件已存在时，提供5种灵活处理方式，避免误操作：</p>
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>✅ 覆盖：替换目标文件</li>
                                 <li>✅ 跳过：保留目标文件，不传输当前文件</li>
                                 <li>✅ 全是/全否：批量处理所有冲突，无需重复弹窗</li>
@@ -82,7 +81,7 @@
                         <h3>每日自动备份</h3>
                         <div class="chapter-content">
                             <p>支持设置每日固定时间自动备份，无需手动操作：</p>
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>📅 自定义备份时间（精确到分钟）</li>
                                 <li>🔄 自动检测备份项，批量执行备份</li>
                                 <li>📝 备份完成后自动更新备份时间，状态实时反馈</li>
@@ -93,7 +92,7 @@
                         <h3>简单易用的操作体验</h3>
                         <div class="chapter-content">
                             <p>无需复杂配置，三步即可完成备份：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>添加源文件夹和目标备份路径（支持环境变量如 %userprofile%、%AppData%）</li>
                                 <li>勾选需要备份的项目</li>
                                 <li>点击「备份」按钮，实时查看进度</li>
@@ -107,7 +106,7 @@
                     <div id="system-requirements" class="chapter">
                         <h3>最低系统要求</h3>
                         <div class="chapter-content">
-                            <ul style="margin: 1rem 2rem; line-height: 2;">
+                            <ul class="content-list">
                                 <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
                                 <li>🔧 .NET Framework 4.7.2 或更高版本（未安装会自动提示下载）</li>
                                 <li>💾 硬盘空间：10MB（工具本身）+ 备份文件所需空间</li>
@@ -118,14 +117,14 @@
                         <h3>安装说明</h3>
                         <div class="chapter-content">
                             <p>本工具为绿色软件，无需安装，解压即可使用：</p>
-                            <ol style="margin: 1rem 2rem; line-height: 2;">
+                            <ol class="content-list">
                                 <li>下载压缩包并解压到任意目录（如 D:\Tools\FolderBackup）</li>
                                 <li>双击运行 <code
-                                        style="background: var(--light-bg); padding: 0.2rem 0.5rem; border-radius: 3px;">FolderBackupTool.exe</code>
+                                        class="inline-code-block">FolderBackupTool.exe</code>
                                 </li>
                                 <li>首次运行会自动生成配置文件（backup_config.json），用于存储备份项设置</li>
                             </ol>
-                            <p style="color: var(--secondary-color); font-weight: bold; margin-top: 1rem;">
+                            <p class="notice-text">
                                 注意：请勿修改配置文件，避免备份项丢失或功能异常。</p>
                         </div>
                     </div>
@@ -135,20 +134,20 @@
                     <div id="faq" class="chapter">
                         <h3>常见问题（FAQ）</h3>
                         <div class="chapter-content">
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q1：备份过程中关闭工具，下次能继续吗？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q1：备份过程中关闭工具，下次能继续吗？</p>
                                 <p>A1：可以！工具支持断点续传，下次备份会自动从上次中断的位置继续，无需重新传输整个文件。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q2：配置文件丢失了怎么办？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q2：配置文件丢失了怎么办？</p>
                                 <p>A2：配置文件（backup_config.json）丢失后，工具会生成新的空配置，之前的备份项会消失，但源文件和备份文件不受影响，可重新添加备份项。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q3：支持备份网络共享文件夹吗？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q3：支持备份网络共享文件夹吗？</p>
                                 <p>A3：支持！只要输入的网络路径（如 \\192.168.1.100\Shared）可访问且有读写权限，工具即可正常备份/还原。</p>
                             </div>
-                            <div style="margin-bottom: 1.5rem;">
-                                <p style="font-weight: bold; color: var(--primary-color);">Q4：如何联系技术支持？</p>
+                            <div class="faq-item">
+                                <p class="faq-question">Q4：如何联系技术支持？</p>
                                 <p>A4：若遇到问题或有功能建议，请发送邮件至 <a href="mailto:IAmSystem32@outlook.com"
                                         class="link">IAmSystem32@outlook.com</a>，注明「工具名称+问题描述+系统版本」，我们会在3个工作日内回复。</p>
                             </div>
@@ -166,13 +165,12 @@
                     <div id="copyright" class="chapter">
                         <div class="chapter-content">
                             <p>© 2025 I Am System32. 保留所有权利。</p>
-                            <p style="margin: 1rem 0;">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
+                            <p class="paragraph-margin">本软件为个人非商业用途免费软件，您可自由下载、使用，但不得用于商业盈利、复制分发或反向工程。</p>
                             <p>使用本软件即表示您接受 <a href="eula.html" class="link">《最终用户许可协议（EULA）》</a> 中的所有条款。</p>
                         </div>
                     </div>
                 </section>
             </main>
-        </main>
     </div>    
     <footer>
         <p>FBM Tool - 文件夹备份管理工具</p>
