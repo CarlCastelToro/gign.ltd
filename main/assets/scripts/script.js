@@ -430,16 +430,16 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // 更新状态
             if (data.isNewVisitor) {
-                statusElement.textContent = '欢迎新访客！';
+                statusElement.textContent = '新访客';
                 statusElement.className = 'visitor-stats-status new-visitor';
             } else {
-                statusElement.textContent = '欢迎回来！';
+                statusElement.textContent = '欢迎回来';
                 statusElement.className = 'visitor-stats-status returning-visitor';
             }
         } catch (error) {
             console.log('加载访客统计失败:', error);
-            countElement.textContent = 'N/A';
-            statusElement.textContent = '统计暂时不可用';
+            countElement.textContent = '--';
+            statusElement.textContent = '暂不可用';
             statusElement.className = 'visitor-stats-status error';
         }
     }
