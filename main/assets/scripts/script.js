@@ -411,4 +411,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 执行自动解密函数
     applyAutoDecrypt();
+
+    // 来访者统计功能
+    async function loadVisitorStats() {
+        const countElement = document.getElementById('visitor-count');
+        const statusElement = document.getElementById('visitor-status');
+        if (!countElement || !statusElement) return;
+
+        try {
+            const response = await fetch('https://kv.gign.ltd/stats/json');
+            if (!response.ok) throw new Error('Failed to fetch stats');
+            
+            const data = await response.json();
+            
+            // 更新数字
+            countElement.textContent = data.totalVisitors;
+            countElement.classList.add('loaded');
+            
+            // 更新状态
+            if (data.isNewVisitor) {
+                statusElement.textContent = '欢迎新访客！';
+                statusElement.className = 'visitor-stats-status new-visitor';
+            } else {
+                statusElement.textContent = '欢迎回来！';
+                statusElement.className = 'visitor-stats-status returning-visitor';
+            }
+        } catch (error) {
+            console.log('加载访客统计失败:', error);
+            countElement.textContent = 'N/A';
+            statusElement.textContent = '统计暂时不可用';
+            statusElement.className = 'visitor-stats-status error';
+        }
+    }
+
+    // 加载访客统计
+    loadVisitorStats();
 });

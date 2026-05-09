@@ -1069,3 +1069,104 @@ ol {
     word-break: break-word;
     overflow-wrap: break-word;
 }
+
+/* 访客统计样式 */
+.visitor-stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.visitor-stats-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+}
+
+.visitor-stats-icon {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.visitor-stats-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+.visitor-stats-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    line-height: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.visitor-stats-number.loaded {
+    animation: countPulse 0.6s ease;
+}
+
+@keyframes countPulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.visitor-stats-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.visitor-stats-status {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.visitor-stats-status.new-visitor {
+    background: rgba(76, 175, 80, 0.3);
+    border: 1px solid rgba(76, 175, 80, 0.5);
+}
+
+.visitor-stats-status.returning-visitor {
+    background: rgba(33, 150, 243, 0.3);
+    border: 1px solid rgba(33, 150, 243, 0.5);
+}
+
+.visitor-stats-status.error {
+    background: rgba(244, 67, 54, 0.3);
+    border: 1px solid rgba(244, 67, 54, 0.5);
+}
+
+.visitor-stats-info {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.visitor-stats-info p {
+    margin: 0.3rem 0;
+}
+
+.visitor-stats-info .link {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .visitor-stats-card {
+        padding: 1.5rem 2rem;
+        min-width: 200px;
+    }
+    
+    .visitor-stats-number {
+        font-size: 2.5rem;
+    }
+}

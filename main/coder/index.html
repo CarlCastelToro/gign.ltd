@@ -13,6 +13,261 @@
     <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/json/sitefavicon.webmanifest" />
+    <style>
+        .coder-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .coder-type-bar {
+            display: flex;
+            gap: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .coder-type-btn {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border: none;
+            background: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+        }
+
+        .coder-type-btn:not(:last-child) {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .coder-type-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .coder-type-btn:hover:not(.active) {
+            background: var(--tab-hover-bg, #404040);
+        }
+
+        .coder-chain {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            padding: 0.5rem 0;
+            letter-spacing: 0.03em;
+        }
+
+        .coder-chain span {
+            margin: 0 0.3rem;
+        }
+
+        .coder-chain .arrow {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .coder-mode-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .mode-toggle-group {
+            display: flex;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .mode-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            background: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .mode-btn:first-child {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .mode-btn.active {
+            background: var(--button-bg-color);
+            color: white;
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: var(--tab-hover-bg, #404040);
+        }
+
+        .coder-io {
+            display: flex;
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .coder-io-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .coder-io-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .coder-io-header label {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .coder-io-header .char-count {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+        }
+
+        .coder-io textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 0.8rem;
+            border: 1px solid var(--input-border-color);
+            border-radius: 6px;
+            background: var(--input-bg-color);
+            color: var(--text-color);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            line-height: 1.5;
+            transition: border-color 0.2s;
+        }
+
+        .coder-io textarea:focus {
+            outline: none;
+            border-color: var(--button-bg-color);
+        }
+
+        .coder-swap-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 3rem;
+        }
+
+        .swap-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .swap-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .coder-output {
+            position: relative;
+        }
+
+        .coder-output-box {
+            width: 100%;
+            min-height: 180px;
+            padding: 0.8rem;
+            border: 1px solid var(--input-border-color);
+            border-radius: 6px;
+            background: var(--input-bg-color);
+            color: var(--text-color);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            overflow-y: auto;
+            cursor: text;
+            user-select: text;
+        }
+
+        .coder-output-box:empty::before {
+            content: '结果将显示在这里...';
+            color: var(--secondary-color);
+            opacity: 0.6;
+        }
+
+        .coder-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .coder-actions .button {
+            min-width: 6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .coder-actions .button .icon {
+            font-size: 1rem;
+        }
+
+        .kbd-hint {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--secondary-color);
+            opacity: 0.7;
+        }
+
+        .kbd-hint kbd {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            padding: 0.1rem 0.4rem;
+            font-family: inherit;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .coder-io {
+                flex-direction: column;
+            }
+
+            .coder-swap-col {
+                flex: 0;
+                padding: 0.3rem 0;
+            }
+
+            .swap-btn {
+                transform: rotate(90deg);
+            }
+
+            .swap-btn:hover {
+                transform: rotate(270deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -58,42 +313,71 @@
             <section id="coder" class="section">
                 <h2>编码/解码工具</h2>
                 <div class="chapter">
-                    <div class="chapter-content">
+                    <div class="chapter-content coder-main">
+
                         <!-- 编码类型选择 -->
-                        <div class="coder-tabs">
-                            <button class="tab active" data-type="basecoder">Basecoder</button>
-                            <button class="tab" data-type="safe62">Safe62</button>
-                            <button class="tab" data-type="base64">Base64</button>
+                        <div class="coder-type-bar">
+                            <button class="coder-type-btn active" data-type="basecoder">Basecoder</button>
+                            <button class="coder-type-btn" data-type="safe62">Safe62</button>
+                            <button class="coder-type-btn" data-type="base64">Base64</button>
+                        </div>
+
+                        <!-- 编码链路展示 -->
+                        <div class="coder-chain" id="coderChain">
+                            <span>文本</span>
+                            <span class="arrow">→</span>
+                            <span>UTF-8</span>
+                            <span class="arrow">→</span>
+                            <span>Base64</span>
+                            <span class="arrow">→</span>
+                            <span>Safe62</span>
                         </div>
 
                         <!-- 模式切换 -->
-                        <div class="coder-mode">
-                            <label class="theme-switch">
-                                <input type="checkbox" id="modeToggle">
-                                <span class="slider round"></span>
-                            </label>
-                            <span id="modeLabel">解码模式</span>
-                        </div>
-
-                        <!-- 输入区域 -->
-                        <div class="form-group">
-                            <label for="inputText">输入:</label>
-                            <textarea id="inputText" placeholder="请输入要转换的内容..."></textarea>
-                        </div>
-
-                        <!-- 按钮区域 -->
-                        <div class="coder-buttons">
-                            <button id="convertBtn" class="button">转换</button>
-                            <button id="clearBtn" class="button">清除</button>
-                        </div>
-
-                        <!-- 结果区域 -->
-                        <div class="result">
-                            <div class="result-header">
-                                <h3>结果</h3>
-                                <button id="copyBtn" class="copy-btn">复制</button>
+                        <div class="coder-mode-bar">
+                            <div class="mode-toggle-group">
+                                <button class="mode-btn active" data-mode="encode">编码</button>
+                                <button class="mode-btn" data-mode="decode">解码</button>
                             </div>
-                            <div id="resultText" class="result-box"></div>
+                        </div>
+
+                        <!-- 输入/输出区域 -->
+                        <div class="coder-io">
+                            <div class="coder-io-col">
+                                <div class="coder-io-header">
+                                    <label id="inputLabel">密文输入</label>
+                                    <span class="char-count" id="inputCount">0 字符</span>
+                                </div>
+                                <textarea id="inputText" placeholder="请输入密文..."></textarea>
+                            </div>
+
+                            <div class="coder-swap-col">
+                                <button class="swap-btn" id="swapBtn" title="交换输入/输出">⇄</button>
+                            </div>
+
+                            <div class="coder-io-col">
+                                <div class="coder-io-header">
+                                    <label>输出结果</label>
+                                    <span class="char-count" id="outputCount">0 字符</span>
+                                </div>
+                                <div class="coder-output">
+                                    <div class="coder-output-box" id="resultText"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 操作按钮 -->
+                        <div class="coder-actions">
+                            <button id="convertBtn" class="button"><span class="icon">⚡</span> 转换</button>
+                            <button id="copyBtn" class="button"><span class="icon">📋</span> 复制结果</button>
+                            <button id="pasteBtn" class="button"><span class="icon">📥</span> 粘贴</button>
+                            <button id="clearBtn" class="button"><span class="icon">✕</span> 清除</button>
+                        </div>
+
+                        <div class="kbd-hint">
+                            <kbd>Ctrl</kbd> + <kbd>Enter</kbd> 转换 &nbsp;|&nbsp;
+                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> 复制结果 &nbsp;|&nbsp;
+                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> 粘贴
                         </div>
                     </div>
                 </div>
@@ -141,53 +425,95 @@
 
     <script>
         (function () {
-            // 当前选中的编码类型
+            // ========== 状态 ==========
             let currentType = 'basecoder';
-            // 当前模式：false=解码, true=编码
-            let isEncodeMode = false;
+            let isEncodeMode = true;
 
+            // ========== DOM ==========
             const inputText = document.getElementById('inputText');
             const resultText = document.getElementById('resultText');
             const convertBtn = document.getElementById('convertBtn');
             const clearBtn = document.getElementById('clearBtn');
             const copyBtn = document.getElementById('copyBtn');
-            const modeToggle = document.getElementById('modeToggle');
-            const modeLabel = document.getElementById('modeLabel');
-            const tabButtons = document.querySelectorAll('.coder-tabs .tab');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const swapBtn = document.getElementById('swapBtn');
+            const inputCount = document.getElementById('inputCount');
+            const outputCount = document.getElementById('outputCount');
+            const inputLabel = document.getElementById('inputLabel');
+            const coderChain = document.getElementById('coderChain');
+            const typeButtons = document.querySelectorAll('.coder-type-btn');
+            const modeButtons = document.querySelectorAll('.mode-btn');
 
-            // 编码类型切换
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    currentType = button.getAttribute('data-type');
-                    updatePlaceholder();
-                });
-            });
+            // ========== 编码链路定义 ==========
+            const chains = {
+                basecoder: {
+                    encode: ['文本', 'UTF-8', 'Base64', 'Safe62'],
+                    decode: ['Safe62', 'Base64', 'UTF-8', '文本']
+                },
+                safe62: {
+                    encode: ['文本', 'UTF-8', 'Base62'],
+                    decode: ['Base62', 'UTF-8', '文本']
+                },
+                base64: {
+                    encode: ['文本', 'UTF-8', 'Base64'],
+                    decode: ['Base64', 'UTF-8', '文本']
+                }
+            };
 
-            // 模式切换
-            modeToggle.addEventListener('change', () => {
-                isEncodeMode = modeToggle.checked;
-                modeLabel.textContent = isEncodeMode ? '编码模式' : '解码模式';
-                updatePlaceholder();
-            });
+            // ========== 更新链路展示 ==========
+            function updateChain() {
+                const chain = chains[currentType][isEncodeMode ? 'encode' : 'decode'];
+                coderChain.innerHTML = chain.map((step, i) => {
+                    const arrow = i < chain.length - 1 ? ' <span class="arrow">→</span> ' : '';
+                    return '<span>' + step + '</span>' + arrow;
+                }).join('');
+            }
 
-            // 更新输入框提示
-            function updatePlaceholder() {
+            // ========== 更新输入提示 ==========
+            function updateUI() {
                 if (isEncodeMode) {
+                    inputLabel.textContent = '明文输入';
                     inputText.placeholder = '请输入要编码的文本...';
                 } else {
+                    inputLabel.textContent = '密文输入';
                     const hints = {
-                        'basecoder': '请输入 Basecoder 编码的字符串（Safe62 → Base64 → 文本）...',
-                        'safe62': '请输入 Safe62 编码的字符串...',
-                        'base64': '请输入 Base64 编码的字符串...'
+                        'basecoder': '请输入 Basecoder 密文...',
+                        'safe62': '请输入 Safe62 密文...',
+                        'base64': '请输入 Base64 密文...'
                     };
                     inputText.placeholder = hints[currentType];
                 }
+                updateChain();
             }
 
-            // 转换
-            convertBtn.addEventListener('click', () => {
+            // ========== 字符计数 ==========
+            function updateCount() {
+                inputCount.textContent = inputText.value.length + ' 字符';
+                outputCount.textContent = resultText.textContent.length + ' 字符';
+            }
+
+            // ========== 编码类型切换 ==========
+            typeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    typeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentType = btn.getAttribute('data-type');
+                    updateUI();
+                });
+            });
+
+            // ========== 模式切换 ==========
+            modeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    isEncodeMode = btn.getAttribute('data-mode') === 'encode';
+                    updateUI();
+                });
+            });
+
+            // ========== 转换逻辑 ==========
+            function convert() {
                 const text = inputText.value.trim();
                 if (!text) {
                     showNotification('请输入内容', true);
@@ -197,7 +523,6 @@
                 try {
                     let result = '';
                     if (isEncodeMode) {
-                        // 编码
                         switch (currentType) {
                             case 'basecoder':
                                 result = basecoderEncode(text);
@@ -210,7 +535,6 @@
                                 break;
                         }
                     } else {
-                        // 解码
                         switch (currentType) {
                             case 'basecoder':
                                 result = basecoderDecode(text);
@@ -225,20 +549,31 @@
                         }
                     }
                     resultText.textContent = result;
+                    updateCount();
                     showNotification('转换成功');
+
+                    // 自动选中输出内容方便复制
+                    const range = document.createRange();
+                    range.selectNodeContents(resultText);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
                 } catch (err) {
                     showNotification('转换失败: ' + err.message, true);
                     resultText.textContent = '';
+                    updateCount();
                 }
-            });
+            }
 
-            // 清除
+            // ========== 按钮事件 ==========
+            convertBtn.addEventListener('click', convert);
+
             clearBtn.addEventListener('click', () => {
                 inputText.value = '';
                 resultText.textContent = '';
+                updateCount();
             });
 
-            // 复制
             copyBtn.addEventListener('click', () => {
                 const text = resultText.textContent;
                 if (!text) {
@@ -246,13 +581,60 @@
                     return;
                 }
                 navigator.clipboard.writeText(text).then(() => {
-                    showNotification('复制成功');
+                    showNotification('已复制到剪贴板');
                 }).catch(() => {
                     showNotification('复制失败', true);
                 });
             });
 
-            // 通知
+            pasteBtn.addEventListener('click', () => {
+                navigator.clipboard.readText().then(text => {
+                    inputText.value = text;
+                    updateCount();
+                    showNotification('已粘贴');
+                }).catch(() => {
+                    showNotification('粘贴失败，请手动粘贴', true);
+                });
+            });
+
+            swapBtn.addEventListener('click', () => {
+                const output = resultText.textContent;
+                if (!output) return;
+                resultText.textContent = inputText.value;
+                inputText.value = output;
+                updateCount();
+
+                // 交换后切换编/解码模式
+                isEncodeMode = !isEncodeMode;
+                modeButtons.forEach(b => {
+                    b.classList.toggle('active', b.getAttribute('data-mode') === (isEncodeMode ? 'encode' : 'decode'));
+                });
+                updateUI();
+            });
+
+            // ========== 输入监听 ==========
+            inputText.addEventListener('input', updateCount);
+
+            // ========== 键盘快捷键 ==========
+            document.addEventListener('keydown', (e) => {
+                // Ctrl+Enter 转换
+                if (e.ctrlKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    convert();
+                }
+                // Ctrl+Shift+C 复制结果
+                if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                    e.preventDefault();
+                    copyBtn.click();
+                }
+                // Ctrl+Shift+V 粘贴
+                if (e.ctrlKey && e.shiftKey && e.key === 'V') {
+                    e.preventDefault();
+                    pasteBtn.click();
+                }
+            });
+
+            // ========== 通知 ==========
             const notification = document.createElement('div');
             notification.className = 'notification';
             document.body.appendChild(notification);
@@ -260,13 +642,16 @@
             function showNotification(message, isError = false) {
                 notification.textContent = message;
                 notification.style.display = 'block';
+                notification.style.backgroundColor = isError ? 'var(--button-hover-bg-color, #f44336)' : '';
                 setTimeout(() => {
                     notification.style.display = 'none';
-                }, 3000);
+                    notification.style.backgroundColor = '';
+                }, 2500);
             }
 
-            // 初始化
-            updatePlaceholder();
+            // ========== 初始化 ==========
+            updateUI();
+            updateCount();
         })();
     </script>
 </body>

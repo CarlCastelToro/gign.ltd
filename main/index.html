@@ -67,6 +67,12 @@
                     </ul>
                 </div>
                 <div>
+                    <div class="section-title">网站统计</div>
+                    <ul>
+                        <li><a href="#visitor-stats-section" onClick="window.location.hash = '#visitor-stats-section';">访客统计</a></li>
+                    </ul>
+                </div>
+                <div>
                     <div class="section-title">联系方式</div>
                     <ul>
                         <li><a href="#contact" onClick="window.location.hash = '#contact';">联系我</a></li>
@@ -92,6 +98,32 @@
                         <p><em>如果你希望学习我们的网站设计, 并在代码层面了解它们, 请点击这个按钮</em></p>
                             <p>为有经验的初学者准备的教程</p>
                         <a class="download-btn" href="External_Template.html">跳转</a>
+                    </div>
+                </div>
+            </section>
+            <section id="visitor-stats-section" class="section">
+                <h2>访客统计</h2>
+                <div class="chapter">
+                    <div class="chapter-content">
+                        <div id="visitor-stats-container" class="visitor-stats-container">
+                            <div class="visitor-stats-card">
+                                <div class="visitor-stats-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <div class="visitor-stats-number" id="visitor-count">--</div>
+                                <div class="visitor-stats-label">累计独立访客</div>
+                                <div class="visitor-stats-status" id="visitor-status">加载中...</div>
+                            </div>
+                            <div class="visitor-stats-info">
+                                <p>基于 IP 地址去重统计，每位访客只计数一次</p>
+                                <p>数据由 <a href="https://kv.gign.ltd" class="link">kv.gign.ltd</a> 提供支持</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
