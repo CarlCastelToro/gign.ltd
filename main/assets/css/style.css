@@ -1159,3 +1159,18 @@ ol {
         font-size: 1.4rem;
     }
 }
+
+/* 个人简介压缩间距 */
+.about-content p {
+    margin: 0.4rem 0;
+    line-height: 1.6;
+}
+
+.about-content ul {
+    margin: 0.3rem 0 0.3rem 2rem;
+    line-height: 1.6;
+}
+
+.about-content li {
+    margin: 0.1rem 0;
+}
