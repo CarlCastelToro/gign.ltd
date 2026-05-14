@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Explorer | 产品详情</title>
+    <link rel="stylesheet" href="/assets/css/style.css" id="main-theme">
+    <script src="/assets/scripts/dependency.js"></script>
+    <script src="/assets/scripts/theme_init.js"></script>
+    <script src="/assets/scripts/script.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="/assets/svg/favicon.svg" />
+    <link rel="icon" type="image/png" href="/assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/json/sitefavicon.webmanifest" />
+</head>
+
+<body>
+    <header>
+        <h1 id="_jumptitle">产品介绍</h1>
+        <p>Remote Explorer - 类 Windows 资源管理器的远程文件管理工具</p>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="toc">
+                <h2>Table des matières</h2>
+                <div>
+                    <div class="section-title">软件介绍</div>
+                    <ul>
+                        <li><a href="#feature-1">远程文件浏览</a></li>
+                        <li><a href="#feature-2">文件传输</a></li>
+                        <li><a href="#feature-3">远程文件操作</a></li>
+                        <li><a href="#feature-4">远程终端</a></li>
+                        <li><a href="#feature-5">多选与框选</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="section-title">使用指南</div>
+                    <ul>
+                        <li><a href="#system-requirements">系统要求</a></li>
+                        <li><a href="#installation">安装说明</a></li>
+                        <li><a href="#basic-operation">基础操作教程</a></li>
+                        <li><a href="#faq">常见问题</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="section-title">技术细节</div>
+                    <ul>
+                        <li><a href="#architecture">架构设计</a></li>
+                        <li><a href="#protocol">通信协议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="section-title">下载与联系</div>
+                    <ul>
+                        <li><a href="RemoteExplorerServer.exe">下载服务端</a></li>
+                        <li><a href="RemoteExplorerClient.exe">下载客户端</a></li>
+                        <li><a href="mailto:IAmSystem32@outlook.com">联系开发者</a></li>
+                    </ul>
+                </div>
+                <div class="section-title"><a href="#_jumptitle"
+                        onClick="window.location.hash = '#_jumptitle';">返回标题</a></div>
+                <div class="section-title"><a href="/" onClick="window.location.href = '/'">返回首页</a></div>
+            </nav>
+        </aside>
+        <main class="content">
+            <section class="section">
+                <div class="app-header">
+                    <img src="/assets/ico/remoteexplorer.ico" alt="Remote Explorer 图标" />
+                    <div class="app-intro">
+                        <h2>Remote Explorer</h2>
+                        <p>类 Windows 资源管理器的远程文件管理工具</p>
+                        <p>通过 TCP 连接远程服务器，像操作本地文件一样浏览、上传、下载、编辑远程文件，内置远程终端</p>
+                        <a href="RemoteExplorerServer.exe" class="download-btn">下载服务端</a>
+                        <a href="RemoteExplorerClient.exe" class="download-btn" style="margin-left: 0.5rem;">下载客户端</a>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2>核心功能</h2>
+                <div id="feature-1" class="chapter">
+                    <h3>远程文件浏览</h3>
+                    <div class="chapter-content">
+                        <p>提供类 Windows 资源管理器的界面，左侧目录树 + 右侧文件列表，操作体验与本地一致：</p>
+                        <ul class="content-list">
+                            <li>📂 目录树懒加载展开，驱动器 → 文件夹逐级浏览</li>
+                            <li>📋 文件列表显示名称、大小、类型、修改日期</li>
+                            <li>🔗 路径栏支持直接输入路径跳转</li>
+                            <li>⬅️➡️ 支持前进/后退/上级导航历史</li>
+                            <li>🔄 F5 刷新文件列表 + 自动检测新驱动器</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="feature-2" class="chapter">
+                    <h3>文件传输</h3>
+                    <div class="chapter-content">
+                        <p>支持文件和文件夹的上传下载，带进度条显示：</p>
+                        <ul class="content-list">
+                            <li>📥 下载单个文件：弹出保存对话框选择路径</li>
+                            <li>📥 下载文件夹：递归下载所有内容到所选目录</li>
+                            <li>📥 多选下载：选中多个项目批量下载</li>
+                            <li>📤 上传文件：支持多文件批量上传</li>
+                            <li>📊 传输进度条实时显示</li>
+                            <li>🚀 双击文件：自动下载到临时目录并运行</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="feature-3" class="chapter">
+                    <h3>远程文件操作</h3>
+                    <div class="chapter-content">
+                        <p>在客户端直接对远程服务器执行文件管理操作：</p>
+                        <ul class="content-list">
+                            <li>📋 复制到：在服务器上复制文件/文件夹到指定位置</li>
+                            <li>✂️ 移动到：在服务器上移动文件/文件夹（支持跨盘）</li>
+                            <li>✏️ 编辑：下载文本文件 → 用编辑器打开 → 修改后自动上传回服务器</li>
+                            <li>🗑️ 删除：支持多选批量删除，带确认提示</li>
+                            <li>📝 重命名：修改远程文件/文件夹名称</li>
+                            <li>📁 新建文件夹：在远程服务器创建新目录</li>
+                        </ul>
+                        <p style="color: var(--secondary-color); margin-top: 1rem;">所有操作完成后自动刷新文件列表和目录树。</p>
+                    </div>
+                </div>
+                <div id="feature-4" class="chapter">
+                    <h3>远程终端</h3>
+                    <div class="chapter-content">
+                        <p>内置远程 Shell 功能，在客户端直接执行服务器上的命令：</p>
+                        <ul class="content-list">
+                            <li>🖥️ 黑底绿字命令行风格，Consolas 等宽字体</li>
+                            <li>⌨️ 支持命令历史（↑↓ 箭头键翻阅）</li>
+                            <li>📜 输出自动滚动，支持横向滚动</li>
+                            <li>⏱️ 30 秒超时保护，防止命令挂起</li>
+                            <li>🔌 独立连接，不影响主窗口操作</li>
+                            <li>🔒 支持中文输出（GBK 编码兼容）</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="feature-5" class="chapter">
+                    <h3>多选与框选</h3>
+                    <div class="chapter-content">
+                        <p>文件列表支持多选操作，无需按住 Ctrl 键：</p>
+                        <ul class="content-list">
+                            <li>🔲 鼠标拖拽框选多个文件/文件夹</li>
+                            <li>➕ Ctrl+点击追加选择，Shift+点击范围选择</li>
+                            <li>📥 多选后批量下载到指定目录</li>
+                            <li>🗑️ 多选后批量删除（带确认列表）</li>
+                            <li>📌 右键菜单根据选中项智能显示/隐藏</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2>系统要求与安装</h2>
+                <div id="system-requirements" class="chapter">
+                    <h3>最低系统要求</h3>
+                    <div class="chapter-content">
+                        <ul class="content-list">
+                            <li>💻 操作系统：Windows 7 及以上（32位/64位）</li>
+                            <li>🔧 .NET Framework 4.7.2 或更高版本</li>
+                            <li>🌐 网络：需要 TCP 网络连接（默认端口 9999）</li>
+                            <li>💾 磁盘空间：约 5MB（服务端 + 客户端）</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="installation" class="chapter">
+                    <h3>安装说明</h3>
+                    <div class="chapter-content">
+                        <p>本工具为绿色软件，无需安装，解压即用：</p>
+                        <ol class="content-list">
+                            <li>下载 <code class="inline-code-block">RemoteExplorerServer.exe</code> 和 <code class="inline-code-block">RemoteExplorerClient.exe</code></li>
+                            <li>将两个文件放在同一目录（或任意位置）</li>
+                            <li>先启动服务端，点击「启动」开始监听</li>
+                            <li>启动客户端，输入服务端 IP 和端口，点击「连接」</li>
+                        </ol>
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">静默启动（可选）</h4>
+                        <p>在服务端同目录创建 <code class="inline-code-block">RemoteExplorerServer.ini</code>：</p>
+                        <pre style="background: var(--code-bg, #f5f5f5); padding: 1rem; border-radius: 6px; overflow-x: auto;"><code>[RemoteExplorerServer]
+autorun=true
+quiet=true
+port=7099</code></pre>
+                        <p style="margin-top: 0.5rem;">设置 <code>autorun=true</code> 启动后自动监听，<code>quiet=true</code> 最小化到系统托盘。</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2 id="user-manual">使用指南</h2>
+                <div id="basic-operation" class="chapter">
+                    <h3>基础操作教程</h3>
+                    <div class="chapter-content">
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">1. 连接服务器</h4>
+                        <p>在客户端顶部输入服务器 IP 地址和端口号，点击「连接」。连接成功后左侧目录树显示远程驱动器列表。</p>
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">2. 浏览文件</h4>
+                        <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                            <li>点击左侧目录树节点，右侧显示该目录内容</li>
+                            <li>双击右侧文件夹进入子目录</li>
+                            <li>在路径栏输入路径后按 Enter 直接跳转</li>
+                            <li>按 ← → ↑ 按钮或 Backspace 键导航</li>
+                        </ul>
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">3. 上传与下载</h4>
+                        <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                            <li>右键 → 下载到本地：选择保存位置</li>
+                            <li>右键 → 上传文件：选择本地文件</li>
+                            <li>双击文件：自动下载并运行</li>
+                        </ul>
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">4. 文件管理</h4>
+                        <ul style="margin: 0.5rem 2rem; line-height: 1.8;">
+                            <li>复制/移动：右键 → 复制到... / 移动到...，输入目标路径</li>
+                            <li>编辑：右键 → 编辑，自动下载 → 打开编辑器 → 关闭后上传</li>
+                            <li>删除：右键 → 删除，或按 Delete 键</li>
+                            <li>新建文件夹：右键 → 新建文件夹</li>
+                        </ul>
+                        <h4 style="color: var(--primary-color); margin: 1rem 0 0.5rem 0;">5. 远程终端</h4>
+                        <p>右键 → 远程终端，打开命令行窗口。输入命令后按 Enter 执行，支持 ↑↓ 翻阅历史命令。输入 <code>exit</code> 关闭终端。</p>
+                    </div>
+                </div>
+                <div id="faq" class="chapter">
+                    <h3>常见问题（FAQ）</h3>
+                    <div class="chapter-content">
+                        <div class="faq-item">
+                            <p class="faq-question">Q1：连接不上服务器怎么办？</p>
+                            <p>A1：请检查：① 服务端是否已启动并监听；② 防火墙是否放行了对应端口；③ IP 地址和端口是否正确；④ 客户端和服务端是否在同一网络。</p>
+                        </div>
+                        <div class="faq-item">
+                            <p class="faq-question">Q2：上传/下载大文件会卡住吗？</p>
+                            <p>A2：不会。文件传输采用流式传输，内存占用恒定（64KB 缓冲区），支持任意大小文件。进度条会实时显示传输进度。</p>
+                        </div>
+                        <div class="faq-item">
+                            <p class="faq-question">Q3：移动文件跨盘时会怎样？</p>
+                            <p>A3：自动处理跨盘移动——先复制到目标位置，确认成功后删除源文件。同一分区内直接使用系统 Move 操作。</p>
+                        </div>
+                        <div class="faq-item">
+                            <p class="faq-question">Q4：编辑功能支持哪些文件类型？</p>
+                            <p>A4：编辑功能会用系统默认程序打开文件。文本文件会自动检测修改并上传；其他类型（如图片、PDF）打开后也会检测修改时间，有变化则提示上传。</p>
+                        </div>
+                        <div class="faq-item">
+                            <p class="faq-question">Q5：如何联系技术支持或反馈问题？</p>
+                            <p>A5：请发送邮件至 <a href="mailto:IAmSystem32@outlook.com" class="link">IAmSystem32@outlook.com</a>，注明「Remote Explorer + 问题描述」。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2>技术细节</h2>
+                <div id="architecture" class="chapter">
+                    <h3>架构设计</h3>
+                    <div class="chapter-content">
+                        <p>Remote Explorer 采用客户端-服务器架构，基于 TCP 长连接通信：</p>
+                        <ul class="content-list">
+                            <li>🔧 服务端：监听端口，接收命令，执行文件操作，返回结果</li>
+                            <li>🖥️ 客户端：提供类 Explorer 界面，发送命令，展示结果</li>
+                            <li>📡 协议：JSON 命令/响应 + 二进制文件流传输</li>
+                            <li>🔒 安全：服务端只响应已连接客户端的请求</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="protocol" class="chapter">
+                    <h3>通信协议</h3>
+                    <div class="chapter-content">
+                        <p>客户端与服务端通过自定义协议通信：</p>
+                        <ul class="content-list">
+                            <li>📨 消息帧：[4字节长度][JSON 负载]</li>
+                            <li>📁 文件传输：[8字节长度][原始字节流]</li>
+                            <li>🔄 请求-响应模式：客户端发送命令，服务端返回结果</li>
+                            <li>📋 支持的命令：LIST_DRIVES、LIST_DIR、DOWNLOAD、UPLOAD、DELETE、MKDIR、RENAME、COPY、MOVE、EXEC</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2>法律信息</h2>
+                <div id="copyright" class="chapter">
+                    <h3>版权声明</h3>
+                    <div class="chapter-content">
+                        <p>© 2025 I Am System32. 保留所有权利。</p>
+                        <p class="paragraph-margin">Remote Explorer 是个人开发的免费软件，仅限非商业用途使用。未经开发者书面许可，不得用于商业盈利、复制分发、反向工程或修改。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>Remote Explorer - 远程文件管理工具</p>
+        <p>&copy; 2025 I Am System32. All rights reserved.</p>
+        <p>Host Service By Cloudflare Pages. Remote Repository By Github.</p>
+    </footer>
+</body>
+
+</html>
