@@ -59,7 +59,7 @@
 
     function initFirstVisit(){
         if(firstvisit){
-            showCenterAlert('欢迎来到gign.ltd, 这是你在我们质量更新后首次来访呢\n我们推荐你关闭例如Dark Reader等浏览器插件, 使用我们内置的主题和字体样式切换开关\n两个开关位于目录底部\n[还剩一个提示, 仅会在首次进入网站加载]', {icon: 'ℹ'});
+            showCenterAlert('欢迎来到blog.gign.ltd, 这是你在我们质量更新后首次来访呢\n我们推荐你关闭例如Dark Reader等浏览器插件, 使用我们内置的主题和字体样式切换开关\n两个开关位于目录底部\n[还剩一个提示, 仅会在首次进入网站加载]', {icon: 'ℹ'});
             showCenterAlert('当目录过长时, 你可以通过滚动目录来查看所有内容\n横屏的目录会比竖屏的要短得多\n当往页面下滑一段距离后, 可以通过点击右上角的按钮快速返回顶部', {icon: '√'});
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 localStorage.setItem('siteTheme', 'dark');

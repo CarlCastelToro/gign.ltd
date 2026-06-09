@@ -2,25 +2,25 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
-    const segments = path.split('/').filter(Boolean);
+    const segments = path.split("/").filter(Boolean);
 
     // 获取来访者 IP
-    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
 
     // CORS 头
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
     };
 
     // 处理 OPTIONS 请求
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
 
     // 路由：/stats - 显示统计信息
-    if (segments[0] === 'stats') {
+    if (segments[0] === "stats") {
       // 检查是否为新访客
       const visitorKey = `visitor:${ip}`;
       const existingVisitor = await env.gign_kv_namespace.get(visitorKey);
@@ -29,15 +29,18 @@ export default {
       if (existingVisitor === null) {
         // 新访客，记录 IP
         isNewVisitor = true;
-        await env.gign_kv_namespace.put(visitorKey, JSON.stringify({
-          ip: ip,
-          firstVisit: new Date().toISOString(),
-          visits: 1
-        }));
+        await env.gign_kv_namespace.put(
+          visitorKey,
+          JSON.stringify({
+            ip: ip,
+            firstVisit: new Date().toISOString(),
+            visits: 1,
+          }),
+        );
 
         // 更新总来访者计数
-        const countKey = 'total_visitors';
-        let countData = await env.gign_kv_namespace.get(countKey, 'json');
+        const countKey = "total_visitors";
+        let countData = await env.gign_kv_namespace.get(countKey, "json");
         if (!countData) {
           countData = { count: 0, lastUpdated: new Date().toISOString() };
         }
@@ -49,34 +52,50 @@ export default {
         const visitorData = JSON.parse(existingVisitor);
         visitorData.visits = (visitorData.visits || 0) + 1;
         visitorData.lastVisit = new Date().toISOString();
-        await env.gign_kv_namespace.put(visitorKey, JSON.stringify(visitorData));
+        await env.gign_kv_namespace.put(
+          visitorKey,
+          JSON.stringify(visitorData),
+        );
       }
 
       // 获取总来访者数
-      const countKey = 'total_visitors';
-      let countData = await env.gign_kv_namespace.get(countKey, 'json');
+      const countKey = "total_visitors";
+      let countData = await env.gign_kv_namespace.get(countKey, "json");
       const totalCount = countData ? countData.count : 0;
 
       // 返回统计信息
-      if (segments[1] === 'count') {
+      if (segments[1] === "count") {
         // /stats/count - 只返回数字
         return new Response(totalCount.toString(), {
           status: 200,
-          headers: { 'Content-Type': 'text/plain; charset=utf-8', ...corsHeaders }
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+            ...corsHeaders,
+          },
         });
       }
 
-      if (segments[1] === 'json') {
+      if (segments[1] === "json") {
         // /stats/json - 返回 JSON 格式
-        return new Response(JSON.stringify({
-          totalVisitors: totalCount,
-          currentIP: ip,
-          isNewVisitor: isNewVisitor,
-          lastUpdated: countData ? countData.lastUpdated : null
-        }, null, 2), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders }
-        });
+        return new Response(
+          JSON.stringify(
+            {
+              totalVisitors: totalCount,
+              currentIP: ip,
+              isNewVisitor: isNewVisitor,
+              lastUpdated: countData ? countData.lastUpdated : null,
+            },
+            null,
+            2,
+          ),
+          {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              ...corsHeaders,
+            },
+          },
+        );
       }
 
       // /stats - 返回 HTML 页面
@@ -184,8 +203,8 @@ export default {
         <div class="info">
             <p>您的 IP: <strong>${ip}</strong></p>
             <p>
-                <span class="badge ${isNewVisitor ? 'new' : 'returning'}">
-                    ${isNewVisitor ? '新访客' : '老朋友'}
+                <span class="badge ${isNewVisitor ? "new" : "returning"}">
+                    ${isNewVisitor ? "新访客" : "老朋友"}
                 </span>
             </p>
         </div>
@@ -204,51 +223,79 @@ export default {
 
       return new Response(html, {
         status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8', ...corsHeaders }
+        headers: { "Content-Type": "text/html; charset=utf-8", ...corsHeaders },
       });
     }
 
     // 路由：/create/{键名}
-    if (segments[0] === 'create' && segments.length === 2) {
+    if (segments[0] === "create" && segments.length === 2) {
       const key = decodeURIComponent(segments[1]);
       const existing = await env.gign_kv_namespace.get(key);
       if (existing !== null) {
-        return new Response(`键 "${key}" 已存在`, { status: 409, headers: corsHeaders });
+        return new Response(`键 "${key}" 已存在`, {
+          status: 409,
+          headers: corsHeaders,
+        });
       }
-      await env.gign_kv_namespace.put(key, '');
-      return new Response(`已创建键: ${key}`, { status: 201, headers: corsHeaders });
+      await env.gign_kv_namespace.put(key, "");
+      return new Response(`已创建键: ${key}`, {
+        status: 201,
+        headers: corsHeaders,
+      });
     }
 
     // 路由：/delete/{键名}
-    if (segments[0] === 'delete' && segments.length === 2) {
+    if (segments[0] === "delete" && segments.length === 2) {
       const key = decodeURIComponent(segments[1]);
       const existing = await env.gign_kv_namespace.get(key);
       if (existing === null) {
-        return new Response(`键 "${key}" 不存在`, { status: 404, headers: corsHeaders });
+        return new Response(`键 "${key}" 不存在`, {
+          status: 404,
+          headers: corsHeaders,
+        });
       }
       await env.gign_kv_namespace.delete(key);
-      return new Response(`已删除键: ${key}`, { status: 200, headers: corsHeaders });
+      return new Response(`已删除键: ${key}`, {
+        status: 200,
+        headers: corsHeaders,
+      });
     }
 
     // 路由：/write/{键名}/{内容}
-    if (segments[0] === 'write' && segments.length >= 3) {
+    if (segments[0] === "write" && segments.length >= 3) {
       const key = decodeURIComponent(segments[1]);
-      const content = decodeURIComponent(segments.slice(2).join('/'));
+      const content = decodeURIComponent(segments.slice(2).join("/"));
       await env.gign_kv_namespace.put(key, content);
-      return new Response(`已写入键 "${key}": ${content}`, { status: 200, headers: corsHeaders });
+      return new Response(`已写入键 "${key}": ${content}`, {
+        status: 200,
+        headers: corsHeaders,
+      });
     }
 
     // 路由：/read/{键名}
-    if (segments[0] === 'read' && segments.length === 2) {
+    if (segments[0] === "read" && segments.length === 2) {
       const key = decodeURIComponent(segments[1]);
       const content = await env.gign_kv_namespace.get(key);
       if (content === null) {
-        return new Response(`键 "${key}" 不存在`, { status: 404, headers: corsHeaders });
+        return new Response(`键 "${key}" 不存在`, {
+          status: 404,
+          headers: corsHeaders,
+        });
       }
       return new Response(content, { status: 200, headers: corsHeaders });
     }
 
+    // 在 worker.js 的路由判断区域添加：
+    if (segments[0] === "list") {
+      const list = await env.gign_kv_namespace.list();
+      const keys = list.keys.map((k) => k.name);
+      return new Response(JSON.stringify(keys, null, 2), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
     // 其他路由返回 404
-    return new Response('未找到', { status: 404, headers: corsHeaders });
+    return new Response("未找到", { status: 404, headers: corsHeaders });
   },
 };
